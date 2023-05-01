@@ -1,1 +1,1 @@
-# Let'sgoSeoul
+# Let'sGoSeoul
