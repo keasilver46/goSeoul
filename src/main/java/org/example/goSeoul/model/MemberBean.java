@@ -1,6 +1,25 @@
 package org.example.goSeoul.model;
 
-// Dto
-public class MemberBean {
+import org.apache.ibatis.type.Alias;
 
+@Alias("member")
+public class MemberBean {
+    private String id;
+    private String pass;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getPass() {
+        return pass;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
+    }
 }

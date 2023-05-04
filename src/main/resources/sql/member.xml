@@ -3,6 +3,9 @@
 
 <mapper namespace="memberns">
 
-
+    <!-- 로그인 인증 -->
+    <select id="login_check" parameterType="String" resultType="member">
+    select * from user where id=#{id}
+    </select>
 
 </mapper>

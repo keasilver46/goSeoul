@@ -18,15 +18,15 @@
 </head>
 <body>
 
-	<form method="post" action="MemberLoginok.do" onsubmit="return check()">
+	<form method="post" action="MemberLoginOk.do" onsubmit="return check()">
 		<table>
 			<tr>
-				<td><input id="userid" name="userid" placeholder="아이디"></td>
+				<td><input id="id" name="id" placeholder="아이디"></td>
 			</tr>
 			<br>
 			<div class="passwd">
 			<tr>
-				<td><input type="password" id="passwd" name="passwd" placeholder="비밀번호"></td>
+				<td><input type="password" id="pass" name="pass" placeholder="비밀번호"></td>
 				<!-- 비밀번호 표시 추가하기 -->
 				<div class="eyes">
                   	<i class="fa fa-eye fa-lg"></i>

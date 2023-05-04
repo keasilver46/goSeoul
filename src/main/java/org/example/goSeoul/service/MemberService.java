@@ -8,6 +8,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class MemberService {
 
+    @Autowired
+    private MemberDao memberDao;
 
-
+    public MemberBean userCheck(String id) throws Exception {
+        return memberDao.userCheck(id);
+    }
 }
