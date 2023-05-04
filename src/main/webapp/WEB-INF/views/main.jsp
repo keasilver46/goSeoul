@@ -4,11 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Go Seoul</title>
+<title>Insert title here</title>
 </head>
 <body>
-    <script>
-        location.href = "main.do";
-    </script>
+
+    <%@ include file="footer.jsp" %>
 </body>
 </html>
