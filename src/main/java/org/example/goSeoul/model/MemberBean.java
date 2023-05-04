@@ -1,8 +1,5 @@
 package org.example.goSeoul.model;
 
-import org.apache.ibatis.type.Alias;
-
-@Alias("member")
 public class MemberBean {
     private String id;
     private String pass;

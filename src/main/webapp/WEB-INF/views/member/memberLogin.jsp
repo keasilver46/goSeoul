@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>로그인 페이지</title>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 <style>
     form {
         text-align: center;
@@ -14,7 +15,21 @@
             border-collapse:collapse;
     }
 </style>
-<link rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+<script>
+function check(){
+    if($.trim($("#id").val())==""){
+    alert("아이디를 입력해주세요.");
+    $("#id").val("").focus();
+    return false;
+    }
+    if($.trim($("#pass").val())==""){
+    alert("비밀번호를 입력해주세요.");
+    $("#pass").val("").focus();
+    return false;
+    }
+}
+</script>
+
 </head>
 <body>
 
@@ -24,14 +39,9 @@
 				<td><input id="id" name="id" placeholder="아이디"></td>
 			</tr>
 			<br>
-			<div class="passwd">
 			<tr>
 				<td><input type="password" id="pass" name="pass" placeholder="비밀번호"></td>
 				<!-- 비밀번호 표시 추가하기 -->
-				<div class="eyes">
-                  	<i class="fa fa-eye fa-lg"></i>
-                  </div>
-            </div>
 
 			</tr><br>
             <tr>
@@ -48,9 +58,10 @@
 		<a href="" style="text-decoration:none;" style="color: gray">회원가입</a><br>
         <hr width="30%">
         <br>
+
 		<!-- 로그인 api 구글, 네이버, 카톡 작성하기 -->
         구글 네이버 카톡
-		</table>
+
 	</form>
 
 </body>
