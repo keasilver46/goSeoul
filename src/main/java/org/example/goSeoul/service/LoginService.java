@@ -6,12 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MemberService {
+public class LoginService {
 
     @Autowired
     private MemberDao memberDao;
+    @Autowired
+    private KakaoService kakaoService;
 
-    public MemberBean loginCheck(String id) throws Exception {
-        return memberDao.loginCheck(id);
+    public MemberBean loginCheck(MemberBean mb) throws Exception {
+        return memberDao.loginCheck(mb);
     }
+
+
 }

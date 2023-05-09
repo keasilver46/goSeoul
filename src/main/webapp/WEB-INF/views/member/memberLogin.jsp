@@ -11,8 +11,8 @@
         text-align: center;
     }
     table {
-            margin: auto;
-            border-collapse:collapse;
+        margin: auto;
+        border-collapse:collapse;
     }
 </style>
 <script>
@@ -60,8 +60,15 @@ function check(){
         <br>
 
 		<!-- 로그인 api 구글, 네이버, 카톡 작성하기 -->
-        구글 네이버 카톡
+		<!-- 카카오 로그인 -->
+		<a class="kakao" href="https://kauth.kakao.com/oauth/authorize?
+		client_id=53907bf2cc99ddbb1929db25394e8fae&
+		redirect_uri=http://localhost:8080/member/kakao&response_type=code">
+		<img src="images/kakao.png" width="50px"/>
+        </a>
 
+
+        구글 네이버
 	</form>
 
 </body>

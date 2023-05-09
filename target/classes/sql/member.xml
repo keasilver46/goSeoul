@@ -4,8 +4,9 @@
 <mapper namespace="mymember">
 
     <!-- 로그인 인증 -->
-    <select id="loginCheck" parameterType="String" resultType="member">
-    select * from usertest where id=#{id}
+    <!-- db에 저장된 데이터와 사용자가 입력한 데이터가 같은 값을 찾아옴 -->
+    <select id="loginCheck" parameterType="member" resultType="member">
+    select * from usertest where id=#{id} and pass=#{pass}
     </select>
 
 </mapper>
