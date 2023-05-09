@@ -19,10 +19,9 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
         String id = (String)session.getAttribute("id");
 
         if(id == null || id.equals("")) {
-            response.sendRedirect("MemberLogin.do");
+            response.sendRedirect("memberLogin.do");
             return false;
         }
         return true;
     }
 }
-

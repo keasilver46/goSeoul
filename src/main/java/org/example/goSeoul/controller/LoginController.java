@@ -1,15 +1,18 @@
 package org.example.goSeoul.controller;
 
 import org.example.goSeoul.model.MemberBean;
+import org.example.goSeoul.service.KakaoService;
 import org.example.goSeoul.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.util.Map;
 
 @Controller
 public class LoginController {
@@ -20,7 +23,7 @@ public class LoginController {
     MemberBean memberBean = new MemberBean();
 
     // 로그인 폼 뷰
-    @RequestMapping("MemberLogin.do")
+    @RequestMapping("memberLogin.do")
     public String memberLogin() {
 
         // member폴더의 memberLogin.jsp 뷰 페이지 실행
@@ -28,7 +31,7 @@ public class LoginController {
     }
 
     // 로그인 처리
-    @RequestMapping("MemberLoginOk.do")
+    @RequestMapping("memberLoginOk.do")
     public String memberLoginOk(@ModelAttribute MemberBean mb,
                                 HttpSession session,
                                 Model model) throws Exception {
@@ -47,14 +50,19 @@ public class LoginController {
     }
 
     // 카카오 로그인
-    // 1번 카카오톡에 사용자 코드 받기(memberLogin.jsp의 a태그 href에 경로 있음)
-    @RequestMapping("/MemberLogin.do")
-    public String kakaoLogin(@RequestParam(value = "code") String code) throws Throwable  {
+    @GetMapping("/kakao")
+    public String kakaoLogin(@RequestParam String code, Model model) throws Exception {
 
-                System.out.println("code:" + code);
-                return "redirect:/main";
-            }
-        }
+        KakaoService kakaoService = new KakaoService();
+
+        System.out.println("code = " + code);
+        String accessToken = kakaoService.getToken(code);
+        Map<String, Object> userInfo = kakaoService.getUserInfo(accessToken);
+
+        model.addAttribute("code", code);
+        model.addAttribute("access_token", accessToken);
+        model.addAttribute("userInfo", userInfo);
+
+        return "member/main";
     }
 }
-

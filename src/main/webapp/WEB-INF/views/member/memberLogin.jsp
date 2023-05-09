@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>로그인 페이지</title>
@@ -33,7 +33,7 @@ function check(){
 </head>
 <body>
 
-	<form method="post" action="MemberLoginOk.do" onsubmit="return check()">
+	<form method="post" action="memberLoginOk.do" onsubmit="return check()">
 		<table>
 			<tr>
 				<td><input id="id" name="id" placeholder="아이디"></td>
