@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	Hello World!
+<script>
+	location.href="member_form.do";
+</script>
 </body>
 </html>
