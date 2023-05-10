@@ -10,12 +10,8 @@ public class LoginService {
 
     @Autowired
     private MemberDao memberDao;
-    @Autowired
-    private KakaoService kakaoService;
 
     public MemberBean loginCheck(MemberBean mb) throws Exception {
         return memberDao.loginCheck(mb);
     }
-
-
 }

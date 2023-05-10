@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
 <meta charset="UTF-8">
 <title>로그인 페이지</title>
@@ -33,7 +33,7 @@ function check(){
 </head>
 <body>
 
-	<form method="post" action="memberLoginOk.do" onsubmit="return check()">
+	<form method="post" action="MemberLoginOk.do" onsubmit="return check()">
 		<table>
 			<tr>
 				<td><input id="id" name="id" placeholder="아이디"></td>
@@ -61,12 +61,9 @@ function check(){
 
 		<!-- 로그인 api 구글, 네이버, 카톡 작성하기 -->
 		<!-- 카카오 로그인 -->
-		<a class="kakao" href="https://kauth.kakao.com/oauth/authorize?
-		client_id=53907bf2cc99ddbb1929db25394e8fae&
-		redirect_uri=http://localhost:8080/member/kakao&response_type=code">
+		<a class="kakao" href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=53907bf2cc99ddbb1929db25394e8fae&redirect_uri=http://localhost/goSeoul/kakaoLogin.do">
 		<img src="images/kakao.png" width="50px"/>
         </a>
-
 
         구글 네이버
 	</form>
