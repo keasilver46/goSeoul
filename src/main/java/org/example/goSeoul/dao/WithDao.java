@@ -1,18 +1,18 @@
 package org.example.goSeoul.dao;
 
 import org.apache.ibatis.session.SqlSession;
-import org.example.goSeoul.model.MemberBean;
+import org.example.goSeoul.model.WithBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class MemberDao {
+public class WithDao {
 
     @Autowired
     private SqlSession sqlSession;
 
-    // 로그인 인증 체크
-    public MemberBean checkLogin(MemberBean mb) throws Exception {
-        return sqlSession.selectOne("checkLogin", mb);
+    // 동행글 저장
+    public void insert(WithBean wb) {
+        sqlSession.insert("insert", wb);
     }
 }

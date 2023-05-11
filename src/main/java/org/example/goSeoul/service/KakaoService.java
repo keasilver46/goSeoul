@@ -130,23 +130,20 @@ public class KakaoService {
             JsonObject kakao_account = element.getAsJsonObject().get("kakao_account").getAsJsonObject();
             Long id = element.getAsJsonObject().get("id").getAsLong();
 
-            //파싱된 json데이터를 string에 담기
-            //properties
+            // 파싱된 json데이터를 string에 담기
+            // properties
             String nickname = properties.getAsJsonObject().get("nickname").getAsString();
-
-            //kakao_account
+            // kakao_account
             String email = kakao_account.getAsJsonObject().get("email").getAsString();
             String gender = kakao_account.getAsJsonObject().get("gender").getAsString();
-            String age_range = kakao_account.getAsJsonObject().get("age_range").getAsString();
 
-            System.out.println("id: "+ id);
-            System.out.println("nickname: "+nickname);
+            // System.out.println("id: "+ id);
+            // System.out.println("nickname: "+nickname);
 
             //setter이용하여 KakaoVO에 담기
             kakaoUserInfo.setId(id);
             kakaoUserInfo.setNickname(nickname);
             kakaoUserInfo.setEmail(email);
-            kakaoUserInfo.setAge_range(age_range);
             kakaoUserInfo.setGender(gender);
 
         } catch (MalformedURLException e) {

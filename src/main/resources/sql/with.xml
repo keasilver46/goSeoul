@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="withns">
+
+    <!-- 글작성-->
+    <!--<insert id="insert" parameterType="with">
+        insert into withgo (with_title, with_content, with_maxto, with_age, with_start, with_end, with_filename)
+        values (#{with_title},#{with_content},#{with_maxto}, #{with_age},#{with_start},#{with_end},#{with_filename})
+    </insert>-->
+<!--    <insert id="insert" parameterType="with">-->
+<!--        insert into withgo (with_no, with_title, with_content)-->
+<!--        values (1,#{with_title},#{with_content})-->
+<!--    </insert>-->
+</mapper>

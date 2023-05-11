@@ -8,7 +8,8 @@
 </head>
 <body>
 	Hello World!<br>
-	<a href="./MemberLogin.do">로그인</a>
+	<a href="./memberLogin.do">로그인</a><br>
+	<a href="./withWrite.do">동행글작성</a><br>
 	브랜치 테스트
 </body>
 </html>

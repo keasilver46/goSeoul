@@ -25,7 +25,7 @@ public class LoginController {
     MemberBean memberBean = new MemberBean();
 
     // 로그인 폼 뷰
-    @RequestMapping("MemberLogin.do")
+    @RequestMapping("memberLogin.do")
     public String memberLogin() {
 
         // member폴더의 memberLogin.jsp 뷰 페이지 실행
@@ -33,13 +33,13 @@ public class LoginController {
     }
 
     // 로그인 처리
-    @RequestMapping("MemberLoginOk.do")
+    @RequestMapping("memberLoginOk.do")
     public String memberLoginOk(@ModelAttribute MemberBean mb,
                                 HttpSession session,
                                 Model model) throws Exception {
 
         int result = 0;
-        MemberBean memberBean = loginService.loginCheck(mb);
+        MemberBean memberBean = loginService.checkLogin(mb);
 
         if (memberBean == null) { // 등록되지 않은 회원 일때
             result = 1;
@@ -84,4 +84,6 @@ public class LoginController {
 
         return "member/main";
     }
+
+
 }

@@ -5,7 +5,7 @@ public class KakaoVo {
     private String nickname;
     private String email;
     private String gender;
-    private String age_range;
+
 
     public Long getId() {
         return id;
@@ -38,25 +38,4 @@ public class KakaoVo {
     public void setGender(String gender) {
         this.gender = gender;
     }
-
-    public String getAge_range() {
-        return age_range;
-    }
-
-    public void setAge_range(String age_range) {
-        this.age_range = age_range;
-    }
-
-    public String getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(String birthday) {
-        this.birthday = birthday;
-    }
-
-    private String birthday;
-
-
-
 }
