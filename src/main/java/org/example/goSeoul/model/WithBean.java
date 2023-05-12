@@ -1,11 +1,9 @@
 package org.example.goSeoul.model;
 
-import com.sun.org.apache.xpath.internal.operations.String;
-
-//@Data
+// @Data
 public class WithBean {
 
-    private String with_no;
+    private int with_no;
     private String with_title;
     private String with_content;
     private String with_maxto;
@@ -19,11 +17,11 @@ public class WithBean {
     private String with_filename; /* 파일이름 */
     private String with_filepath; /* 파일경로 */
 
-    public String getWith_no() {
+    public int getWith_no() {
         return with_no;
     }
 
-    public void setWith_no(String with_no) {
+    public void setWith_no(int with_no) {
         this.with_no = with_no;
     }
 

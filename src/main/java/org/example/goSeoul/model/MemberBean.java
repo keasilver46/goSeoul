@@ -1,8 +1,6 @@
 package org.example.goSeoul.model;
 
-import lombok.Data;
-
-@Data
+// @Data
 public class MemberBean {
     private String user_no;
     private String id;

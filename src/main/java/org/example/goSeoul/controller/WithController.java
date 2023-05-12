@@ -4,7 +4,9 @@ import org.example.goSeoul.model.WithBean;
 import org.example.goSeoul.service.WithService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -21,15 +23,13 @@ public class WithController {
     }
 
     // 동행글 작성
-    @RequestMapping("withWriteResult.do")
-    public String withWriteResult(@ModelAttribute WithBean wb) throws Exception {
+    @PostMapping("withWriteResult.do")
+    public String withWriteResult(@ModelAttribute WithBean wb, Model model) throws Exception {
 
-        System.out.println("withWriteResult");
+        int result = withService.insertCheck(wb);
+        System.out.println("result:"+result);
+        model.addAttribute("result", result);
 
-
-        withService.insert(wb);
-        // model.addAttribute("result", result);
-
-        return "redirect:/with/withWriteResult";
+        return "with/withList";
     }
 }

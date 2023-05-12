@@ -12,10 +12,8 @@ public class WithService {
     private WithDao withDao;
 
     // 동행글 저장
-    public void insert(WithBean wb) throws Exception {
+    public int insertCheck(WithBean wb) throws Exception {
         System.out.println("동행글 서비스클래스");
-        withDao.insert(wb);
+        return withDao.insertCheck(wb);
     }
-
-
 }

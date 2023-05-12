@@ -12,7 +12,7 @@ public class MemberDao {
     private SqlSession sqlSession;
 
     // 로그인 인증 체크
-    public MemberBean checkLogin(MemberBean mb) throws Exception {
-        return sqlSession.selectOne("checkLogin", mb);
+    public MemberBean checkLogin(String id) throws Exception {
+        return sqlSession.selectOne("checkLogin", id);
     }
 }

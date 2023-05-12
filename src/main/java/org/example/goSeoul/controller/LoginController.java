@@ -7,7 +7,6 @@ import org.example.goSeoul.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -20,13 +19,14 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
     @Autowired
-    KakaoService kakaoService;
+    private KakaoService kakaoService;
 
     MemberBean memberBean = new MemberBean();
 
     // 로그인 폼 뷰
     @RequestMapping("memberLogin.do")
     public String memberLogin() {
+        System.out.println("memberLogin");
 
         // member폴더의 memberLogin.jsp 뷰 페이지 실행
         return "member/memberLogin";
@@ -34,20 +34,38 @@ public class LoginController {
 
     // 로그인 처리
     @RequestMapping("memberLoginOk.do")
-    public String memberLoginOk(@ModelAttribute MemberBean mb,
+
+    public String memberLoginOk(@RequestParam("id") String id,
+                                @RequestParam("pass") String pass,
+
                                 HttpSession session,
                                 Model model) throws Exception {
+        System.out.println("memberLoginOk");
 
         int result = 0;
-        MemberBean memberBean = loginService.checkLogin(mb);
+
+        MemberBean memberBean = loginService.checkLogin(id);
 
         if (memberBean == null) { // 등록되지 않은 회원 일때
             result = 1;
             model.addAttribute("result", result);
             return "member/loginResult";
         } else { // 등록된 회원 일때
-            session.setAttribute("mb", memberBean);
-            return "member/main";
+            if (memberBean.getPass().equals(pass)) {			// 비번이 같을때
+
+                // 세션에 담기
+                session.setAttribute("id", memberBean.getId());
+
+                int user_no = Integer.parseInt(memberBean.getUser_no());
+                model.addAttribute("user_no", user_no);
+
+                return "redirect:main.do";
+            } else {									// 비번이 다를때
+                result = 2;
+                model.addAttribute("result", result);
+
+                return "member/loginResult";
+            }
         }
     }
 
@@ -77,13 +95,12 @@ public class LoginController {
 
         //세션에 담기
         if (kakaoVo.getNickname() != null) {
-            session.setAttribute("nickname", kakaoVo.getNickname());
             session.setAttribute("access_Token", access_Token);
             session.setAttribute("id", kakaoVo.getId());
+            session.setAttribute("nickname", kakaoVo.getNickname());
+            session.setAttribute("email", kakaoVo.getEmail());
+            session.setAttribute("gender", kakaoVo.getGender());
         }
-
-        return "member/main";
+        return "main";
     }
-
-
 }

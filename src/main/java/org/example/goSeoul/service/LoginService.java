@@ -11,7 +11,8 @@ public class LoginService {
     @Autowired
     private MemberDao memberDao;
 
-    public MemberBean checkLogin(MemberBean mb) throws Exception {
-        return memberDao.checkLogin(mb);
+    public MemberBean checkLogin(String id) throws Exception {
+        return memberDao.checkLogin(id);
+
     }
 }

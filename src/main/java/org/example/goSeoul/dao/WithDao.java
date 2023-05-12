@@ -12,7 +12,7 @@ public class WithDao {
     private SqlSession sqlSession;
 
     // 동행글 저장
-    public void insert(WithBean wb) {
-        sqlSession.insert("insert", wb);
+    public int insertCheck(WithBean wb) {
+        return sqlSession.insert("insertCheck", wb);
     }
 }

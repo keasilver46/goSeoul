@@ -111,7 +111,6 @@ public class KakaoService {
             //데이터를 문자'열'로 읽기 위해서 inputStream을 BufferedReader로 매핑하기
             BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(),"utf-8"));
 
-
             String line="";
             String result ="";
 
@@ -150,7 +149,6 @@ public class KakaoService {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
         return kakaoUserInfo;
     }
 }
