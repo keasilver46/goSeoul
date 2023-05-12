@@ -1,26 +1,38 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
+	<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
 <head>
-     <meta charset="UTF-8">
+	<c:import url="./header.jsp"/>
+    <meta charset="UTF-8">
     <title>서울시 행사</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <style>
+    @font-face {
+	    font-family: 'Title_Medium';
+	    src: url('../fonts/Title_Medium.woff') format('woff');
+	}
+    *{
+        font-family: 'Title_Medium';
+    }
+    
 	.container {
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: left;
 		align-items: left;
-		height: 80vh;
+		height: 100vh;
 	}
 	
-	.menu-1 {
+	.menu {
 		display: flex;
 		flex-direction: column;
 		align-items: left;
+		text-shadow: gray 0.1em 0.1em 0.1em;
 		width: 100%;
 		max-width: 1400px;
 		margin: 0 auto;
@@ -58,15 +70,20 @@ pageEncoding="UTF-8"%>
     
 </head>
 <body>
-  <div class="container">
-    <div class="menu-1">
-      <h1>서울시 행사 리스트</h1>
+
+  <br><h1 style="font-size:40px; position:static; margin:10px;" class="text">서울시 행사 리스트</h1><br>
+        <label style="position:static; margin:10px;" for="searchInput"><b>행사명 검색</b></label>
+        <input id="searchInput" type="text" placeholder="Search..."><br>
+<button id="ing" type="button" class="btn btn-outline-primary">진행중</button>
+<button id="done" type="button" class="btn btn-outline-secondary">완료</button>
+  <div class="container-fluid">
+    <div class="menu">
       <div id="searchContainer">
-        <label for="searchInput">행사명 검색</label>
-        <input id="searchInput" type="text" placeholder="Search...">
       </div>
       <div class="card-container"></div>
-  
+</div>
+</div>
+
   <script>
     $(document).ready(function() {
 
@@ -87,9 +104,14 @@ pageEncoding="UTF-8"%>
             let card = $("<div>").addClass("card");
             let title = $("<h2>").text(event.title);
             let place = $("<p>").text(event.addr1);
+/* 
+            startDate = event.eventstartdate.replace(/(\d{4})(\d{2})(\d{2})/g, '$1.$2.$3');
+            endDate = event.eventenddate.replace(/(\d{4})(\d{2})(\d{2})/g, '$1.$2.$3');
+            let date = $("<p>").text(startDate.toLocaleDateString("ko-KR") +   " ~ " + endDate.toLocaleDateString("ko-KR"));
+ */ 
             let startDate = new Date(event.eventstartdate.slice(0, 4), event.eventstartdate.slice(4, 6) - 1, event.eventstartdate.slice(6, 8));
             let endDate = new Date(event.eventenddate.slice(0, 4), event.eventenddate.slice(4, 6) - 1, event.eventenddate.slice(6, 8));
-            let date = $("<p>").text(startDate.toLocaleDateString("ko-KR") + " ~ " + endDate.toLocaleDateString("ko-KR"));
+            let date = $("<p>").text(startDate.toLocaleDateString("ko-KR") +   " ~ " + endDate.toLocaleDateString("ko-KR"));
 
             let backgroundImage = "url(" + event.firstimage + ")";
             card.append(title).append(place).append(date);
@@ -98,12 +120,9 @@ pageEncoding="UTF-8"%>
             cardContainer.append(cardRow);
             cardRow.append(card);
             card.click(function() {
-              window.location.href = "eventDetail.do";
-/* 
-              card.click(function() {
-              window.location.href = "eventDetail.do?contentId=" + event.contentId;
- */
-            });
+            	  window.location.href = "eventDetail.do?contentId=" + event.contentid;
+            	});
+
           }
      	  }
       });
@@ -116,5 +135,8 @@ pageEncoding="UTF-8"%>
     });
 
   </script>
+<c:import url="./footer.jsp"/>
+<!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
 </body>
 </html>
