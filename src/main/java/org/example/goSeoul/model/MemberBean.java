@@ -17,6 +17,7 @@ public class MemberBean {
     private String tel2;
     private String tel3;
     private String email;
+    private String domain;
     private String region;
     private String gender;
     private String MBTI;
