@@ -1,7 +1,6 @@
 package org.example.goSeoul.controller;
 
 import org.example.goSeoul.model.MemberBean;
-import org.example.goSeoul.service.MemberService;
 import org.example.goSeoul.service.MemberServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
