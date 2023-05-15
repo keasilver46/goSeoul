@@ -5,20 +5,21 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>회원가입폼</title>
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
     
-    <!-- 외부 자바스크립트 파일 불러오기 -->
+    <title>회원가입폼</title>
+    
+    <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src="./js/member.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" 
+     integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" 
+     integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+    
     </head>
-
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    
 <style>
-    body {
+    .body {
         min-height: 100vh;
 
         background: -webkit-gradient(linear, left bottom, right top, from(#92b5db), to(#1d466c));
@@ -66,7 +67,7 @@
        
     }
 
-    textarea {
+    #textarea {
         width: 100%;
         height: 200px;
         resize: none;
@@ -92,12 +93,10 @@
 
 <body>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-        crossorigin="anonymous"></script>
+   
         
-<form id="myform" method="post" action="member_join_ok.do" onSubmit="location.href="member_join_ok.do">
-<!-- <form method="post" action="member_join_ok.do" onSubmit="return check()"> -->
+<!-- <form id="myform" method="post" action="member_join_ok.do"> -->
+<form method="post" action=member_join_ok.do onSubmit="return check()">
     <div class="container">
         <div class="input-form-backgroud row">
             <div class="input-form col-md-12 mx-auto">
@@ -155,10 +154,10 @@
                             
                                 <select id="mailid">
                                     <option value="">직접입력</option>
-                                    <option value="@naver.com">네이버</option>
-                                    <option value="@daum.net">다음</option>
-                                    <option value="@nate.com">네이트</option>
-                                    <option value="@gmail.com">구글</option>
+                                    <option value="naver.com">네이버</option>
+                                    <option value="daum.net">다음</option>
+                                    <option value="nate.com">네이트</option>
+                                    <option value="gmail.com">구글</option>
                                 </select>
                             </div>
                         </div>
@@ -170,14 +169,19 @@
                     </div>
 
                     <div class="row">
-                        <label for="tel">휴대폰번호</label>
-                        <div class="col-md-4 mb-3">
-                            <input type="text" class="form-control" id="tel1" name="tel1" placeholder="010">
+                        <div class="col-md-3 mb-3">
+                        <label for="tel">휴대전화</label>
+                            <input type="text" class="form-control" id="tel1" name="tel1" value="010" readonly>
                         </div>
+                        <div style="display: flex; align-items: center";>-</div>
                         <div class="col-md-4 mb-3">
+                         <label for="tel">ㅤ</label>
                             <input type="text" class="form-control" id="tel2" name="tel2" placeholder="" value="">
+                            
                         </div>
+                        <div style="display: flex; align-items: center";>-</div>
                         <div class="col-md-4 mb-3">
+                         <label for="tel">ㅤ</label>
                             <input type="text" class="form-control" id="tel3" name="tel3" placeholder="" value="">
                         </div>
                     </div>
@@ -185,11 +189,11 @@
                      <div class="row">
                         <div class="col-md-4 mb-3">
                             <label for="MBTI">MBTI<span class="text-muted">&nbsp;(필수 아님)</span></label>
-                            <input type="text" size="10" class="form-control" id="MBTI" name="MBTI" placeholder="ex)infp" value="">
+                            <input type="text" size="10" class="form-control" id="MBTI" name="MBTI" placeholder="ex) infp" value="">
                         </div>
                         <div class="col-md-4 mb-3">
                             <label for="region">선호하는 지역</label>
-                            <input type="text" size="10" class="form-control" id="region" name="region" placeholder="ex)종로구" value="">
+                            <input type="text" size="10" class="form-control" id="region" name="region" placeholder="ex) 종로구" value="">
                         </div>
                         
                         <div class="col-md-4 mb-3">
@@ -212,17 +216,6 @@
 						<input type="checkbox" id="h5" name="interests" value="쇼핑">쇼핑&nbsp;&nbsp;&nbsp;
                         </div>
                     </div>
-                    
-                    
-                 <!--   	 <div class="mb-3">
-                       <label for="interests">관심사</label>
-                       <div id="hobby" class="form-control" align="center">
-                     	<div class="custom-control custom-checkbox">
-                        	<input type="checkbox" class="custom-control-input" id="activity" name="interests" value="액티비티" required>
-                        	<label class="custom-control-label" for="activity">액티비티</label>
-                    	</div>
-                    </div>
-                    </div> -->
                         
                     <div class="mb-3">
                         <label for="info">자기소개<span class="text-muted">&nbsp;(필수 아님)</span></label>
@@ -252,11 +245,12 @@
                     
                     <hr class="mb-4">
                     <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="agreement" required>
+                        <input type="checkbox" class="custom-control-input" id="agreement">
                         <label class="custom-control-label" for="agreement">개인정보 수집 및 이용에 동의합니다.</label>
                     </div>
                     <div class="mb-4"></div>
-                    <button class="btn btn-primary btn-lg btn-block" type="button" onClick="check()">가입 완료</button>
+                    <!-- <button class="btn btn-primary btn-lg btn-block" type="button" onClick="check()">가입 완료</button> -->
+                    <button class="btn btn-primary btn-lg btn-block" type="submit">가입 완료</button>
                     </div>
                 </div>
             </div>
