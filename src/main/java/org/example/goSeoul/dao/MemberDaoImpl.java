@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.lang.reflect.Member;
 
 @Repository
-public class MemberDaoImpl implements MemberDao {
+public class MemberDaoImpl{
 
     @Autowired
     private SqlSession sqlSession;
