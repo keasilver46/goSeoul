@@ -98,7 +98,7 @@ body {
 		<p class="text-muted">SNS계정으로 간편 로그인/회원가입</p>
 		<a class="kakaoLogin"
 			href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=53907bf2cc99ddbb1929db25394e8fae&redirect_uri=http://localhost/goSeoul/kakaoLogin.do">
-			<img src="images/kakao.png" width="200px" />
+			<img src="images/kakao.png" width="60px" />
 		</a>
 		<br><br>
 		</div>

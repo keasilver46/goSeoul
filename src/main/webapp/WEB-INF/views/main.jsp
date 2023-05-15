@@ -24,12 +24,12 @@
 <body>
     <%@ include file="header.jsp" %>
 
-    <div class="d-flex justify-content-center">
+     <div class="d-flex justify-content-center">
         <img class="seoul" src="./images/Seoul.jpg">
     </div>
 
-${mb.id}님 환영합니다. <br>
-${sessionScope.nickname}님 이메일주소는 ${sessionScope.email}입니다. <br>
+${sessionScope.id}님 환영합니다. <br>
+${sessionScope.id}님 이메일주소는 ${sessionScope.email}입니다. <br>
 
     <%@ include file="footer.jsp" %>
 </body>

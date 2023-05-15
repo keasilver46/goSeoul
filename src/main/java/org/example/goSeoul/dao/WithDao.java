@@ -13,6 +13,7 @@ public class WithDao {
 
     // 동행글 저장
     public int insertCheck(WithBean wb) {
+        System.out.println("WithDao_insertCheck");
         return sqlSession.insert("insertCheck", wb);
     }
 }

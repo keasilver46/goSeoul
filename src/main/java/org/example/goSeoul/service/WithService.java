@@ -13,7 +13,7 @@ public class WithService {
 
     // 동행글 저장
     public int insertCheck(WithBean wb) throws Exception {
-        System.out.println("동행글 서비스클래스");
+        System.out.println("WithService_insertCheck");
         return withDao.insertCheck(wb);
     }
 }

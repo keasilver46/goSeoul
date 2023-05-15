@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -23,13 +22,13 @@ public class WithController {
     }
 
     // 동행글 작성
-    @PostMapping("withWriteResult.do")
+    @RequestMapping("withWriteResult.do")
     public String withWriteResult(@ModelAttribute WithBean wb, Model model) throws Exception {
+        System.out.println("withWriteResult");
 
         int result = withService.insertCheck(wb);
-        System.out.println("result:"+result);
         model.addAttribute("result", result);
 
-        return "with/withList";
+        return "with/withWriteResult";
     }
 }

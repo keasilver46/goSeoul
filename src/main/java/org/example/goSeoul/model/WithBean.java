@@ -1,16 +1,17 @@
 package org.example.goSeoul.model;
 
-// @Data
+
+
 public class WithBean {
 
     private int with_no;
     private String with_title;
     private String with_content;
-    private String with_maxto;
+    private int with_maxto;
     private String with_tag;
-    private String with_hit;
+    private int with_hit;
     private String with_category;
-    private String with_age;
+    private int with_age;
     private String with_start;
     private String with_end;
     private String with_date; /* 작성시간 */
@@ -41,11 +42,11 @@ public class WithBean {
         this.with_content = with_content;
     }
 
-    public String getWith_maxto() {
+    public int getWith_maxto() {
         return with_maxto;
     }
 
-    public void setWith_maxto(String with_maxto) {
+    public void setWith_maxto(int with_maxto) {
         this.with_maxto = with_maxto;
     }
 
@@ -57,11 +58,11 @@ public class WithBean {
         this.with_tag = with_tag;
     }
 
-    public String getWith_hit() {
+    public int getWith_hit() {
         return with_hit;
     }
 
-    public void setWith_hit(String with_hit) {
+    public void setWith_hit(int with_hit) {
         this.with_hit = with_hit;
     }
 
@@ -73,11 +74,11 @@ public class WithBean {
         this.with_category = with_category;
     }
 
-    public String getWith_age() {
+    public int getWith_age() {
         return with_age;
     }
 
-    public void setWith_age(String with_age) {
+    public void setWith_age(int with_age) {
         this.with_age = with_age;
     }
 
