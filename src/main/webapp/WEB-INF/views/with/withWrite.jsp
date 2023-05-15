@@ -31,72 +31,74 @@
 
 <!-- 해시태그 처리 -->
 <script>
-    $(document).ready(function () {
-            var with_tag = {};
-            var counter = 0;
+ $(document).ready(function() {
+   var with_tag = {};
+   var counter = 0;
 
-            // 입력한 값을 태그로 생성한다.
-            function addTag (value) {
-                with_tag[counter] = value;
-                counter++; // del-btn 의 고유 id 가 된다.
-            }
+   // 입력한 값을 태그로 생성한다.
+   function addTag(value) {
+     with_tag[counter] = value;
+     counter++; // del-btn의 고유 id가 된다.
+   }
 
-            // tag 안에 있는 값을 array type 으로 만들어서 넘긴다.
-            function marginTag () {
-                return Object.values(tag).filter(function (word) {
-                    return word !== "";
-                });
-            }
+   // tag 안에 있는 값을 array type으로 만들어서 넘긴다.
+   function marginTag() {
+     return Object.values(with_tag).filter(function(word) {
+       return word !== "";
+     });
+   }
 
-            // 서버에 제공
-            $("#tag-form").on("submit", function (e) {
-                var value = marginTag(); // return array
-                $("#rdTag").val(value);
+   // 서버에 제공
+   $("#tag-form").on("submit", function(e) {
+     var value = marginTag(); // return array
 
-                $(this).submit();
-            });
+     $("#rdTag").val(value);
+     $(this).submit();
+   });
 
-            $("#with_tag").on("keypress", function (e) {
-                var self = $(this);
+   $("#with_tag").on("keypress", function(e) {
+     var self = $(this);
 
-                //엔터나 스페이스바 눌렀을때 실행
-                if (e.key === "Enter" || e.keyCode == 32) {
+     // 엔터나 스페이스바 눌렀을때 실행
+     if (e.key === "Enter" || e.keyCode == 32) {
 
-                    var tagValue = self.val(); // 값 가져오기
+       var tagValue = self.val(); // 값 가져오기
+       console.log(tagValue);
 
-                    // 해시태그 값 없으면 실행X
-                    if (tagValue !== "") {
+       // 해시태그 값 없으면 실행X
+       if (tagValue !== "") {
 
-                        // 같은 태그가 있는지 검사한다. 있다면 해당값이 array 로 return 된다.
-                        var result = Object.values(with_tag).filter(function (word) {
-                            return word === tagValue;
-                        })
+         // 같은 태그가 있는지 검사한다. 있다면 해당값이 array로 return된다.
+         var result = Object.values(with_tag).filter(function(word) {
+           return word === tagValue;
+         });
 
-                        // 해시태그가 중복되었는지 확인
-                        if (result.length == 0) {
-                            $("#tag-list").append("<li class='tag-item'>"+tagValue+"<span class='del-btn' idx='"+counter+"'> ✕</span></li>");
-                            addTag(tagValue);
-                            self.val("");
-                        } else {
-                            alert("태그값이 중복됩니다.");
-                        }
-                    }
-                    e.preventDefault(); // SpaceBar 시 빈공간이 생기지 않도록 방지
-                }
-            });
+         // 해시태그가 중복되었는지 확인
+         if (result.length == 0) {
+           $("#tag-list").append("<li class='tag-item'>" + tagValue + "<span class='del-btn' idx='" + counter + "'> ✕</span></li>");
+           addTag(tagValue);
+           self.val("");
+         } else {
+           alert("태그값이 중복됩니다.");
+         }
+       }
+       e.preventDefault(); // SpaceBar 시 빈공간이 생기지 않도록 방지
+     }
+   });
 
-            // 삭제 버튼
-            // 인덱스 검사 후 삭제
-            $(document).on("click", ".del-btn", function (e) {
-                var index = $(this).attr("idx");
-                with_tag[index] = "";
-                $(this).parent().remove();
-            });
-    })
+   // 삭제 버튼
+   // 인덱스 검사 후 삭제
+   $(document).on("click", ".del-btn", function(e) {
+     var index = $(this).attr("idx");
+     with_tag[index] = "";
+     $(this).parent().remove();
+   });
+ });
+
 </script>
 
 <style>
-body {
+* {
         font-family: 'Title_Medium';
 }
 input[type="date"] {
@@ -114,7 +116,13 @@ ul {
 }
 li {
     float: left;
-    margin-left: 0px;
+    margin-right: 25px;
+}
+.write-btn{
+	text-align: center;
+}
+.write-btn1{
+	display :inline-block;
 }
 
 </style>
@@ -133,27 +141,34 @@ li {
 			<div class="form-group row">
 				<label for="gender" class="col-sm-2 col-form-label">성별</label>
 					<div class="col-sm-4">
-						<input type="radio" id="female" name="gender" required>&nbsp;여성&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" id="female" name="gender" required>&nbsp;여성&nbsp;&nbsp;&nbsp;&nbsp;
 						<input type="radio" id="male" name="gender" required>&nbsp;남성
 					</div>
 				<label for="with_age" class="col-sm-2 col-form-label">나이</label>
 					<div class="col-sm-4">
 					    <select class="custom-select mr-sm-2" id="with_age" name="with_age">
                                 <option selected>선택</option>
-                                <option value="20" name="with_age">20대</option>
-                                <option value="30" name="with_age">30대</option>
-                                <option value="40" name="with_age">40대</option>
-                                <option value="50" name="with_age">50대</option>
-                                <option value="60" name="with_age">60대 이상</option>
+                                <option value="20">20대</option>
+                                <option value="30">30대</option>
+                                <option value="40">40대</option>
+                                <option value="50">50대</option>
+                                <option value="60">60대 이상</option>
                         </select>
                     </div>
 			</div>
 
 					<div class="form-group row">
-						<label for="local_no" class="col-sm-2 col-form-label">지역</label>
+						<label for="local_name" class="col-sm-2 col-form-label">지역</label>
 						<div class="col-sm-10">
-							<input type="text" id="local_no" name="local_no"
-								class="form-control" required>
+						<input type="radio" id="gwanghwamun" name="local_name" required>&nbsp;광화문&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" id="myeongdong" name="local_name" required>&nbsp;명동&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" id="dongdaemun" name="local_name" required>&nbsp;동대문&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" id="hongdae" name="local_name" required>&nbsp;홍대&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" id="yeouido" name="local_name" required>&nbsp;여의도&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" id="itaewon" name="local_name" required>&nbsp;이태원&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" id="gangnam" name="local_name" required>&nbsp;강남&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" id="jamsil" name="local_name" required>&nbsp;잠실&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" id="etc" name="local_name" required>&nbsp;기타
 						</div>
 					</div>
 
@@ -186,6 +201,8 @@ li {
 				    </div>
 				</div>
 
+                <hr>
+
 				<div class="form-group">
 					<input type="text" id="with_title" name="with_title"
 						class="form-control" placeholder="제목을 입력해주세요." required>
@@ -209,16 +226,15 @@ li {
                             </div>
 
                             <div class="form-group">
-                            	<input type="text" id="with_tag" size="7" placeholder="#태그입력" class="form-control">
+                            	<input type="text" id="with_tag" size="7" placeholder="#태그입력" name="with_tag" class="form-control">
                            </div>
                            <ul id="tag-list"></ul>
-
                 </div>
 
 				<br>
-				<div class="form-group row">
-					<button type="submit" class="btn btn-outline-primary">작성</button>
-					<button type="reset" class="btn btn-outline-secondary">취소</button>
+				<div class="write-btn">
+					<button type="submit" class="btn btn-outline-primary write-btn1">작성</button>
+					<button type="reset" class="btn btn-outline-secondary write-btn1">취소</button>
 				</div>
 
 			</div>
@@ -227,3 +243,4 @@ li {
 	<%@ include file="/WEB-INF/views/footer.jsp"%>
 </body>
 </html>
+
