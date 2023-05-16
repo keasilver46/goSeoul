@@ -25,10 +25,11 @@ public class WithController {
     @RequestMapping("withWriteResult.do")
     public String withWriteResult(@ModelAttribute WithBean wb, Model model) throws Exception {
         System.out.println("withWriteResult");
-
+        System.out.println("tag: "+wb.getWith_tag());
         int result = withService.insertCheck(wb);
         model.addAttribute("result", result);
 
+        System.out.println(result);
         return "with/withWriteResult";
     }
 }

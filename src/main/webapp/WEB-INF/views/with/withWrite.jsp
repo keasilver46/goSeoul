@@ -31,60 +31,54 @@
 
 <!-- 해시태그 처리 -->
 <script>
- $(document).ready(function() {
-   var with_tag = {};
-   var counter = 0;
+$(document).ready(function() {
+  var with_tag = [];
+  var counter = 0;
 
-   // 입력한 값을 태그로 생성한다.
-   function addTag(value) {
-     with_tag[counter] = value;
-     counter++; // del-btn의 고유 id가 된다.
-   }
+  // 입력한 값을 태그로 생성한다.
+  function addTag(value) {
+    with_tag[counter] = value;
+    counter++; // del-btn의 고유 id가 된다.
+  }
 
-   // tag 안에 있는 값을 array type으로 만들어서 넘긴다.
-   function marginTag() {
-     return Object.values(with_tag).filter(function(word) {
-       return word !== "";
-     });
-   }
+           // 서버에 제공
+          $("#with_tag").on("keyup", function (e) {
 
-   // 서버에 제공
-   $("#tag-form").on("submit", function(e) {
-     var value = marginTag(); // return array
+             var tag = $("#tag-list").text();
+              console.log(tag);
+              $("#tag").val(tag);
 
-     $("#rdTag").val(value);
-     $(this).submit();
-   });
+          });
 
-   $("#with_tag").on("keypress", function(e) {
-     var self = $(this);
+  $("#with_tag").on("keypress", function(e) {
+    var self = $(this);
 
-     // 엔터나 스페이스바 눌렀을때 실행
-     if (e.key === "Enter" || e.keyCode == 32) {
+    // 엔터나 스페이스바 눌렀을 때 실행
+    if (e.key === "Enter" || e.keyCode == 32) {
+      var tagValue = self.val().trim();
 
-       var tagValue = self.val(); // 값 가져오기
-       console.log(tagValue);
+      // 해시태그 값이 없으면 실행하지 않음
+      if (tagValue !== "") {
+        // 같은 태그가 있는지 검사한다. 있다면 해당 값이 배열로 반환된다.
+        var result = Object.values(with_tag).filter(function(word) {
+          return word === tagValue;
+        });
 
-       // 해시태그 값 없으면 실행X
-       if (tagValue !== "") {
+        // 해시태그가 중복되지 않으면 추가
+        if (result.length === 0) {
+          $("#tag-list").append("<li>" + tagValue + "<span class='del-btn' idx='" + counter + "'>✕</span></li>");
+          addTag(tagValue);
+          self.val("");
 
-         // 같은 태그가 있는지 검사한다. 있다면 해당값이 array로 return된다.
-         var result = Object.values(with_tag).filter(function(word) {
-           return word === tagValue;
-         });
-
-         // 해시태그가 중복되었는지 확인
-         if (result.length == 0) {
-           $("#tag-list").append("<li class='tag-item'>" + tagValue + "<span class='del-btn' idx='" + counter + "'> ✕</span></li>");
-           addTag(tagValue);
-           self.val("");
-         } else {
-           alert("태그값이 중복됩니다.");
-         }
-       }
-       e.preventDefault(); // SpaceBar 시 빈공간이 생기지 않도록 방지
-     }
-   });
+          console.log("with_tag: "+with_tag);
+          console.log("tagValue: "+tagValue);
+        } else {
+          alert("태그값이 중복됩니다.");
+        }
+      }
+      e.preventDefault(); // SpaceBar 시 빈공간이 생기지 않도록 방지
+    }
+  });
 
    // 삭제 버튼
    // 인덱스 검사 후 삭제
@@ -93,73 +87,79 @@
      with_tag[index] = "";
      $(this).parent().remove();
    });
- });
-
+   })
 </script>
 
 <style>
 * {
-        font-family: 'Title_Medium';
-}
-input[type="date"] {
-     width: 100%; /* 원하는 길이로 설정 */
-}
-input[type="range"] {
-     width: 95%; /* 원하는 길이로 설정 */
-}
-label {
-      font-weight: bold;
-}
-ul {
-  list-style-type: '#';
-  padding-inline-start: 1ch;
-}
-li {
-    float: left;
-    margin-right: 25px;
-}
-.write-btn{
-	text-align: center;
-}
-.write-btn1{
-	display :inline-block;
+	font-family: 'Title_Medium';
 }
 
+input[type="date"] {
+	width: 100%; /* 원하는 길이로 설정 */
+}
+
+input[type="range"] {
+	width: 95%; /* 원하는 길이로 설정 */
+}
+
+label {
+	font-weight: bold;
+}
+
+ul {
+	list-style-type: '#';
+	padding-inline-start: 1ch;
+}
+
+li {
+	float: left;
+	margin-right: 25px;
+}
+
+.write-btn {
+	text-align: center;
+}
+
+.write-btn1 {
+	display: inline-block;
+}
 </style>
 </head>
 
 <body>
 	<%@ include file="/WEB-INF/views/header.jsp"%>
 	<h4 class="mb-3" align="center">동행 구하기</h4>
-	<form method="post" action="withWriteResult.do">
-		<div class="container"
-			style="width: auto; height: auto;">
-			<div style="width: 1000px; height: auto; margin: 50px auto; background-color: white; border-radius: 10px;">
+	<form method="post" action="withWriteResult.do" >
+		<div class="container" style="width: auto; height: auto;">
+			<div
+				style="width: 1000px; height: auto; margin: 50px auto; background-color: white; border-radius: 10px;">
 
 				<input type="hidden" name="user_no" value="${user_no}">
 
-			<div class="form-group row">
-				<label for="gender" class="col-sm-2 col-form-label">성별</label>
+				<div class="form-group row">
+					<label for="gender" class="col-sm-2 col-form-label">성별</label>
 					<div class="col-sm-4">
 						<input type="radio" id="female" name="gender" required>&nbsp;여성&nbsp;&nbsp;&nbsp;&nbsp;
 						<input type="radio" id="male" name="gender" required>&nbsp;남성
 					</div>
-				<label for="with_age" class="col-sm-2 col-form-label">나이</label>
+					<label for="with_age" class="col-sm-2 col-form-label">나이</label>
 					<div class="col-sm-4">
-					    <select class="custom-select mr-sm-2" id="with_age" name="with_age">
-                                <option selected>선택</option>
-                                <option value="20">20대</option>
-                                <option value="30">30대</option>
-                                <option value="40">40대</option>
-                                <option value="50">50대</option>
-                                <option value="60">60대 이상</option>
-                        </select>
-                    </div>
-			</div>
+						<select class="custom-select mr-sm-2" id="with_age"
+							name="with_age">
+							<option selected>선택</option>
+							<option value="20">20대</option>
+							<option value="30">30대</option>
+							<option value="40">40대</option>
+							<option value="50">50대</option>
+							<option value="60">60대 이상</option>
+						</select>
+					</div>
+				</div>
 
-					<div class="form-group row">
-						<label for="local_name" class="col-sm-2 col-form-label">지역</label>
-						<div class="col-sm-10">
+				<div class="form-group row">
+					<label for="local_name" class="col-sm-2 col-form-label">지역</label>
+					<div class="col-sm-10">
 						<input type="radio" id="gwanghwamun" name="local_name" required>&nbsp;광화문&nbsp;&nbsp;&nbsp;&nbsp;
 						<input type="radio" id="myeongdong" name="local_name" required>&nbsp;명동&nbsp;&nbsp;&nbsp;&nbsp;
 						<input type="radio" id="dongdaemun" name="local_name" required>&nbsp;동대문&nbsp;&nbsp;&nbsp;&nbsp;
@@ -169,39 +169,43 @@ li {
 						<input type="radio" id="gangnam" name="local_name" required>&nbsp;강남&nbsp;&nbsp;&nbsp;&nbsp;
 						<input type="radio" id="jamsil" name="local_name" required>&nbsp;잠실&nbsp;&nbsp;&nbsp;&nbsp;
 						<input type="radio" id="etc" name="local_name" required>&nbsp;기타
-						</div>
 					</div>
+				</div>
 
-					<div class="form-group row">
-						<label for="customRange2" class="col-sm-2 col-form-label">모집
-							인원</label>
-						<div class="col-sm-10">
-							<input type="range" class="range-slider__range" value="1" min="1"
-								max="15" id="with_maxto" name="with_maxto" required>&nbsp;
-								<span class="range-slider__value" name="with_maxto" value=""></span>명
-						</div>
+				<div class="form-group row">
+					<label for="customRange2" class="col-sm-2 col-form-label">모집
+						인원</label>
+					<div class="col-sm-10">
+						<input type="range" class="range-slider__range" value="1" min="1"
+							max="15" id="with_maxto" name="with_maxto" required>&nbsp;
+						<span class="range-slider__value" name="with_maxto" value=""></span>명
 					</div>
+				</div>
 
 				<div class="form-group row">
 					<label for="with_date" class="col-sm-2 col-form-label">날짜
 						선택</label>
 					<div class="col">
-						<input class="form-control" type="date" name="with_start" id="with_start" value="시작 일자" required>
-					</div>-
+						<input class="form-control" type="date" name="with_start"
+							id="with_start" value="시작 일자" required>
+					</div>
+					-
 					<div class="col">
-						<input class="form-control" type="date" name="with_end" id="with_end" value="종료 일자" required>
+						<input class="form-control" type="date" name="with_end"
+							id="with_end" value="종료 일자" required>
 					</div>
 				</div>
 
 				<div class="form-group row">
-					<label for="with_filename" class="col-sm-2 col-form-label">첨부 파일</label>
+					<label for="with_filename" class="col-sm-2 col-form-label">첨부
+						파일</label>
 					<div class="col-sm-10">
-					<input class="form-control" type="file" id="with_filename"
-						name="with_filename">
-				    </div>
+						<input class="form-control" type="file" id="with_filename"
+							name="with_filename">
+					</div>
 				</div>
 
-                <hr>
+				<hr>
 
 				<div class="form-group">
 					<input type="text" id="with_title" name="with_title"
@@ -213,22 +217,12 @@ li {
 						class="form-control" placeholder="내용을 입력해주세요." required></textarea>
 				</div>
 
-				<!--<div class="form-group row">
-					<label for="with_tag" class="col-sm-2 col-form-label">태그</label>
-					<div class="col-sm-10">
-					<input type="text" name="with_tag" class="form-control">
-					</div>
-				</div>-->
-
 				<div class="tr_hashTag_area">
-                           <div class="form-group">
-                                <input type="hidden" value="" name="with_tag" id="rdTag" />
-                            </div>
-
-                            <div class="form-group">
-                            	<input type="text" id="with_tag" size="7" placeholder="#태그입력" name="with_tag" class="form-control">
-                           </div>
-                           <ul id="tag-list"></ul>
+                  <div class="form-group">
+                   <input type="hidden" id="tag" name="with_tag" value="">
+                    <input type="text" id="with_tag" placeholder="#태그입력" class="form-control">
+                  </div>
+                  <ul id="tag-list"></ul>
                 </div>
 
 				<br>
