@@ -1,5 +1,6 @@
 package org.example.goSeoul.model;
 
+
 import lombok.Data;
 
 @Data
