@@ -58,6 +58,77 @@ body {
 	}
 </script>
 
+<script>
+$(function() {
+    // 쿠키값을 가져온다.
+    var cookie_user_id = getLogin();
+
+    // 쿠키값이 존재하면 id에서 쿠키에서 가져온 Id를 할당 한뒤
+    // 체크박스를 체크상태로 변경
+    if(cookie_user_id != "") {
+    $("#id").val(cookie_user_id);
+    $("#cb_saveId").attr("checked", true);
+  }
+
+    // 아이디 저장 체크 시
+    $("#cb_saveId").on("click", function() {
+    var _this = this;
+    var isRemember;
+    if ($(_this).is(":checked")) {
+      isRemember = confirm("아이디 저장");
+
+      if (!isRemember) {
+        $(_this).attr("checked", false);
+      }
+  });
+
+    // 로그인 버튼 클릭 시
+    $("#btn_login").on("click", function() {
+    if($("#cb_saveId").is(":checked")) {
+      saveLogin($("#virtual_id").val());
+    }else { // 체크 해제 시 공백으로 처리
+      saveLogin("");
+    }
+  });
+});
+
+// 로그인 정보 저장 @param id
+function saveLogin(id) {
+  if (id != "") {
+    // id쿠키에 id값을 7일간 저장
+    setSave("id", id, 7);
+  } else {
+    // id쿠키 삭제
+    setSave("id", id, -1);
+  }
+}
+
+// cookie에 id를 저장
+// @param name, value, expiredays
+function setSave(name, value, expiredays) {
+  var today = new Date();
+  today.setDate(today.getDate() + expiredays);
+  document.cookie = name + "=" + escape(value) + "; path=/; expires=" + today.toGMTString() + ";"
+}
+
+// getLogin 쿠키값을 가져온다
+// @return{String}
+function getLogin() {
+  // id쿠키에서 id값을 가져온다.
+  var cook = document.cookie + ";";
+  var idx = cook.indexOf("id", 0);
+  var val = "";
+
+  if (idx != -1) {
+    cook = cook.substring(idx, cook.length);
+    begin = cook.indexOf("=", 0) + 1;
+    end = cook.indexOf(";", begin);
+    val = unescape(cook.substring(begin, end));
+  }
+  return val;
+}
+</script>
+
 </head>
 	<!-- Custom styles for this template -->
 	<link href="signin.css" rel="stylesheet">
@@ -78,13 +149,13 @@ body {
 				<input type="password" class="form-control" id="pass" name="pass" placeholder="비밀번호">
 			</div>
 
-			<!--<div class="checkbox mb-3" align="left">
-				<label><input type="checkbox" value="remember-me">
-					아이디 저장
-				</label>
-			</div>-->
-			<input class="w-100 btn btn-lg btn-primary" type="submit" value="로그인">
-		</form>
+            <!-- 아이디 저장여부 -->
+			<div class="checkbox mb-3" align="left">
+				<input type="checkbox" id="cb_saveId">아이디 저장
+			</div>
+
+			<!-- 로그인 -->
+			<input class="w-100 btn btn-lg btn-primary" type="submit" id="btn_login" value="로그인">
 
 		<div class="my-2 text-center text-small text-decoration: none">
 		<a href="" class="text-muted">아이디 찾기</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -101,11 +172,10 @@ body {
 			<img src="images/kakao.png" width="60px" />
 		</a>
 		<br><br>
-		</div>
-		</div>
-		</div>
-	</main>
+
 	</form>
+	</main>
+
 	<%@ include file="/WEB-INF/views/footer.jsp" %>
 </body>
 </html>
