@@ -7,12 +7,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>동행 구하기</title>
-<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<!-- 날씨 -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="./js/weather.js"></script>
+
 <!-- External CSS -->
 <script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
-	crossorigin="anonymous">
+	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js">
 </script>
 <!-- 모집인원 range -->
 <script>
@@ -124,24 +125,29 @@ li {
 .write-btn1 {
 	display: inline-block;
 }
+
+.text-muted {
+	margin: 0 7px;
+}
 </style>
 </head>
 
 <body>
 	<%@ include file="/WEB-INF/views/header.jsp"%>
 	<h4 class="mb-3" align="center">동행 구하기</h4>
-	<form method="post" action="withWriteResult.do" >
+	<form method="post" action="withWriteResult.do" enctype="multipart/form-data">
 		<div class="container" style="width: auto; height: auto;">
-			<div
-				style="width: 1000px; height: auto; margin: 50px auto; background-color: white; border-radius: 10px;">
+			<div style="width: 1000px; height: auto; margin: 50px auto; background-color: white; border-radius: 10px;">
 
 				<input type="hidden" name="user_no" value="${user_no}">
+
+
 
 				<div class="form-group row">
 					<label for="gender" class="col-sm-2 col-form-label">성별</label>
 					<div class="col-sm-4">
-						<input type="radio" id="female" name="gender" required>&nbsp;여성&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="radio" id="male" name="gender" required>&nbsp;남성
+						<input type="radio" id="female" name="gender" class="text-muted" required>여성
+						<input type="radio" id="male" name="gender" class="text-muted" required>남성
 					</div>
 					<label for="with_age" class="col-sm-2 col-form-label">나이</label>
 					<div class="col-sm-4">
@@ -158,17 +164,17 @@ li {
 				</div>
 
 				<div class="form-group row">
-					<label for="local_name" class="col-sm-2 col-form-label">지역</label>
+					<label for="local_no" class="col-sm-2 col-form-label">지역</label>
 					<div class="col-sm-10">
-						<input type="radio" id="gwanghwamun" name="local_name" required>&nbsp;광화문&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="radio" id="myeongdong" name="local_name" required>&nbsp;명동&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="radio" id="dongdaemun" name="local_name" required>&nbsp;동대문&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="radio" id="hongdae" name="local_name" required>&nbsp;홍대&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="radio" id="yeouido" name="local_name" required>&nbsp;여의도&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="radio" id="itaewon" name="local_name" required>&nbsp;이태원&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="radio" id="gangnam" name="local_name" required>&nbsp;강남&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="radio" id="jamsil" name="local_name" required>&nbsp;잠실&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="radio" id="etc" name="local_name" required>&nbsp;기타
+						<input type="radio" id="gwanghwamun" name="local_no" value="22" class="text-muted" required>광화문
+						<input type="radio" id="myeongdong" name="local_no" value="23" class="text-muted" required>명동
+						<input type="radio" id="dongdaemun" name="local_no" value="24" class="text-muted" required>동대문
+						<input type="radio" id="hongdae" name="local_no" value="25" class="text-muted" required>홍대
+						<input type="radio" id="yeouido" name="local_no" value="26" class="text-muted" required>여의도
+						<input type="radio" id="itaewon" name="local_no" value="27" class="text-muted" required>이태원
+						<input type="radio" id="gangnam" name="local_no" value="28" class="text-muted" required>강남
+						<input type="radio" id="jamsil" name="local_no" value="29" class="text-muted" required>잠실
+						<input type="radio" id="etc" name="local_no" value="30" class="text-muted" required>기타
 					</div>
 				</div>
 
@@ -183,7 +189,7 @@ li {
 				</div>
 
 				<div class="form-group row">
-					<label for="with_date" class="col-sm-2 col-form-label">날짜
+					<label for="date" class="col-sm-2 col-form-label">날짜
 						선택</label>
 					<div class="col">
 						<input class="form-control" type="date" name="with_start"
@@ -201,7 +207,7 @@ li {
 						파일</label>
 					<div class="col-sm-10">
 						<input class="form-control" type="file" id="with_filename"
-							name="with_filename">
+							name="with_filename1">
 					</div>
 				</div>
 

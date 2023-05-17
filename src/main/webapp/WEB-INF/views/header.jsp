@@ -67,7 +67,7 @@ header {
 					class="nav-link text-dark">마이페이지</a></li>
 				<li class="nav-item"><a href="MemberLogin.do" id="login"
 					class="nav-link text-dark">로그인</a></li>
-				<li class="nav-item"><a href="#" id="signUp"
+				<li class="nav-item"><a href="member_form.do" id="signUp"
 					class="nav-link text-dark">회원가입</a></li>
 				<li class="nav-item"><a href="logout.do" id="logout"
 					class="nav-link text-dark">로그아웃</a></li>
