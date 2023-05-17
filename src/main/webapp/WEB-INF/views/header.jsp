@@ -6,15 +6,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Go Seoul</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
-    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-<link rel="stylesheet" href="./css/font.css">
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="./js/weather.js"></script>
 <style>
     header {
         font-family: 'Title_Medium';
@@ -29,9 +20,31 @@
         display: block;
         margin-top: 0;
     }
+
+    #myPage, #logout {
+    	display: block;
+    }
 </style>
 </head>
 <body>
+    <script>
+		let sessionId = "<c:out value='${sessionScope.id}' />";
+
+		$(function() {
+			if (sessionId != "<c:out value='' />") {
+				$("#myPage").css("display", "block");
+				$("#logout").css("display", "block");
+				$("#login").css("display", "none");
+				$("#signUp").css("display", "none");
+
+			} else {
+				$("#myPage").css("display", "none");
+				$("#logout").css("display", "none");
+				$("#login").css("display", "block");
+				$("#signUp").css("display", "block");
+			}
+		});
+	</script>
     <header class="border-bottom">
         <div class="d-flex justify-content-between">
             <span class="weather">
@@ -46,28 +59,31 @@
 
             <ul class="nav justify-content-end">
                 <li class="nav-item">
-                    <a href="#" class="nav-link text-dark">마이페이지</a>
+                    <a href="memberInfo.do" id="myPage" class="nav-link text-dark">마이페이지</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link text-dark">로그인</a>
+                    <a href="MemberLogin.do" id="login" class="nav-link text-dark">로그인</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link text-dark">회원가입</a>
+                    <a href="member_form.do" id="signUp" class="nav-link text-dark">회원가입</a>
+                </li>
+                <li class="nav-item">
+                    <a href="logout.do" id="logout" class="nav-link text-dark">로그아웃</a>
                 </li>
             </ul>
         </div>
 
         <div class="my-2">
             <nav class="navbar navbar-expand-lg">
-                <div class="container">
-                    <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+                <div class="container-fluid">
+                    <div class="navbar-collapse justify-content-center" id="navbarSupportedContent">
                         <ul class="navbar-nav">
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle text-dark" href="#" role="button" aria-expanded="false">
                                     같이서울
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">동행구하기</a></li>
+                                    <li><a class="dropdown-item" href="with_list.do">동행구하기</a></li>
                                     <li><a class="dropdown-item" href="#">여행정보공유</a></li>
                                 </ul>
                             </li>
