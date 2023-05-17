@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="org.example.DAO.TestDAO">   <!--namespace= dao interface경로  -->
+
+    <!-- 아이디 찾기 -->
+    <select id="findMemberId" parameterType="String" resultType="org.example.DTO.dto">
+   		select * from userdata where name = #{param1} and email = #{param2} 
+    </select>
+
+<!--      //임시비밀번호 발급을 위한 업데이트-->
+	<update id="updatePass" parameterType="org.example.goSeoul.controller.MainController">
+		update userdata set pass=#{param1.pass} where email=#{param2}
+	</update>
+
+    <select id="searchEmail" parameterType="String" resultType="org.example.DTO.dto">
+   		select email,id from userdata where id = #{param1} and email = #{param2} 
+    </select>
+</mapper>
