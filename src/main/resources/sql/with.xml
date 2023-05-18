@@ -9,6 +9,6 @@
 
         values
         (withgo_seq.nextval,#{user_no},#{with_title},#{with_content},#{with_maxto},#{with_tag},1,
-        '동행구하기 글작성',#{with_age},#{with_start},#{with_end},sysdate,#{with_filename, jdbcType=VARCHAR})
+        #{with_category},#{with_age},#{with_start},#{with_end},sysdate,#{with_filename, jdbcType=VARCHAR})
     </insert>
 </mapper>

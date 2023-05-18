@@ -125,6 +125,9 @@ li {
 .write-btn1 {
 	display: inline-block;
 }
+.title {
+	text-align: center;
+}
 
 .text-muted {
 	margin: 0 7px;
@@ -133,15 +136,18 @@ li {
 </head>
 
 <body>
-                유저번호 : ${user.user_no}
+    유저번호 : ${user.user_no}
+    로컬번호 : ${local.local_no}
 	<%@ include file="/WEB-INF/views/header.jsp"%>
-	<h4 class="mb-3" align="center">동행 구하기</h4>
 	<form method="post" action="withWriteResult.do" enctype="multipart/form-data">
 		<div class="container" style="width: auto; height: auto;">
 			<div style="width: 1000px; height: auto; margin: 50px auto; background-color: white; border-radius: 10px;">
 
+	            <div class="form-group title">
+	            <h4 class="title">동행 구하기</h4>
+                </div>
+
 				<input type="hidden" name="user_no" value="${user.user_no}">
-				 <!--<input type="hidden" name="local_no" value="${local_no}"> -->
 
 				<div class="form-group row">
 					<label for="gender" class="col-sm-2 col-form-label">성별</label>
@@ -166,15 +172,15 @@ li {
 				<div class="form-group row">
 					<label for="local_no" class="col-sm-2 col-form-label">지역</label>
 					<div class="col-sm-10">
-						<input type="radio" name="local_no" value="37" class="text-muted" required>광화문
-						<input type="radio" name="local_no" value="38" class="text-muted" required>명동
-						<input type="radio" name="local_no" value="39" class="text-muted" required>동대문
-						<input type="radio" name="local_no" value="40" class="text-muted" required>홍대
-						<input type="radio" name="local_no" value="41" class="text-muted" required>여의도
-						<input type="radio" name="local_no" value="42" class="text-muted" required>이태원
-						<input type="radio" name="local_no" value="43" class="text-muted" required>강남
-						<input type="radio" name="local_no" value="44" class="text-muted" required>잠실
-						<input type="radio" name="local_no" value="45" class="text-muted" required>기타
+						<input type="radio" name="with_category" value="광화문" class="text-muted" required>광화문
+						<input type="radio" name="with_category" value="명동" class="text-muted" required>명동
+						<input type="radio" name="with_category" value="동대문" class="text-muted" required>동대문
+						<input type="radio" name="with_category" value="홍대" class="text-muted" required>홍대
+						<input type="radio" name="with_category" value="여의도" class="text-muted" required>여의도
+						<input type="radio" name="with_category" value="이태원" class="text-muted" required>이태원
+						<input type="radio" name="with_category" value="강남" class="text-muted" required>강남
+						<input type="radio" name="with_category" value="잠실" class="text-muted" required>잠실
+						<input type="radio" name="with_category" value="기타" class="text-muted" required>기타
 					</div>
 				</div>
 
