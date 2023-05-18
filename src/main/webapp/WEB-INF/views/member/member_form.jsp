@@ -153,11 +153,11 @@
                                 <input type="text" size="15" class="form-control" id="domain" name="domain" placeholder="">
                             
                                 <select id="mailid">
-                                    <option value="">직접입력</option>
-                                    <option value="naver.com">네이버</option>
-                                    <option value="daum.net">다음</option>
-                                    <option value="nate.com">네이트</option>
-                                    <option value="gmail.com">구글</option>
+                                    <option value="">직접입력(@)</option>
+                                    <option value="@naver.com">네이버</option>
+                                    <option value="@daum.net">다음</option>
+                                    <option value="@nate.com">네이트</option>
+                                    <option value="@gmail.com">구글</option>
                                 </select>
                             </div>
                         </div>
@@ -169,17 +169,14 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-3 mb-3">
+                        <div class="col-md-4 mb-3">
                         <label for="tel">휴대전화</label>
                             <input type="text" class="form-control" id="tel1" name="tel1" value="010" readonly>
                         </div>
-                        <div style="display: flex; align-items: center";>-</div>
                         <div class="col-md-4 mb-3">
                          <label for="tel">ㅤ</label>
-                            <input type="text" class="form-control" id="tel2" name="tel2" placeholder="" value="">
-                            
+                            <input type="text" class="form-control" id="tel2" name="tel2" placeholder="" value="">  
                         </div>
-                        <div style="display: flex; align-items: center";>-</div>
                         <div class="col-md-4 mb-3">
                          <label for="tel">ㅤ</label>
                             <input type="text" class="form-control" id="tel3" name="tel3" placeholder="" value="">
@@ -219,7 +216,7 @@
                         
                     <div class="mb-3">
                         <label for="info">자기소개<span class="text-muted">&nbsp;(필수 아님)</span></label>
-                        <textarea id="intro" name="intro" rows="5" cols="50" placeholder="자기소개를 100자 이내로 입력하세요"></textarea>
+                        <textarea class="form-control" style="resize: none;" id="intro" name="intro" rows="5" cols="50" placeholder="자기소개를 100자 이내로 입력하세요"></textarea>
                     </div>
 
                     <!-- <div class="row">
