@@ -4,11 +4,11 @@
 <mapper namespace="withns">
     <insert id="insertCheck" parameterType="with">
         insert into withgo
-        (with_no,local_no,user_no,with_title,with_content,with_maxto,with_tag,
+        (with_no,user_no,with_title,with_content,with_maxto,with_tag,with_hit,
         with_category,with_age,with_start,with_end,with_date,with_filename)
 
         values
-        (withgo_seq.nextval,#{local_no},#{user_no},#{with_title},#{with_content},#{with_maxto},#{with_tag},
-        '동행구하기 글작성',#{with_age},#{with_start},#{with_end},sysdate,#{with_filename})
+        (withgo_seq.nextval,#{user_no},#{with_title},#{with_content},#{with_maxto},#{with_tag},1,
+        '동행구하기 글작성',#{with_age},#{with_start},#{with_end},sysdate,#{with_filename, jdbcType=VARCHAR})
     </insert>
 </mapper>

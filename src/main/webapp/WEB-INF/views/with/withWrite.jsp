@@ -133,21 +133,21 @@ li {
 </head>
 
 <body>
+                유저번호 : ${user.user_no}
 	<%@ include file="/WEB-INF/views/header.jsp"%>
 	<h4 class="mb-3" align="center">동행 구하기</h4>
 	<form method="post" action="withWriteResult.do" enctype="multipart/form-data">
 		<div class="container" style="width: auto; height: auto;">
 			<div style="width: 1000px; height: auto; margin: 50px auto; background-color: white; border-radius: 10px;">
 
-				<input type="hidden" name="user_no" value="${user_no}">
-
-
+				<input type="hidden" name="user_no" value="${user.user_no}">
+				 <!--<input type="hidden" name="local_no" value="${local_no}"> -->
 
 				<div class="form-group row">
 					<label for="gender" class="col-sm-2 col-form-label">성별</label>
 					<div class="col-sm-4">
-						<input type="radio" id="female" name="gender" class="text-muted" required>여성
-						<input type="radio" id="male" name="gender" class="text-muted" required>남성
+						<input type="radio" id="female" name="gender" value="여성" class="text-muted" required>여성
+						<input type="radio" id="male" name="gender" value="남성" class="text-muted" required>남성
 					</div>
 					<label for="with_age" class="col-sm-2 col-form-label">나이</label>
 					<div class="col-sm-4">
@@ -166,15 +166,15 @@ li {
 				<div class="form-group row">
 					<label for="local_no" class="col-sm-2 col-form-label">지역</label>
 					<div class="col-sm-10">
-						<input type="radio" id="gwanghwamun" name="local_no" value="22" class="text-muted" required>광화문
-						<input type="radio" id="myeongdong" name="local_no" value="23" class="text-muted" required>명동
-						<input type="radio" id="dongdaemun" name="local_no" value="24" class="text-muted" required>동대문
-						<input type="radio" id="hongdae" name="local_no" value="25" class="text-muted" required>홍대
-						<input type="radio" id="yeouido" name="local_no" value="26" class="text-muted" required>여의도
-						<input type="radio" id="itaewon" name="local_no" value="27" class="text-muted" required>이태원
-						<input type="radio" id="gangnam" name="local_no" value="28" class="text-muted" required>강남
-						<input type="radio" id="jamsil" name="local_no" value="29" class="text-muted" required>잠실
-						<input type="radio" id="etc" name="local_no" value="30" class="text-muted" required>기타
+						<input type="radio" name="local_no" value="37" class="text-muted" required>광화문
+						<input type="radio" name="local_no" value="38" class="text-muted" required>명동
+						<input type="radio" name="local_no" value="39" class="text-muted" required>동대문
+						<input type="radio" name="local_no" value="40" class="text-muted" required>홍대
+						<input type="radio" name="local_no" value="41" class="text-muted" required>여의도
+						<input type="radio" name="local_no" value="42" class="text-muted" required>이태원
+						<input type="radio" name="local_no" value="43" class="text-muted" required>강남
+						<input type="radio" name="local_no" value="44" class="text-muted" required>잠실
+						<input type="radio" name="local_no" value="45" class="text-muted" required>기타
 					</div>
 				</div>
 
@@ -193,12 +193,12 @@ li {
 						선택</label>
 					<div class="col">
 						<input class="form-control" type="date" name="with_start"
-							id="with_start" value="시작 일자" required>
+							id="with_start" required>
 					</div>
 					-
 					<div class="col">
 						<input class="form-control" type="date" name="with_end"
-							id="with_end" value="종료 일자" required>
+							id="with_end" required>
 					</div>
 				</div>
 

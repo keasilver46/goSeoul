@@ -2,7 +2,6 @@ package org.example.goSeoul.model;
 
 
 import lombok.Data;
-
 import java.util.Date;
 
 @Data
@@ -23,5 +22,4 @@ public class WithBean {
     private Date with_date; /* 작성시간 */
     private String with_filename; /* 파일이름 */
     private String with_filepath; /* 파일경로 */
-
 }

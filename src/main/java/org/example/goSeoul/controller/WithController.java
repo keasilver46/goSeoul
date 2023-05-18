@@ -1,6 +1,8 @@
 package org.example.goSeoul.controller;
 
+import org.example.goSeoul.model.JoinMemberBean;
 import org.example.goSeoul.model.WithBean;
+import org.example.goSeoul.service.MemberService;
 import org.example.goSeoul.service.WithService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.File;
+import java.util.StringTokenizer;
 import java.util.UUID;
 
 @Controller
@@ -19,11 +23,20 @@ public class WithController {
 
     @Autowired
     private WithService withService;
+    @Autowired
+    private MemberService memberService;
 
     // 동행글 작성 폼
     @RequestMapping("withWrite.do")
-    public String withWrite() {
+    public String withWrite(HttpSession session, Model model) throws Exception {
         System.out.println("withWrite");
+
+
+        String id = (String)session.getAttribute("id");
+        JoinMemberBean joinMemberBean = memberService.checkLogin(id);
+
+        model.addAttribute("user",joinMemberBean);
+
         return "with/withWrite";
     }
 
