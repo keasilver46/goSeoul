@@ -129,7 +129,7 @@
 			<input
 				type="hidden" name="local_no" value="${local_no}"> <br>
 			<br>
-			<h3 class="h3 mb-3 fw-normal">가봤서울</h3>
+			<h4 class="h3 mb-3 fw-normal">로그인</h4>
 
 			<div class="form-floating">
 				<input type="text" class="form-control" id="id" name="id"

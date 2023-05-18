@@ -7,5 +7,6 @@
     <typeAliases>
         <typeAlias alias="with" type="org.example.goSeoul.model.WithBean"/>
         <typeAlias alias="joinMember" type="org.example.goSeoul.model.JoinMemberBean" />
+        <typeAlias alias="question" type="org.example.goSeoul.model.QuestionBean" />
     </typeAliases>
 </configuration>

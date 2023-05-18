@@ -137,6 +137,7 @@ li {
 
 <body>
     유저번호 : ${user.user_no}
+    유저닉 : ${user.nick}
     로컬번호 : ${local.local_no}
 	<%@ include file="/WEB-INF/views/header.jsp"%>
 	<form method="post" action="withWriteResult.do" enctype="multipart/form-data">
@@ -144,10 +145,11 @@ li {
 			<div style="width: 1000px; height: auto; margin: 50px auto; background-color: white; border-radius: 10px;">
 
 	            <div class="form-group title">
-	            <h4 class="title">동행 구하기</h4>
+	            <h3 class="title">동행 구하기</h3>
                 </div>
 
 				<input type="hidden" name="user_no" value="${user.user_no}">
+				<input type="hidden" name="nick" value="${user.nick}">
 
 				<div class="form-group row">
 					<label for="gender" class="col-sm-2 col-form-label">성별</label>

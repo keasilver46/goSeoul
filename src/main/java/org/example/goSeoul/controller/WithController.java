@@ -30,24 +30,24 @@ public class WithController {
     public String withWrite(HttpSession session, Model model) throws Exception {
         System.out.println("withWrite");
 
-        String id = (String)session.getAttribute("id");
-        JoinMemberBean joinMemberBean = memberService.checkLogin(id);
-        model.addAttribute("user",joinMemberBean);
+//        String id = (String)session.getAttribute("id");
+//        JoinMemberBean joinMemberBean = memberService.checkLogin(id);
+//        model.addAttribute("user",joinMemberBean);
 
-        // 로그인 상태 확인
-//        if (session.getAttribute("id") == null) {
-//            // 비로그인 상태일 경우 로그인 폼으로 이동
-//            return "redirect:MemberLogin.do";
-//        } else {
-//            // 유저 정보 가져오기
-//            String id = (String)session.getAttribute("id");
-//            JoinMemberBean joinMemberBean = memberService.checkLogin(id);
-//            model.addAttribute("user",joinMemberBean);
-//
-//            // 로그인된 상태일 경우 글 작성 폼으로 이동
-//            return "with/withWrite";
-//        }
-        return "with/withWrite";
+         //로그인 상태 확인
+        if (session.getAttribute("id") == null) {
+            // 비로그인 상태일 경우 로그인 폼으로 이동
+            return "redirect:MemberLogin.do";
+        } else {
+            // 유저 정보 가져오기
+            String id = (String)session.getAttribute("id");
+            JoinMemberBean joinMemberBean = memberService.checkLogin(id);
+            model.addAttribute("user",joinMemberBean);
+
+            // 로그인된 상태일 경우 글 작성 폼으로 이동
+            return "with/withWrite";
+        }
+        //return "with/withWrite";
     }
 
     // 동행글 작성
