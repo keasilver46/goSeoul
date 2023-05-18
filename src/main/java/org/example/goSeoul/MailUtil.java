@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import javax.servlet.http.HttpServletResponse;
 
 public class MailUtil {
-    public void sendEmail(@ModelAttribute MemberBean memberBean) throws Exception {
+    public void sendEmail(MemberBean dto,String FE) throws Exception {
+
         String charSet = "utf-8";
         String hostSMTP = "smtp.naver.com"; // SMTP 서버명
         String hostSMTPid = "sksksk96"; // 아이디
@@ -21,12 +22,12 @@ public class MailUtil {
 
         msg += "<div align='left'";
         msg += "<h3>";
-        msg += memberBean.getId() + "님의 임시 비밀번호입니다. <br>로그인 후 비밀번호를 변경해 주세요</h3>";
+        msg += "회원님의 임시 비밀번호입니다. <br>로그인 후 비밀번호를 변경해 주세요</h3>";
         msg += "<p>임시 비밀번호:";
-        msg += memberBean.getPass() + "</p></div>";
+        msg += dto.getPass() + "</p></div>";
 
         // email전송
-        String mailRecipient = memberBean.getEmail();// 받는 사람 이메일 주소
+        String mailRecipient = FE;// 받는 사람 이메일 주소
         try {
             // 객체 선언
             HtmlEmail mail = new HtmlEmail();

@@ -17,15 +17,19 @@ public class MemberDao {
         return sqlSession.selectOne("loginCheck", id);
     }
 
-    public MemberBean findMemberId(String name) throws Exception {
-        return sqlSession.selectOne("findMemberId", name);
+    public MemberBean findMemberId(MemberBean dto) throws Exception {
+        return sqlSession.selectOne("findMemberId", dto);
     }
 
-    public MemberBean searchEmail (String email) throws Exception {
-        return sqlSession.selectOne("searchEmail", email);
+    public void updatePass(MemberBean dto) throws Exception {
+        sqlSession.update("updatePass", dto);
     }
 
-    public void updatePass(MemberBean memberBean) throws Exception {
-        sqlSession.update("updatePass", memberBean);
+    public MemberBean searchPwd (MemberBean dto) throws Exception {
+        return sqlSession.selectOne("searchPwd", dto);
+    }
+
+    public String concat(MemberBean dto) throws Exception {
+        return sqlSession.selectOne("concat", dto);
     }
 }

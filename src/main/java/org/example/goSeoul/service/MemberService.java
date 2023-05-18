@@ -1,5 +1,6 @@
 package org.example.goSeoul.service;
 
+import jdk.nashorn.internal.runtime.ECMAException;
 import org.example.goSeoul.dao.MemberDao;
 import org.example.goSeoul.model.MemberBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,20 +10,23 @@ import org.springframework.stereotype.Service;
 public class MemberService {
 
     @Autowired
-    private MemberDao memberDao;
+    private MemberDao dao;
 
     public MemberBean loginCheck(String id) throws Exception {
-        return memberDao.loginCheck(id);
+        return dao.loginCheck(id);
     }
 
-    public MemberBean findMemberId(String name) throws Exception {
-        return memberDao.findMemberId(name);
+    public MemberBean findMemberId(MemberBean dto) throws Exception {
+        return dao.findMemberId(dto);
     }
-    public MemberBean searchEmail(String email) throws Exception {
-        return memberDao.searchEmail(email);
+    public void updatePass(MemberBean dto) throws Exception {
+        dao.updatePass(dto);
+    }
+    public MemberBean searchPwd(MemberBean dto) throws Exception {
+        return dao.searchPwd(dto);
     }
 
-    public void updatePass(MemberBean memberBean) throws Exception {
-        memberDao.updatePass(memberBean);
+    public String concat(MemberBean dto) throws Exception {
+        return dao.concat(dto);
     }
 }

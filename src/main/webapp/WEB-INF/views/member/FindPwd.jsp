@@ -12,12 +12,13 @@
         $("#btn").click(function(){
             let id = $("input[name='ui_id']").val();
             let email = $("input[name='ui_email']").val();
+            let domain = $("select[name='domain']").val();
             /* let obj = {"name":id, "email":email}; */
             $.ajax({
                 url:"find.do",
                 dataType:'json',
                 type:'post',
-                data: {"id": id, "email": email},
+                data: {"id": id, "email": email, "domain":domain},
                 success: function(data) {
                     if (JSON.parse(data) == true) {
                         alert("임시 비밀번호가 발급되었습니다. 메일함을 확인해 주세요.");
@@ -30,7 +31,7 @@
             });
         });
     });
-        
+
 </script>
 </head>
 <title>임시 비밀번호 발급</title>
@@ -39,9 +40,19 @@
 	<h2>임시 비밀번호 발급</h2>
 	아이디<br>
 	<input type="text" name="ui_id"><br>
+
 	이메일<br>
 	<input type="email" name="ui_email"><br>
-	<input type="button" value="임시비밀번호 발급" id="btn"><br> 
+
+	<select name="domain">
+    <option value="">이메일 선택</option>
+    <option value="@naver.com">@naver.com</option>
+    <option value="@daum.net">@daum.net</option>
+    <option value="@nate.com">@nate.com</option>
+    <option value="@gmail.com">@google.com</option>
+</select>
+
+	<input type="button" value="임시비밀번호 발급" id="btn"><br>
 </form>
 </body>
 </html>

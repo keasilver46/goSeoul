@@ -16,8 +16,8 @@ public class WithBean {
     private int with_hit;
     private String with_category;
     private String with_age;
-    private Date with_start;
-    private Date with_end;
+    private String with_start;
+    private String with_end;
     private Date with_date;
     private String with_filename;
     private String with_filepath;
