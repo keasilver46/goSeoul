@@ -94,9 +94,7 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="#">행사캘린더</a></li>
-                                    <li><a class="dropdown-item" href="#">이벤트</a></li>
-                                    <li><a class="dropdown-item" href="#">축제&행사</a></li>
-                                    <li><a class="dropdown-item" href="#">전시&공연</a></li>
+                                    <li><a class="dropdown-item" href="#">행사리스트</a></li>
                                 </ul>
                             </li>
 
