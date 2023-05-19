@@ -80,10 +80,10 @@ public class WithController {
             mf.transferTo(new File(filePath));
 
             wb.setWith_filename(newFilename);
-
-            int result = withService.insertCheck(wb);
-            model.addAttribute("result", result);
         }
+        int result = withService.insertCheck(wb);
+        model.addAttribute("result", result);
+
         return "with/withWriteResult";
     }
 }

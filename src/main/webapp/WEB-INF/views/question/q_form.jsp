@@ -21,14 +21,6 @@
 	font-family: 'Title_Medium';
 }
 
-input[type="date"] {
-	width: 100%; /* 원하는 길이로 설정 */
-}
-
-input[type="range"] {
-	width: 95%; /* 원하는 길이로 설정 */
-}
-
 label {
 	font-weight: bold;
 }
@@ -89,8 +81,6 @@ li {
 					</div>
 				</div>
 
-
-
 				<div class="form-group">
 					<input type="text" id="q_title" name="q_title"
 						class="form-control" placeholder="제목을 입력해주세요." required>
@@ -117,4 +107,3 @@ li {
 	<%@ include file="/WEB-INF/views/footer.jsp"%>
 </body>
 </html>
-
