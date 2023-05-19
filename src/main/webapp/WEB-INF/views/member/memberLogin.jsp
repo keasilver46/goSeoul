@@ -3,8 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,6 +23,10 @@
 </head>
 
 <style>
+* {
+	font-family: 'Title_Medium';
+}
+
 .form-signin {
 	max-width: 330px;
 	padding: 15px;
@@ -35,7 +37,7 @@
 }
 
 .form-signin input[type="text"] {
-	margin-bottom: -1px;
+	margin-bottom: 0px;
 	border-bottom-right-radius: 0;
 	border-bottom-left-radius: 0;
 }
@@ -54,7 +56,7 @@
 	function check() {
 		if ($.trim($("#id").val()) == "") {
 			alert("아이디를 입력해주세요.");
-			$("#id").val("").focus();
+			$("#user_id").val("").focus();
 			return false;
 		}
 		if ($.trim($("#pass").val()) == "") {
@@ -63,79 +65,57 @@
 			return false;
 		}
 	}
-	
-	$(function() {
-	    // 쿠키값을 가져온다.
-	    var cookie_user_id = getLogin();
 
-	    // 쿠키값이 존재하면 id에서 쿠키에서 가져온 Id를 할당 한뒤
-	    // 체크박스를 체크상태로 변경
-	    if (cookie_user_id != "") {
-	    $("#id").val(cookie_user_id);
-	    $("#cd_saveId").attr("checked", true);
-	  }
+	// 쿠키에 user_id를 저장
+	function setCookie(name, value, expiredays) {
+		var today = new Date();
+		today.setDate(today.getDate() + expiredays);
+		document.cookie = name + "=" + escape(value) + "; path=/; expires="
+				+ today.toGMTString() + ";"
+	}
 
-	    // 아이디 저장 체크 시
-	    $("#cb_saveId").on("click", function() {
-	    var _this = this;
-	    var isRemember;
-	    if ($(_this).is(":checked")) {
-	      isRemember = confirm("아이디 저장");
+	// 쿠키에서 user_id를 가져옴
+	function getCookie(name) {
+		var cookieName = name + "=";
+		var cookieArray = document.cookie.split(';');
+		for (var i = 0; i < cookieArray.length; i++) {
+			var cookie = cookieArray[i].trim();
+			if (cookie.indexOf(cookieName) === 0) {
+				return cookie.substring(cookieName.length, cookie.length);
+			}
+		}
+		return null;
+	}
 
-	      if (!isRemember) {
-	        $(_this).attr("checked", false);
-	      }
-	  });
+	// 로그인 정보 저장
+	function saveLogin() {
+		var id = document.getElementById("id").value;
+		if (id !== "") {
+			// id 쿠키에 id 값을 7일간 저장
+			setCookie("id", id, 7);
+		} else {
+			// id 쿠키 삭제
+			setCookie("id", "", -1);
+		}
+	}
 
-	    // 로그인 버튼 클릭 시
-	    $("#btn_login").on("click", function() {
-	    if($("#cb_saveId").is(":checked")) {
-	      saveLogin($("#virtual_id").val());
-	    }else { // 체크 해제 시 공백으로 처리
-	      saveLogin("");
-	    }
-	  });
+	// 페이지 로드 시 실행
+	window.addEventListener("load", function() {
+		// id 쿠키에서 id 값을 가져옴
+		var cookieId = getCookie("id");
+		if (cookieId) {
+			// 가져온 id 값을 입력란에 설정
+			document.getElementById("id").value = cookieId;
+			document.getElementById("cb_saveId").checked = true;
+		}
 	});
 
-	// 로그인 정보 저장 @param id
-	function saveLogin(id) {
-	  if (id != "") {
-	    // id쿠키에 id값을 7일간 저장
-	    setSave("id", id, 7);
-	  } else {
-	    // id쿠키 삭제
-	    setSave("id", id, -1);
-	  }
-	}
-
-	// cookie에 id를 저장
-	// @param name, value, expiredays
-	function setSave(name, value, expiredays) {
-	  var today = new Date();
-	  today.setDate(today.getDate() + expiredays);
-	  document.cookie = name + "=" + escape(value) + "; path=/; expires=" + today.toGMTString() + ";"
-	}
-
-	// getLogin 쿠키값을 가져온다
-	// @return{String}
-	function getLogin() {
-	  // id쿠키에서 id값을 가져온다.
-	  var cook = document.cookie + ";";
-	  var idx = cook.indexOf("id", 0);
-	  var val = "";
-
-	  if (idx != -1) {
-	    cook = cook.substring(idx, cook.length);
-	    begin = cook.indexOf("=", 0) + 1;
-	    end = cook.indexOf(";", begin);
-	    val = unescape(cook.substring(begin, end));
-	  }
-	  return val;
-	}
-
+	// 로그인 버튼 클릭 시
+	document.getElementById("btn_login").addEventListener("click", function() {
+		saveLogin();
+	});
 </script>
 
-</head>
 <!-- Custom styles for this template -->
 <link href="signin.css" rel="stylesheet">
 </head>
@@ -145,9 +125,11 @@
 	<main class="form-signin w-100 m-auto">
 		<form id="loginform" method="post" action="MemberLoginOk.do"
 			onsubmit="return check()">
-
-			<br> <br>
-			<h3 class="h3 mb-3 fw-normal">가봤서울</h3>
+			<input type="hidden" name="user_no" value="${user_no}">
+			<input
+				type="hidden" name="local_no" value="${local_no}"> <br>
+			<br>
+			<h4 class="h3 mb-3 fw-normal">로그인</h4>
 
 			<div class="form-floating">
 				<input type="text" class="form-control" id="id" name="id"
@@ -158,25 +140,20 @@
 					placeholder="비밀번호">
 			</div>
 
-
-			<!--<div class="checkbox mb-3" align="left">
-				<label><input type="checkbox" value="remember-me">
-					아이디 저장
-				</label>
-			</div>-->
-
+			<!-- 아이디 저장여부 -->
 			<div class="checkbox mb-3" align="left">
-				<label> <input type="checkbox" id="cb_saveId">아이디 저장
-				</label>
+				<input type="checkbox" id="cb_saveId" name="cb_saveId">아이디
+				저장
 			</div>
+
+			<!-- 로그인 -->
 			<input class="w-100 btn btn-lg btn-primary" type="submit"
 				id="btn_login" value="로그인">
-
 
 			<div class="my-2 text-center text-small text-decoration: none">
 				<a href="findid.do" class="text-muted">아이디 찾기</a>
 				<a href="finduserpwd.do" class="text-muted">비밀번호 찾기</a>
-				<a href="#" class="text-muted">회원가입</a><br>
+				<a href="member_form.do" class="text-muted">회원가입</a><br>
 			</div>
 
 			<!-- 로그인 api 구글, 네이버, 카톡 작성하기 -->

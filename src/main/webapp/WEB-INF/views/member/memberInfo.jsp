@@ -1,4 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -10,8 +9,22 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>goSeoul Mypage</title>
-<link rel='stylesheet'
-	href='//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.2/css/bootstrap.min.css'>
+
+<!-- 글꼴 -->
+<link rel="stylesheet" href="./css/font.css">
+
+<!-- 부트스트랩 -->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<script
+	src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+
+<!-- 날씨 -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="./js/weather.js"></script>
+
 <style>
 .bd-navbar {
 	position: sticky;
@@ -59,7 +72,7 @@
 
 </head>
 <body>
-<c:import url="../header.jsp" />
+	<c:import url="../header.jsp" />
 
 
 	<div class="container-fluid">
@@ -124,15 +137,18 @@
 									<div class="col-md-6 mb-3">
 										<label for="email">이메일</label> <input type="text" size="10"
 											class="form-control" id="email" name="email"
-											value="${info.email }" readonly>
+											value="${info.email }@${info.domain }" readonly>
 									</div>
 								</div>
-								<!-- <div class="col-md-6 mb-3">
-										<div id="posRelDomain">
+
+								<%-- <div class="col-md-6 mb-3">
+										<div id="domain">
 
 											<label for="domain">도메인</label> <input type="text" size="15"
 												class="form-control" id="domain" name="domain"
-												placeholder=""> <select id="mailid">
+												value="${info.domain }" readonly>  --%>
+
+								<!-- <select id="mailid">
 												<option value="">직접입력</option>
 												<option value="@naver.com">네이버</option>
 												<option value="@daum.net">다음</option>
@@ -144,18 +160,17 @@
 								</div> -->
 
 								<!-- <div class="mb-3"> -->
-								<div class="row">
-									<label for="birth">생년월일</label> <input type="text"
-										class="form-control" id="birth" name="birth"
-										value="${info.birth }" readonly>
+								<div class="">
+									<label for="birth">생년월일</label> <input type="text" class="form-control"
+										id="birth" name="birth" value="${info.birth }" readonly>
 								</div>
 
-								<div class="row">
-									<label for="tel">휴대폰번호</label>
-									<div class="col-md-4 mb-3">
+								<div class="">
+									<label for="tel">휴대전화</label>
+									<div class="">
 										<input type="text" class="form-control" id="tel" name="tel"
-											value="${info.tel1 }" readonly>
-									</div>
+											value="${info.tel1 }-${info.tel2 }-${info.tel3 }" readonly>
+										<%-- 	</div>
 									<div class="col-md-4 mb-3">
 										<input type="text" class="form-control" id="tel2" name="tel2"
 											value="${info.tel2 }" readonly>
@@ -163,62 +178,66 @@
 									<div class="col-md-4 mb-3">
 										<input type="text" class="form-control" id="tel3" name="tel3"
 											value="${info.tel3 }" readonly>
+									</div> --%>
 									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-4 mb-3">
-									<label for="MBTI">MBTI<span class="text-muted">&nbsp;(필수
-											아님)</span></label> <input type="text" size="10" class="form-control"
-										id="MBTI" name="MBTI" value="${info.MBTI }" readonly>
-								</div>
-								<div class="col-md-4 mb-3">
-									<label for="region">선호하는 지역</label> <input type="text"
-										size="10" class="form-control" id="region" name="region"
-										value="${info.region }" readonly>
-								</div>
+									<div class="">
+										<label for="MBTI">MBTI<span class="">&nbsp;(필수
+												아님)</span></label> <input type="text" size="10" class="form-control"
+											id="MBTI" name="MBTI" value="${info.MBTI }" readonly>
+									</div>
+									<div class="">
+										<label for="region">선호하는 지역</label> <input type="text"
+											size="10" class="form-control" id="region" name="region"
+											value="${info.region }" readonly>
+									</div>
 
-								<div class="col-md-4 mb-3">
-									<label for="region">성별</label> <input type="text" size="10"
-										class="form-control" id="gender" name="gender"
-										value="${info.gender }" readonly>
+									<div class="">
+										<label for="gender">성별</label> <input type="text" size="10"
+											class="form-control" id="gender" name="gender" value="${info.gender }"
+											readonly>
+										<!-- <input type="radio" id="male" name="gender" value="남자">남자
+												<input type="radio" id="female" name="gender" value="여자">여자
+												<input type="radio" id="none" name="gender" value="없음">없음 -->
+									</div>
+
+									<div class="mb-3">
+										<label for="interests">관심사</label>
+										<div id="interests" class="form-control" align="center">
+											<input type="checkbox" id="h1" name="interests" value="액티비티"
+												checked readonly>액티비티&nbsp;&nbsp;&nbsp;&nbsp; <input
+												type="checkbox" id="h2" name="interests" value="게임" readonly>게임&nbsp;&nbsp;&nbsp;&nbsp;
+											<input type="checkbox" id="h3" name="interests" value="등산"
+												readonly>등산&nbsp;&nbsp;&nbsp; <input type="checkbox"
+												id="h4" name="interests" value="맛집" readonly>맛집&nbsp;&nbsp;&nbsp;
+											<input type="checkbox" id="h5" name="interests" value="쇼핑"
+												readonly>쇼핑&nbsp;&nbsp;&nbsp;
+										</div>
+									</div>
+
+									<div class="mb-3">
+										<label for="info">자기소개<span class="text-muted">&nbsp;(필수
+												아님)</span></label>
+										<textarea id="intro" name="intro" rows="5" cols="50"
+											value="${info.intro }" readonly></textarea>
+									</div>
+
+								</div>
+								<div class="mb-4">
+									<button class="btn btn-primary btn-lg btn-block" type="button"
+										onClick="location.href='memberEdit.do?id=${info.id}'">회원
+										정보 수정하기</button>
+
 								</div>
 							</div>
 						</div>
-
-						<div class="mb-3">
-							<label for="interests">관심사</label>
-							<div id="interests" class="form-control" align="center">
-								<input type="checkbox" id="h1" name="interests" value="액티비티"
-									checked readonly>액티비티&nbsp;&nbsp;&nbsp;&nbsp; <input
-									type="checkbox" id="h2" name="interests" value="게임" readonly>게임&nbsp;&nbsp;&nbsp;&nbsp;
-								<input type="checkbox" id="h3" name="interests" value="등산"
-									readonly>등산&nbsp;&nbsp;&nbsp; <input type="checkbox"
-									id="h4" name="interests" value="맛집" readonly>맛집&nbsp;&nbsp;&nbsp;
-								<input type="checkbox" id="h5" name="interests" value="쇼핑"
-									readonly>쇼핑&nbsp;&nbsp;&nbsp;
-							</div>
-						</div>
-
-						<div class="mb-3">
-							<label for="info">자기소개<span class="text-muted">&nbsp;(필수
-									아님)</span></label>
-							<textarea id="intro" name="intro" rows="5" cols="50"
-								value="${info.intro }" readonly></textarea>
-						</div>
-
 					</div>
-					<div class="mb-4">
-						<button class="btn btn-primary btn-lg btn-block" type="button"
-							onClick="location.href='memberEdit.do?id=${info.id}'">회원
-							정보 수정하기</button>
-
-					</div>
+				</form>
+			</main>
 		</div>
 	</div>
 
 
 
-<c:import url="../footer.jsp" />
+	<c:import url="../footer.jsp" />
 </body>
 </html>

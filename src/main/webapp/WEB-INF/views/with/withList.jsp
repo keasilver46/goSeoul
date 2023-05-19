@@ -18,6 +18,27 @@
     body {
         font-family: 'Title_Medium';
     }
+
+    .card-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    	gap: 20px;
+    	margin-top: 50px;
+   		row-gap: 20px;
+    }
+
+    .card {
+  		display: flex;
+    	flex-direction: column;
+    	justify-content: flex-end;
+   		width: 100%;
+   		height: 200px;
+    	border-radius: 8px;
+    	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+   		overflow: hidden;
+   		background-size: cover;
+   		position: relative;
+    }
 </style>
 </head>
 <body>
@@ -25,26 +46,65 @@
     <div id="withlist">
         <h1 class="withlist_title" style="font-size:40px; position:static; margin:10px;">동행 구하기</h1>
 
-        <form class="form-inline my-2 my-md-0 justify-content-end">
-            <input class="form-control" type="text" placeholder="검색어를 입력하세요." aria-label="Search">
-            <button class="btn btn-outline-primary" type="submit">검색</button>
-        </form>
-
-        <div class="d-flex">
+        <div class="card-container">
             <c:forEach items="${withlist}" var="with">
-                <span class="card" style="width: 18rem;">
-                    <img src="${with.with_filepath}" class="card-img-top" alt="${with.with_filename}">
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                <a href="with_detail.do?with_no=${with.with_no}&page=${page}&state=detail">${with.with_title}</a>
-                            </h5>
-                            <p class="card-text">${with.with_content}</p>
-                        </div>
-                </span>
+                <div class="card">
+                    <img src="${with.with_filepath}" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a href="with_detail.do?with_no=${with.with_no}&page=${page}&state=detail">${with.with_title}</a>
+                        </h5>
+                        <p class="card-text">모집인원 ${with.with_maxto}</p>
+                        <p class="card-text">나이 ${with.with_age}</p>
+                        <p class="card-text">날짜 ${with.with_start} ~ ${with.with_end}</p>
+                    </div>
+                </div>
             </c:forEach>
         </div>
 
+        <form class="form-inline my-2 my-md-0 justify-content-center">
+            <select class="custom-select" id="sel">
+                <option value="with_title">제목</option>
+                <option value="with_content">내용</option>
+                <option value="user_no">작성자</option>
+                <option value="with_category">지역</option>
+                <option value="with_tag">태그</option>
+            </select>
+            <input id="search" class="form-control" type="text" placeholder="검색어를 입력하세요." aria-label="Search">
+            <button class="btn btn-outline-primary" type="submit">검색</button>
+        </form>
 
+        <div class="page d-flex justify-content-center my-2">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <c:if test="${startpage > 10}">
+                        <li class="page-item">
+                            <a class="page-link" href="with_list.do?page=${startpage-10}" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                    </c:if>
+
+                    <c:forEach var="a" begin="${startpage}" end="${endpage}">
+                        <li class="page-item">
+                            <a class="page-link" href="with_list.do?page=${a}">${a}</a>
+                        </li>
+                    </c:forEach>
+
+                    <c:if test="${endpage < maxpage}">
+                        <li class="page-item">
+                            <a class="page-link" href="with_list.do?page=${startpage+10}" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                    </c:if>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="d-flex justify-content-end">
+            <button class="btn btn-outline-primary" onClick="location.href='withWrite.do'">글쓰기</button>
+        </div>
     </div>
     <c:import url="../footer.jsp" />
 </body>

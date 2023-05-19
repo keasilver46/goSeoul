@@ -23,9 +23,18 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 
+	MemberBean memberBean = new MemberBean();
+
+	// 로그아웃
+	@RequestMapping("logout.do")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "main";
+	}
+
 	// 로그인 폼 뷰
 	@RequestMapping("MemberLogin.do")
-	public String memberLogin() throws Exception {
+	public String memberLogin() {
 
 		// member폴더의 memberLogin.jsp 뷰 페이지 실행
 		return "member/memberLogin";
@@ -33,33 +42,32 @@ public class MemberController {
 
 	// 로그인 처리
 	@RequestMapping("MemberLoginOk.do")
-	public String memberLoginOk(@RequestParam("id") String id, @RequestParam("pass") String pass, HttpSession session,
-			Model model) throws Exception {
+	public String memberLoginOk(@RequestParam("id") String id, @RequestParam("pass") String pass,
+								HttpSession session, Model model) throws Exception {
+
+		System.out.println("memberLoginOk");
 
 		int result = 0;
-		MemberBean memberBean = memberService.loginCheck(id);
+		MemberBean memberBean = memberService.checkLogin(id);
 
 		if (memberBean == null) { // 등록되지 않은 회원 일때
 			result = 1;
 			model.addAttribute("result", result);
+
 			return "member/loginResult";
 		} else { // 등록된 회원 일때
 			if (memberBean.getPass().equals(pass)) {
+
 				session.setAttribute("id", id);
+
 				return "main";
 			} else {
 				result = 2;
 				model.addAttribute("result", result);
+
 				return "member/loginResult";
 			}
 		}
-	}
-
-	// 로그아웃
-	@RequestMapping("logout.do")
-	public String logout(HttpSession session) throws Exception {
-		session.invalidate();
-		return "main";
 	}
 
 	@RequestMapping("findid.do")

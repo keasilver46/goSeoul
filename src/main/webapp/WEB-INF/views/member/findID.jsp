@@ -1,11 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!-- 글꼴 -->
+<link rel="stylesheet" href="./css/font.css">
+
+<!-- 부트스트랩 -->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<script
+	src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+
+<!-- 날씨 -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="./js/weather.js"></script>
+
 </head>
     <style>
         .flex-container{
@@ -30,6 +47,7 @@
 
     </style>
 <body>
+<c:import url="../header.jsp" />
 <div class= "flex-container">
 
  <form method="post" action="result.do">
@@ -40,12 +58,13 @@
             <option value="@naver.com">@naver.com</option>
             <option value="@daum.net">@daum.net</option>
             <option value="@nate.com">@nate.com</option>
-            <option value="@gmail.com">@google.com</option>
+            <option value="@gmail.com">@gmail.com</option>
         </select>
     	<input type="submit" name="action" value="아이디 찾기" />
 </form>
 
 </div>
 
+<c:import url="../footer.jsp" />
 </body>
 </html>

@@ -12,8 +12,8 @@ public class MemberService {
     @Autowired
     private MemberDao dao;
 
-    public MemberBean loginCheck(String id) throws Exception {
-        return dao.loginCheck(id);
+    public MemberBean checkLogin(String id) throws Exception {
+        return dao.checkLogin(id);
     }
 
     public MemberBean findMemberId(MemberBean dto) throws Exception {

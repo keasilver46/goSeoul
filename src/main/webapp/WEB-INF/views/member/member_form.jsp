@@ -25,6 +25,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="./js/weather.js"></script>
 
+<script src="../../js/member.js"></script>
 </head>
 
 <style>

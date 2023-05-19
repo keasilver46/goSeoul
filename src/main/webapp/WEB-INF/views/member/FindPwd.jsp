@@ -1,12 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   
+<!-- 글꼴 -->
+<link rel="stylesheet" href="./css/font.css">
+
+<!-- 부트스트랩 -->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<script
+	src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+
+<!-- 날씨 -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="./js/weather.js"></script>
+
     <script type="text/javascript">
     $(function(){
         $("#btn").click(function(){
@@ -36,6 +54,8 @@
 </head>
 <title>임시 비밀번호 발급</title>
 <body>
+
+<c:import url="../header.jsp" />
 <form method="post">
 	<h2>임시 비밀번호 발급</h2>
 	아이디<br>
@@ -49,10 +69,13 @@
     <option value="@naver.com">@naver.com</option>
     <option value="@daum.net">@daum.net</option>
     <option value="@nate.com">@nate.com</option>
-    <option value="@gmail.com">@google.com</option>
+    <option value="@gmail.com">@gmail.com</option>
 </select>
 
 	<input type="button" value="임시비밀번호 발급" id="btn"><br>
 </form>
+
+
+<c:import url="../footer.jsp" />
 </body>
 </html>
