@@ -12,7 +12,7 @@ public class MemberService {
     @Autowired
     private MemberDao dao;
 
-    public MemberBean loginCheck(String id) throws Exception {
+    public MemberBean checkLogin(String id) throws Exception {
         return dao.loginCheck(id);
     }
 

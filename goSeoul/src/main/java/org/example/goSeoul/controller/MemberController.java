@@ -1,9 +1,9 @@
 package org.example.goSeoul.controller;
 
-import javax.servlet.http.HttpServletResponse;
+import java.util.UUID;
+
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.mail.HtmlEmail;
 import org.example.goSeoul.MailUtil;
 import org.example.goSeoul.model.MemberBean;
 import org.example.goSeoul.service.MemberService;
@@ -12,10 +12,10 @@ import org.springframework.http.MediaType;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-
-import java.lang.reflect.Member;
-import java.util.UUID;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class MemberController {
@@ -37,7 +37,7 @@ public class MemberController {
 			Model model) throws Exception {
 
 		int result = 0;
-		MemberBean memberBean = memberService.loginCheck(id);
+		MemberBean memberBean = memberService.checkLogin(id);
 
 		if (memberBean == null) { // 등록되지 않은 회원 일때
 			result = 1;
