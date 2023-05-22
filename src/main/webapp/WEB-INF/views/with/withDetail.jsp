@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -28,56 +29,73 @@
         <table class="table">
             <tr>
                 <th>제목</th>
-                <th colspan="3">${with.with_title}</th>
+                <td colspan="3">${with.with_title}</td>
             </tr>
             <tr>
                 <th>작성자</th>
-                <th>${with.user_no}</th>
+                <td>${with.with_nick}</td>
                 <th>조회수</th>
-                <th>${with.with_hit}</th>
+                <td>${with.with_hit}</td>
             </tr>
             <tr>
                 <th>지역</th>
-                <th>${with.with_category}</th>
+                <td>${with.with_category}</td>
                 <th>모집인원</th>
-                <th>${with.with_maxto}</th>
+                <td>${with.with_maxto}</td>
             </tr>
             <tr>
                 <th>나이</th>
-                <th>${with.with_age}</th>
+                <td>${with.with_age}</td>
                 <th>날짜</th>
-                <th>${with.with_start} ~ ${with.with_end}</th>
+                <td>${with.with_start} ~ ${with.with_end}</td>
             </tr>
             <tr>
                 <th>내용</th>
-                <th colspan="3">
+                <td colspan="3">
                     ${with.with_content} <br>
-                    <img src="${with.with_filepath}">
-                </th>
+                    <c:if test="${with.with_filename != null}">
+                        <img src="./upload/${with.with_filename}">
+                    </c:if>
+                </td>
             </tr>
             <tr>
                 <th>태그</th>
-                <th colspan="3">${with.with_tag}</th>
+                <td colspan="3">${with.with_tag}</td>
             </tr>
             <tr>
-                <th colspan="4">
+                <th>현재인원</th>
+                <td>${with.with_curno}</td>
+                <td colspan="2">
                     <button class="btn btn-outline-primary" onClick="location.href='with_reserve.do?with_no=${with.with_no}'">신청하기</button>
-                </th>
+                </td>
             </tr>
         </table>
 
-        <form method="post" action="with_reply.do">
+        <c:if test="${replyList != null}">
+            <table class="table">
+                <c:forEach items="${replyList}" var="reply">
+                    <tr>
+                        <th>${reply.withreply_nick}</th>
+                        <th>
+                            <fmt:formatDate value="${reply.withreply_date}" pattern="yyyy-MM-dd HH:mm:ss"/>
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>${reply.withreply_content}</td>
+                    </tr>
+                </c:forEach>
+            </table>
+        </c:if>
+
+        <form method="post" action="with_reply.do?with_no=${with.with_no}&page=${page}&state=detail">
             <div class="form-group row">
                 <label for="with_filename" class="col-sm-2 col-form-label">댓글</label>
             	<div class="d-flex col-sm-10">
-            	    <textarea id="with_reply" name="with_reply" rows="1" cols="3" class="form-control" placeholder="댓글을 입력해주세요." required></textarea>
+            	    <textarea id="withreply_content" name="withreply_content" rows="1" cols="3" class="form-control" placeholder="댓글을 입력해주세요." required></textarea>
             	    <input class="btn btn-outline-primary justify-content-end" type="submit" value="작성">
             	</div>
-
             </div>
         </form>
-
-
     </div>
     <c:import url="../footer.jsp" />
 </body>

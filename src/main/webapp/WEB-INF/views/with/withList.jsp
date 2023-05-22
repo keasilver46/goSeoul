@@ -49,7 +49,6 @@
         <div class="card-container">
             <c:forEach items="${withlist}" var="with">
                 <div class="card">
-                    <img src="${with.with_filepath}" class="card-img-top">
                     <div class="card-body">
                         <h5 class="card-title">
                             <a href="with_detail.do?with_no=${with.with_no}&page=${page}&state=detail">${with.with_title}</a>
@@ -63,40 +62,66 @@
         </div>
 
         <form class="form-inline my-2 my-md-0 justify-content-center">
-            <select class="custom-select" id="sel">
+            <select class="custom-select" name="search">
                 <option value="with_title">제목</option>
                 <option value="with_content">내용</option>
                 <option value="user_no">작성자</option>
                 <option value="with_category">지역</option>
                 <option value="with_tag">태그</option>
             </select>
-            <input id="search" class="form-control" type="text" placeholder="검색어를 입력하세요." aria-label="Search">
+            <input name="keyword" id="keyword" class="form-control" type="text" placeholder="검색어를 입력하세요." aria-label="Search">
             <button class="btn btn-outline-primary" type="submit">검색</button>
         </form>
 
         <div class="page d-flex justify-content-center my-2">
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
-                    <c:if test="${startpage > 10}">
-                        <li class="page-item">
-                            <a class="page-link" href="with_list.do?page=${startpage-10}" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
+                    <c:if test="${listcount > 0 && search == null && keyword == null}">
+                        <c:if test="${startpage > 10}">
+                            <li class="page-item">
+                                <a class="page-link" href="with_list.do?page=${startpage-10}" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                        </c:if>
+
+                        <c:forEach var="a" begin="${startpage}" end="${endpage}">
+                            <li class="page-item">
+                                <a class="page-link" href="with_list.do?page=${a}">${a}</a>
+                            </li>
+                        </c:forEach>
+
+                        <c:if test="${endpage < maxpage}">
+                            <li class="page-item">
+                                <a class="page-link" href="with_list.do?page=${startpage+10}" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                        </c:if>
                     </c:if>
 
-                    <c:forEach var="a" begin="${startpage}" end="${endpage}">
-                        <li class="page-item">
-                            <a class="page-link" href="with_list.do?page=${a}">${a}</a>
-                        </li>
-                    </c:forEach>
+                    <c:if test="${search != null && keyword != null}">
+                        <c:if test="${startpage > 10}">
+                            <li class="page-item">
+                                <a class="page-link" href="with_list.do?page=${startpage-10}&search=${search}&keyword=${keyword}" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                        </c:if>
 
-                    <c:if test="${endpage < maxpage}">
-                        <li class="page-item">
-                            <a class="page-link" href="with_list.do?page=${startpage+10}" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
+                        <c:forEach var="a" begin="${startpage}" end="${endpage}">
+                            <li class="page-item">
+                                <a class="page-link" href="with_list.do?page=${a}&search=${search}&keyword=${keyword}">${a}</a>
+                            </li>
+                        </c:forEach>
+
+                        <c:if test="${endpage < maxpage}">
+                            <li class="page-item">
+                                <a class="page-link" href="with_list.do?page=${startpage+10}&search=${search}&keyword=${keyword}" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                        </c:if>
                     </c:if>
                 </ul>
             </nav>

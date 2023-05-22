@@ -3,6 +3,7 @@ package org.example.goSeoul.controller;
 import org.example.goSeoul.model.MemberBean;
 import org.example.goSeoul.model.ReserveBean;
 import org.example.goSeoul.model.WithBean;
+import org.example.goSeoul.model.WithReplyBean;
 import org.example.goSeoul.service.MemberService;
 import org.example.goSeoul.service.WithService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Controller
 public class WithController {
@@ -97,15 +96,41 @@ public class WithController {
 
         int page = 1;
         int limit = 8;
+        int listcount = 0;
+        String search = null;
+        String keyword = null;
+
+        Map<String,Object> countMap = new HashMap<String,Object>();
+        Map<String,Object> searchMap = new HashMap<String,Object>();
 
         if (request.getParameter("page") != null) {
             page = Integer.parseInt(request.getParameter("page"));
         }
 
-        // 게시물 총 개수 구하기
-        int listcount = withService.getListCount();
+        searchMap.put("page", page);
 
-        withlist = withService.getWithList(page);
+        if (request.getParameter("search") != null) {
+            search = request.getParameter("search");
+            countMap.put("search", search);
+            searchMap.put("search", search);
+        }
+
+        if (request.getParameter("keyword") != null) {
+            keyword = request.getParameter("keyword");
+            countMap.put("keyword", keyword);
+            searchMap.put("keyword", keyword);
+        }
+
+        // 게시물 리스트 구하기
+        if (search == null && keyword == null) {
+            listcount = withService.getListCount();
+            withlist = withService.getWithList(page);
+        } else {
+            listcount = withService.getSearchCount(countMap);
+            System.out.println("searchlistcount: " + listcount);
+            withlist = withService.getSearchList(searchMap);
+            System.out.println("withlist: " + withlist);
+        }
 
         // 총 페이지
         int maxpage = listcount / limit + ((listcount % limit == 0) ? 0 : 1);
@@ -122,6 +147,8 @@ public class WithController {
         model.addAttribute("maxpage", maxpage);
         model.addAttribute("listcount", listcount);
         model.addAttribute("withlist", withlist);
+        model.addAttribute("search", search);
+        model.addAttribute("keyword", keyword);
 
         return "with/withList";
     }
@@ -135,8 +162,11 @@ public class WithController {
 
         WithBean with = withService.getWithDetail(with_no);
 
+        List<WithReplyBean> replyList = withService.getReplyList(with_no);
+
         model.addAttribute("with", with);
         model.addAttribute("page", page);
+        model.addAttribute("replyList", replyList);
 
         return "with/withDetail";
     }
@@ -145,12 +175,43 @@ public class WithController {
     @RequestMapping("with_reserve.do")
     public String with_reserve(@ModelAttribute ReserveBean rb, int with_no, HttpSession session) throws Exception {
         String id = (String)session.getAttribute("id");
-        MemberBean mb = memberService.checkLogin(id);
 
-        rb.setWith_no(with_no);
-        rb.setUser_no(mb.getUser_no());
-        withService.insert(rb);
+        if (id == null) {
+            // 비로그인 상태일 경우 로그인 폼으로 이동
+            return "redirect:MemberLogin.do";
+        } else {
+            MemberBean mb = memberService.checkLogin(id);
 
-        return "with/withReserve";
+            rb.setWith_no(with_no);
+            rb.setUser_no(mb.getUser_no());
+            withService.insert(rb);
+
+            return "with/withReserve";
+        }
+    }
+
+    // 동행 댓글 작성
+    @RequestMapping("with_reply.do")
+    public String with_reply(@ModelAttribute WithReplyBean wrb, int with_no, int page, String state, HttpSession session, Model model) throws Exception {
+        String id = (String)session.getAttribute("id");
+
+        if (id == null) {
+            // 비로그인 상태일 경우 로그인 폼으로 이동
+            return "redirect:MemberLogin.do";
+        } else {
+            MemberBean mb = memberService.checkLogin(id);
+
+            wrb.setWith_no(with_no);
+            wrb.setUser_no(mb.getUser_no());
+            wrb.setWithreply_id(mb.getId());
+            wrb.setWithreply_nick(mb.getNick());
+            withService.insertReply(wrb);
+
+            model.addAttribute("with_no", with_no);
+            model.addAttribute("page", page);
+            model.addAttribute("state", state);
+
+            return "redirect:with_detail.do";
+        }
     }
 }

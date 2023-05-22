@@ -13,18 +13,15 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
 
-	<!-- 날씨 -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="./js/weather.js"></script>
+<!-- 날씨 -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="./js/weather.js"></script>
 
 <!-- 부트스트랩 -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
-
-
 
 <script>
 	 $(function() {
