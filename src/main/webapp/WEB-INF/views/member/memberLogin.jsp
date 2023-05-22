@@ -142,26 +142,30 @@
 
 			<!-- 아이디 저장여부 -->
 			<div class="checkbox mb-3" align="left">
-				<input type="checkbox" id="cb_saveId" name="cb_saveId">아이디
+				<input type="checkbox" id="cb_saveId" name="cb_saveId"> 아이디
 				저장
 			</div>
 
 			<!-- 로그인 -->
+			<div class="form-floating">
 			<input class="w-100 btn btn-lg btn-primary" type="submit"
 				id="btn_login" value="로그인">
-
+				</div>
 			<div class="my-2 text-center text-small text-decoration: none">
 				<a href="#" class="text-muted">아이디 찾기</a> <a href="#"
 					class="text-muted">비밀번호 찾기</a> <a href="member_form.do" class="text-muted">회원가입</a><br>
 			</div>
+				<br>
+                <br>
 
 			<!-- 로그인 api 구글, 네이버, 카톡 작성하기 -->
 			<!-- 카카오 로그인 -->
-			<br>
-			<p class="text-muted">SNS계정으로 간편 로그인/회원가입</p>
+
+			<!--<p class="text-muted">SNS계정으로 간편 로그인/회원가입</p>-->
+
 			<a class="kakaoLogin"
 				href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=53907bf2cc99ddbb1929db25394e8fae&redirect_uri=http://localhost/goSeoul/kakaoLogin.do">
-				<img src="images/kakao.png" width="60px" />
+				<img src="images/kakao.png" width="100%" />
 			</a> <br> <br>
 		</form>
 	</main>
