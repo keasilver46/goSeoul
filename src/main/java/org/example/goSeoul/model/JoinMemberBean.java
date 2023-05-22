@@ -20,6 +20,5 @@ public class JoinMemberBean {
     private String MBTI;
     private String interests;
     private String intro;
-	private String file_name; 
-	private String file_path;
+	private String file_name;
 }

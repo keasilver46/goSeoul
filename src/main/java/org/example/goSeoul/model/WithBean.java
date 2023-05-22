@@ -8,11 +8,13 @@ import java.util.Date;
 public class WithBean {
 
     private int with_no;
-    private int local_no;
     private int user_no;
+    private String with_id;
+    private String with_nick;
     private String with_title;
     private String with_content;
     private int with_maxto;
+    private int with_curno;
     private String with_tag;
     private int with_hit;
     private String with_category;
@@ -21,5 +23,4 @@ public class WithBean {
     private String with_end;
     private Date with_date; /* 작성시간 */
     private String with_filename; /* 파일이름 */
-    private String with_filepath; /* 파일경로 */
 }

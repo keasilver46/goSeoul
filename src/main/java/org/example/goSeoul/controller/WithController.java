@@ -86,4 +86,12 @@ public class WithController {
 
         return "with/withWriteResult";
     }
+
+    // 게시판 수정
+    @RequestMapping("withWriteUpdate.do")
+    public String withWriteUpdate(@ModelAttribute WithBean wb,
+                                  Model model) throws Exception {
+
+
+    }
 }

@@ -130,9 +130,6 @@
 		<form id="loginform" method="post" action="MemberLoginOk.do"
 			onsubmit="return check()">
 			<input type="hidden" name="user_no" value="${user_no}">
-			<input
-				type="hidden" name="local_no" value="${local_no}">
-
 
             <img src="images/logo2.png" width="100%" >
 

@@ -168,7 +168,6 @@ li {
 </head>
 
 <body>
-	유저번호 : ${user.user_no} 유저닉 : ${user.nick} 로컬번호 : ${local.local_no}
 	<%@ include file="/WEB-INF/views/header.jsp"%>
 	<form method="post" action="withWriteResult.do"
 		enctype="multipart/form-data">
@@ -177,7 +176,7 @@ li {
 				style="width: 1000px; height: auto; margin: 50px auto; background-color: white; border-radius: 10px;">
 
 				<div class="form-group title">
-					<h3 class="title">동행 구하기</h3>
+					<h3 class="title">동행 구하기 수정</h3>
 				</div>
 
 				<input type="hidden" name="user_no" value="${user.user_no}">
@@ -265,7 +264,7 @@ li {
 
 				<div class="form-group">
 					<textarea id="with_content" name="with_content" rows="15" cols="50"
-						class="form-control" placeholder="내용을 입력해주세요." required></textarea>
+						class="form-control" placeholder="내용을 입력해주세요." required>${with.with_content}</textarea>
 				</div>
 
 				<div class="tr_hashTag_area">
@@ -279,7 +278,7 @@ li {
 
 				<br>
 				<div class="write-btn">
-					<button type="submit" class="btn btn-outline-primary write-btn1">작성</button>
+					<button type="submit" class="btn btn-outline-primary write-btn1">수정</button>
 					<button type="reset" class="btn btn-outline-secondary write-btn1">취소</button>
 				</div>
 
