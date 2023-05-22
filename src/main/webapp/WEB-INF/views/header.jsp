@@ -25,13 +25,8 @@ header {
 	display: block;
 }
 </style>
-
-
-
-
 </head>
 <body>
-
 	<script>
 		let sessionId = "<c:out value='${sessionScope.id}' />";
 
@@ -67,7 +62,7 @@ header {
 					class="nav-link text-dark">마이페이지</a></li>
 				<li class="nav-item"><a href="MemberLogin.do" id="login"
 					class="nav-link text-dark">로그인</a></li>
-				<li class="nav-item"><a href="member_form.do" id="signUp"
+				<li class="nav-item"><a href="#" id="signUp"
 					class="nav-link text-dark">회원가입</a></li>
 				<li class="nav-item"><a href="logout.do" id="logout"
 					class="nav-link text-dark">로그아웃</a></li>
@@ -76,15 +71,15 @@ header {
 
 		<div class="my-2">
 			<nav class="navbar navbar-expand-lg">
-				<div class="container">
-					<div class="collapse navbar-collapse justify-content-center"
+				<div class="container-fluid">
+					<div class="navbar-collapse justify-content-center"
 						id="navbarSupportedContent">
 						<ul class="navbar-nav">
 							<li class="nav-item dropdown"><a
 								class="nav-link dropdown-toggle text-dark" href="#"
 								role="button" aria-expanded="false"> 같이서울 </a>
 								<ul class="dropdown-menu">
-									<li><a class="dropdown-item" href="withWrite.do">동행구하기</a></li>
+									<li><a class="dropdown-item" href="with_list.do">동행구하기</a></li>
 									<li><a class="dropdown-item" href="#">여행정보공유</a></li>
 								</ul></li>
 
@@ -93,9 +88,7 @@ header {
 								role="button" aria-expanded="false"> 해봤서울 </a>
 								<ul class="dropdown-menu">
 									<li><a class="dropdown-item" href="#">행사캘린더</a></li>
-									<li><a class="dropdown-item" href="#">이벤트</a></li>
-									<li><a class="dropdown-item" href="#">축제&행사</a></li>
-									<li><a class="dropdown-item" href="#">전시&공연</a></li>
+									<li><a class="dropdown-item" href="#">행사리스트</a></li>
 								</ul></li>
 
 							<li class="nav-item dropdown"><a

@@ -168,7 +168,7 @@ li {
 </head>
 
 <body>
-	유저번호 : ${user.user_no} 유저닉 : ${user.nick} 로컬번호 : ${local.local_no}
+	유저번호 : ${user.user_no} 유저닉 : ${user.nick}
 	<%@ include file="/WEB-INF/views/header.jsp"%>
 	<form method="post" action="withWriteResult.do"
 		enctype="multipart/form-data">

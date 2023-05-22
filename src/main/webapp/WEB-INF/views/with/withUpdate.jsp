@@ -168,8 +168,9 @@ li {
 </head>
 
 <body>
+내용${with.with_content}
 	<%@ include file="/WEB-INF/views/header.jsp"%>
-	<form method="post" action="withWriteResult.do"
+	<form method="post" action="withUpdateResult.do"
 		enctype="multipart/form-data">
 		<div class="container" style="width: auto; height: auto;">
 			<div
@@ -264,7 +265,7 @@ li {
 
 				<div class="form-group">
 					<textarea id="with_content" name="with_content" rows="15" cols="50"
-						class="form-control" placeholder="내용을 입력해주세요." required>${with.with_content}</textarea>
+						class="form-control" placeholder="내용을 입력해주세요." required></textarea>
 				</div>
 
 				<div class="tr_hashTag_area">
