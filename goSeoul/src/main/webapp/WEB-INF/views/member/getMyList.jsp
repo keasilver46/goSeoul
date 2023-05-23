@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,7 +50,6 @@
 					<th scope="col">카테고리</th>
 					<th scope="col">작성자</th>
 					<th scope="col">글제목</th>
-					<th scope="col">글내용</th>
 					<th scope="col">조회수</th>
 					<th scope="col">좋아요</th>
 					<th scope="col">싫어요</th>
@@ -64,18 +64,19 @@
 			</c:if>
 			<c:if test="${not empty list}">
 				<%-- <c:set var="no" value="${no }"></c:set> --%>
-				<tr>
-					<%-- <th scope="row">${no}</th> --%>
-					<td>$list.free_no}</td>
-					<td>$list.free_category}</td>
-					<td>${list.free_id}</td>
-					<td><a href="free/freeContent=${list.free_title}"></a></td>
-					<td>${list.free_content}</td>
-					<td>${list.free_hit}</td>
-					<td>${list.free_like}</td>
-					<td>${list.free_dislike}</td>
-					<td>${list.free_date}</td>
-				</tr>
+				<c:forEach var="FreeBean" items="${list}">
+					<tr>
+						<%-- <th scope="row">${no}</th> --%>
+						<td>${FreeBean.free_no}</td>
+						<td>${FreeBean.free_category}</td>
+						<td>${FreeBean.free_nick}</td>
+						<td><a href="freeContent.do=${FreeBean.free_title}"></a></td>
+						<td>${FreeBean.free_hit}</td>
+						<td>${FreeBean.free_like}</td>
+						<td>${FreeBean.free_dislike}</td>
+						<td>${FreeBean.free_date}</td>
+					</tr>
+				</c:forEach>
 
 					<%-- <td><a
 								href="freeContent.do?num=${list.free_no}&pageNum=${pp.currentPage}"

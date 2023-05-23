@@ -29,7 +29,7 @@
 	<c:if test="${result == 1}">
 		<script>
 			alert("글작성 성공");
-			location.href = "main.do";
+			location.href = "freeList.do";
 		</script>
 	</c:if>
 	<c:if test="${result != 1}">

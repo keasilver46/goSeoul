@@ -30,15 +30,14 @@
 		WHERE id = #{id}
 	</update>
 
-	<!-- 회원 탈퇴1 -->
+	<!-- 회원 탈퇴 -->
 	<delete id="delete">
 		DELETE FROM userdata
 		WHERE id = #{id}
 	</delete>
 	
 	<!-- 내가 쓴 작성글 리스트 -->
-	<select id="getMyList" parameterType="String"
-		resultType="org.example.goSeoul.model.FreeBean">
+	<select id="abcd" parameterType="String" resultType="org.example.goSeoul.model.FreeBean">
 		SELECT * FROM
 		free where free_id = #{id}
 	</select>

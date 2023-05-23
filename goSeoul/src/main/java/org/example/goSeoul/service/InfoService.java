@@ -36,6 +36,7 @@ public class InfoService {
 		}
 
 		public List<FreeBean> getMyList(String id) {
+			System.out.println("getListService");
 			return dao.getMyList(id);
 		}
 

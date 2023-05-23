@@ -71,7 +71,7 @@
 				<ul class="nav">
 					<li><a href="#">회원정보</a></li>
 					<li><a href="">받은 쪽지함</a></li>
-					<li><a href="getMyList.do">예약글 확인</a></li>
+					<li><a href="getMyList.do">작성글 확인</a></li>
 					<li><a href="getWithList.do">동행글 확인</a></li>
 					<li><a href="">좋아요</a></li>
 					<!-- 	<li><a href="#" onClick="delete">탈퇴</a></li> -->

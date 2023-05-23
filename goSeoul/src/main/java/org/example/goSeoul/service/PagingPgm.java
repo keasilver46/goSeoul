@@ -13,11 +13,11 @@ public class PagingPgm {
 		this.total = total;
 		this.rowPerPage = rowPerPage;
 		this.currentPage = currentPage;
-		
+
 		totalPage = (int) Math.ceil((double) total / rowPerPage);
 		startPage = currentPage - (currentPage - 1) % pagePerBlk;
 		endPage = startPage + pagePerBlk - 1;
-		
+
 		if (endPage > totalPage)
 			endPage = totalPage;
 	}

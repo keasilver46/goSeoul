@@ -66,7 +66,6 @@
 					<th scope="col">카테고리</th>
 					<th scope="col">작성자</th>
 					<th scope="col">글제목</th>
-					<th scope="col">글내용</th>
 					<th scope="col">조회수</th>
 					<th scope="col">좋아요</th>
 					<th scope="col">싫어요</th>
@@ -81,28 +80,27 @@
 				</c:if>
 				<c:if test="${not empty list}">
 					<c:set var="no" value="${no }"></c:set>
-					<c:forEach var="board" items="${list }">
+					<c:forEach var="freeBean" items="${list }">
 						<tr>
 							<th scope="row">${no}</th>
-							<td>${board.free_category}</td>
-							<td>${board.user_no}</td>
+							<td>${freeBean.free_category}</td>
+							<td>${freeBean.free_nick}</td>							
 							<td><a
-								href="freeContent.do?num=${board.free_no}&pageNum=${pp.currentPage}"
+								href="freeContent.do?num=${freeBean.free_no}&pageNum=${pp.currentPage}"
 								class="btn btn-default">
-								<c:if test="${board.re_level >0 }">
+								<c:if test="${freeBean.re_level >0 }">
 										<img alt="" src="${path }/images/level.gif" height="2"
-											width="${board.re_level *5 }">
+											width="${freeBean.re_level *5 }">
 										<img alt="" src="${path }/images/re.gif">
 								</c:if>
-								 ${board.free_title}
-								<c:if test="${board.free_hit > 30 }">
+								 ${freeBean.free_title}
+								<c:if test="${freeBean.free_hit > 30 }">
 										<img alt="" src="${path }/images/hot.gif">
 								</c:if></a></td>
-							<td>${board.free_content}</td>
-							<td>${board.free_hit}</td>
-							<td>${board.free_like}</td>
-							<td>${board.free_dislike}</td>
-							<td>${board.free_date}</td>
+							<td>${freeBean.free_hit}</td>
+							<td>${freeBean.free_like}</td>
+							<td>${freeBean.free_dislike}</td>
+							<td>${freeBean.free_date}</td>
 						</tr>
 						<c:set var="no" value="${no - 1}"></c:set>
 					</c:forEach>
@@ -116,8 +114,8 @@
 					<c:if test="${search=='free_title'}">selected="selected" </c:if>>제목</option>
 				<option value="free_content"
 					<c:if test="${search=='free_content'}">selected="selected" </c:if>>내용</option>
-				<option value="user_no"
-					<c:if test="${search=='user_no'}">selected="selected" </c:if>>작성자</option>
+				<option value="free_nick"
+					<c:if test="${search=='free_nick'}">selected="selected" </c:if>>작성자</option>
 				<option value="subcon"
 					<c:if test="${search=='subcon'}">selected="selected" </c:if>>제목+내용</option>
 			</select> <input type="text" name="keyword"> <input type="submit"
@@ -171,10 +169,6 @@
 	</div>
 	  </ul>
 </nav>
-	<!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
- -->
-
 
 </body>
 <c:import url="../footer.jsp"/>

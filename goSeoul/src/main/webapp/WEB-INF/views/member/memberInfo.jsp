@@ -74,14 +74,14 @@
 <body>
 	<c:import url="../header.jsp" />
 
-
+	<!-- 주석 -->
 	<div class="container-fluid">
 		<div class="row flex-nowrap">
 			<div class="col-3 bd-sidebar">
 				<ul class="nav">
 					<li><a href="#">회원정보</a></li>
 					<li><a href="">받은 쪽지함</a></li>
-					<li><a href="getMyList.do">예약글 확인</a></li>
+					<li><a href="getMyList.do">작성글 확인</a></li>
 					<li><a href="getWithList.do">동행글 확인</a></li>
 					<li><a href="">좋아요</a></li>
 					<!-- 	<li><a href="#" onClick="delete">탈퇴</a></li> -->
@@ -206,7 +206,7 @@
 										<div id="interests" class="form-control" align="center">
 											<input type="checkbox" id="h1" name="interests" value="액티비티"
 												checked readonly>액티비티&nbsp;&nbsp;&nbsp;&nbsp; <input
-												type="checkbox" id="h2" name="interests" value="게임" readonly>게임&nbsp;&nbsp;&nbsp;&nbsp;
+												type="checkbox" id="h2" name="interests" value="게임">게임&nbsp;&nbsp;&nbsp;&nbsp;
 											<input type="checkbox" id="h3" name="interests" value="등산"
 												readonly>등산&nbsp;&nbsp;&nbsp; <input type="checkbox"
 												id="h4" name="interests" value="맛집" readonly>맛집&nbsp;&nbsp;&nbsp;

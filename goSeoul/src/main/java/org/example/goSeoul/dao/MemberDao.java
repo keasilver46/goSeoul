@@ -1,7 +1,5 @@
 package org.example.goSeoul.dao;
 
-import jdk.nashorn.internal.runtime.ECMAException;
-
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -38,6 +36,6 @@ public class MemberDao {
     }
 
 	public List<FreeBean> getMyList(String id) {
-		return sqlSession.selectList("getMyList", id);
+		return sqlSession.selectList("abcd", id);
 	}
 }

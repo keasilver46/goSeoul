@@ -28,6 +28,7 @@ public class InfoDao {
 	
 
 	public List<FreeBean> getMyList(String id) {
+		System.out.println("getList DAO");
 		return sqlSession.selectList("getMyList", id);
 	}
 

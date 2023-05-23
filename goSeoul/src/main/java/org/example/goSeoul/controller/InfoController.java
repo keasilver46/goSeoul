@@ -40,10 +40,16 @@ public class InfoController {
 		String id = (String) session.getAttribute("id");
 		MemberBean dto = service.userCheck(id);
 		
+		// 비번 틀리면 
+		if(!dto.getPass().equals(pass)) {
+			return "member/member_delete";
+		} else { // 비번 같으면
+			
 		service.delete(pass);
 		System.out.println("삭제성공");
 		session.invalidate();
 		return "member/memberLogin";
+		}
 	}
 	
 	// 회원 수정 폼
@@ -70,8 +76,10 @@ public class InfoController {
 	@GetMapping("/getMyList.do")
 	public String getMyList(String pageNum, HttpSession session, Model model) {
 		String id = (String)session.getAttribute("id");
+		System.out.println("getList controller");
+		System.out.println(pageNum);
+		System.out.println(id);
 		List<FreeBean> list = mb.getMyList(id);
-		
 		/* 아몰랑^^
 		 * final int rowPerPage = 10; if (pageNum == null || pageNum.equals("")) {
 		 * pageNum = "1"; } int currentPage = Integer.parseInt(pageNum); String total =
