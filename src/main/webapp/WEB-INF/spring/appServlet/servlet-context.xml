@@ -26,14 +26,13 @@
 		<beans:property name="prefix" value="WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-	
 
 	<!-- Component, Controller, Service, Repository	어노테이션이 붙은 클래스의 빈을 자동 생성하도록 설정 -->
 	<context:component-scan base-package="org.example.goSeoul" />
 	
 	<!-- 파일 업로드  설정 -->
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<beans:property name="maxUploadSize" value="10000000"/>	
-	</beans:bean>	
+		<beans:property name="maxUploadSize" value="10000000"/>
+	</beans:bean>
 	
 </beans:beans>

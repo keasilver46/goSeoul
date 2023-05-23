@@ -4,9 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Go Seoul</title>
 </head>
 <body>
-	Hello World!
+    <script>
+        location.href="main.do";
+    </script>
 </body>
 </html>
