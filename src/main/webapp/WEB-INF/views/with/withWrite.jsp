@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +17,6 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-
 <!-- 모집인원 range -->
 <script>
 	$(document).ready(function() {
@@ -31,7 +31,6 @@
 		});
 	});
 
-<!-- 해시태그 처리 -->
 $(document).ready(function() {
   var with_tag = [];
   var counter = 0;
@@ -42,52 +41,51 @@ $(document).ready(function() {
     counter++; // del-btn의 고유 id가 된다.
   }
 
-// 서버에 제공
-$("#with_tag").on("keyup", function (e) {
-
-var tag = $("#tag-list").text();
-console.log(tag);
-$("#tag").val(tag);
-});
-
-$("#with_tag").on("keypress", function(e) {
-var self = $(this);
-
-// 엔터나 스페이스바 눌렀을 때 실행
-if (e.key === "Enter" || e.keyCode == 32) {
-var tagValue = self.val().trim();
-
-// 해시태그 값이 없으면 실행하지 않음
-if (tagValue !== "") {
-// 같은 태그가 있는지 검사한다. 있다면 해당 값이 배열로 반환된다.
-var result = Object.values(with_tag).filter(function(word) {
-return word === tagValue;
-});
-
-// 해시태그가 중복되지 않으면 추가
-if (result.length === 0) {
-$("#tag-list").append("<li>" + tagValue + "<span class='del-btn' idx='" + counter + "'>✕</span></li>");
-addTag(tagValue);
-self.val("");
-
-console.log("with_tag: "+with_tag);
-console.log("tagValue: "+tagValue);
-} else {
-alert("태그값이 중복됩니다.");
-}
-}
-e.preventDefault(); // SpaceBar 시 빈공간이 생기지 않도록 방지
- }
+  // 서버에 제공
+  $("#with_tag").on("keyup", function(e) {
+    var tag = $("#tag-list").text();
+    console.log(tag);
+    $("#tag").val(tag);
   });
 
-// 삭제 버튼
-// 인덱스 검사 후 삭제
-$(document).on("click", ".del-btn", function(e) {
-     var index = $(this).attr("idx");
-     with_tag[index] = "";
-     $(this).parent().remove();
-   });
-   })
+  $("#with_tag").on("keypress", function(e) {
+    var self = $(this);
+
+    // 엔터나 스페이스바 눌렀을 때 실행
+    if (e.key === "Enter" || e.keyCode == 32) {
+      var tagValue = self.val().trim();
+
+      // 해시태그 값이 없으면 실행하지 않음
+      if (tagValue !== "") {
+        // 같은 태그가 있는지 검사한다. 있다면 해당 값이 배열로 반환된다.
+        var result = Object.values(with_tag).filter(function(word) {
+          return word === tagValue;
+        });
+
+        // 해시태그가 중복되지 않으면 추가
+        if (result.length === 0) {
+          $("#tag-list").append("<li>" + tagValue + "<span class='del-btn' idx='" + counter + "'>✕</span></li>");
+          addTag(tagValue);
+          self.val("");
+
+          console.log("with_tag: " + with_tag);
+          console.log("tagValue: " + tagValue);
+        } else {
+          alert("태그값이 중복됩니다.");
+        }
+      }
+      e.preventDefault(); // SpaceBar 시 빈공간이 생기지 않도록 방지
+    }
+  });
+
+  // 삭제 버튼
+  // 인덱스 검사 후 삭제
+  $(document).on("click", ".del-btn", function(e) {
+    var index = $(this).attr("idx");
+    with_tag[index] = "";
+    $(this).parent().remove();
+  });
+});
 
 // 날짜 처리
 // 종료일자를 시작일자 이후로 선택가능처리
@@ -168,10 +166,9 @@ li {
 </head>
 
 <body>
-	유저번호 : ${user.user_no} 유저닉 : ${user.nick}
+	유저번호 : ${user.user_no} 유저닉 : ${user.nick} 유저아디 : ${user.id}
 	<%@ include file="/WEB-INF/views/header.jsp"%>
-	<form method="post" action="withWriteResult.do"
-		enctype="multipart/form-data">
+	<form method="post" action="withWriteResult.do" enctype="multipart/form-data">
 		<div class="container" style="width: auto; height: auto;">
 			<div
 				style="width: 1000px; height: auto; margin: 50px auto; background-color: white; border-radius: 10px;">
@@ -183,14 +180,15 @@ li {
 				<input type="hidden" name="user_no" value="${user.user_no}">
 				<input type="hidden" name="with_id" value="${user.id}">
 				<input type="hidden" name="with_nick" value="${user.nick}">
-				<input type="hidden" name="with_curno" value="${with_curno}">
+				<input type="hidden" name="with_no" value="${with.with_no}">
+				<!--<input type="hidden" name="with_curno" value="${with_curno}">-->
 
 				<div class="form-group row">
-					<label for="gender" class="col-sm-2 col-form-label">성별</label>
+					<label for="with_gender" class="col-sm-2 col-form-label">성별</label>
 					<div class="col-sm-4">
-						<input type="radio" id="female" name="gender" value="여성"
+						<input type="radio" id="with_gender" name="with_gender" value="여성"
 							class="text-muted" required>여성 <input type="radio"
-							id="male" name="gender" value="남성" class="text-muted" required>남성
+							id="with_gender" name="with_gender" value="남성" class="text-muted" required>남성
 					</div>
 					<label for="with_age" class="col-sm-2 col-form-label">나이</label>
 					<div class="col-sm-4">
@@ -257,6 +255,7 @@ li {
 							name="with_filename1">
 					</div>
 				</div>
+
 				<hr>
 				<div class="form-group">
 					<input type="text" id="with_title" name="with_title"

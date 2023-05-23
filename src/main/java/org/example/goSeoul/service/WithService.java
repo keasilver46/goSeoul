@@ -59,4 +59,7 @@ public class WithService {
         return withDao.getReplyList(with_no);
     }
 
+    public int withUpdate(WithBean wb) throws Exception {
+        return withDao.withUpdate(wb);
+    }
 }

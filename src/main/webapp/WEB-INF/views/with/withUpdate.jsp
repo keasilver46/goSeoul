@@ -180,28 +180,28 @@ li {
 					<h3 class="title">동행 구하기 수정</h3>
 				</div>
 
-				<input type="hidden" name="user_no" value="${user.user_no}">
-				<input type="hidden" name="with_id" value="${user.id}">
-				<input type="hidden" name="with_nick" value="${user.nick}">
-				<input type="hidden" name="with_curno" value="${with_curno}">
+				<input type="hidden" name="with_no" value="${with.with_no}">
+				<input type="hidden" name="page" value="${page}" />
+				<!--<input type="hidden" name="with_curno" value="${with.with_curno}">-->
 
 				<div class="form-group row">
-					<label for="gender" class="col-sm-2 col-form-label">성별</label>
+					<label for="with_gender" class="col-sm-2 col-form-label">성별</label>
 					<div class="col-sm-4">
-						<input type="radio" id="female" name="gender" value="여성"
-							class="text-muted" required>여성 <input type="radio"
-							id="male" name="gender" value="남성" class="text-muted" required>남성
+						<input type="radio" id="with_gender" name="with_gender" value="여성"
+							class="text-muted" ${with.with_gender == '여성' ? 'checked' : ''} required>여성
+						<input type="radio" id="with_gender" name="with_gender" value="남성"
+						class="text-muted" ${with.with_gender == '남성' ? 'checked' : ''} required>남성
 					</div>
 					<label for="with_age" class="col-sm-2 col-form-label">나이</label>
 					<div class="col-sm-4">
 						<select class="custom-select mr-sm-2" id="with_age"
-							name="with_age">
-							<option selected>선택</option>
-							<option value="20">20대</option>
-							<option value="30">30대</option>
-							<option value="40">40대</option>
-							<option value="50">50대</option>
-							<option value="60">60대 이상</option>
+							name="with_age" value="${with.with_age}">
+							<option selected ${with.with_age == null ? 'selected' : ''}>선택</option>
+							<option value="20" ${with.with_age== '20' ? 'selected' : ''}>20대</option>
+							<option value="30" ${with.with_age== '30' ? 'selected' : ''}>30대</option>
+							<option value="40" ${with.with_age== '40' ? 'selected' : ''}>40대</option>
+							<option value="50" ${with.with_age== '50' ? 'selected' : ''}>50대</option>
+							<option value="60" ${with.with_age== '60' ? 'selected' : ''}>60대 이상</option>
 						</select>
 					</div>
 				</div>
@@ -209,43 +209,37 @@ li {
 				<div class="form-group row">
 					<label for="local_no" class="col-sm-2 col-form-label">지역</label>
 					<div class="col-sm-10">
-						<input type="radio" name="with_category" value="광화문"
-							class="text-muted" required>광화문 <input type="radio"
-							name="with_category" value="명동" class="text-muted" required>명동
-						<input type="radio" name="with_category" value="동대문"
-							class="text-muted" required>동대문 <input type="radio"
-							name="with_category" value="홍대" class="text-muted" required>홍대
-						<input type="radio" name="with_category" value="여의도"
-							class="text-muted" required>여의도 <input type="radio"
-							name="with_category" value="이태원" class="text-muted" required>이태원
-						<input type="radio" name="with_category" value="강남"
-							class="text-muted" required>강남 <input type="radio"
-							name="with_category" value="잠실" class="text-muted" required>잠실
-						<input type="radio" name="with_category" value="기타"
-							class="text-muted" required>기타
-					</div>
+						<input type="radio" name="with_category" value="광화문" class="text-muted" ${with.with_category == '광화문' ? 'checked' : ''} required>광화문
+                                <input type="radio" name="with_category" value="명동" class="text-muted" ${with.with_category == '명동' ? 'checked' : ''} required>명동
+                                <input type="radio" name="with_category" value="동대문" class="text-muted" ${with.with_category == '동대문' ? 'checked' : ''} required>동대문
+                                <input type="radio" name="with_category" value="홍대" class="text-muted" ${with.with_category == '홍대' ? 'checked' : ''} required>홍대
+                                <input type="radio" name="with_category" value="여의도" class="text-muted" ${with.with_category == '여의도' ? 'checked' : ''} required>여의도
+                                <input type="radio" name="with_category" value="이태원" class="text-muted" ${with.with_category == '이태원' ? 'checked' : ''} required>이태원
+                                <input type="radio" name="with_category" value="강남" class="text-muted" ${with.with_category == '강남' ? 'checked' : ''} required>강남
+                                <input type="radio" name="with_category" value="잠실" class="text-muted" ${with.with_category == '잠실' ? 'checked' : ''} required>잠실
+                                <input type="radio" name="with_category" value="기타" class="text-muted" ${with.with_category == '기타' ? 'checked' : ''} required>기타
+                    </div>
 				</div>
 
 				<div class="form-group row">
-					<label for="customRange2" class="col-sm-2 col-form-label">모집
-						인원</label>
-					<div class="col-sm-10">
-						<input type="range" class="range-slider__range" value="1" min="1"
-							max="15" id="with_maxto" name="with_maxto" required>&nbsp;
-						<span class="range-slider__value" name="with_maxto" value=""></span>명
-					</div>
-				</div>
+                    <label for="customRange2" class="col-sm-2 col-form-label">모집 인원</label>
+                    <div class="col-sm-10">
+                        <input type="range" class="range-slider__range" value="${with.with_maxto}" min="1" max="15" id="with_maxto" name="with_maxto" required>&nbsp;
+                        <span class="range-slider__value">${with.with_maxto}</span>명
+                    </div>
+                </div>
+
 
 				<div class="form-group row">
 					<label for="date" class="col-sm-2 col-form-label">날짜 선택</label>
 					<div class="col">
 						<input class="form-control" type="date" name="with_start"
-							id="with_start" onChange="checkDate(event)" required>
+							id="with_start" onChange="checkDate(event)" value="${with.with_start}" required>
 					</div>
 					-
 					<div class="col">
 						<input class="form-control" type="date" name="with_end"
-							id="with_end" onChange="checkDate(event)" required>
+							id="with_end" onChange="checkDate(event)" value="${with.with_end}" required>
 					</div>
 				</div>
 
@@ -254,27 +248,32 @@ li {
 						파일</label>
 					<div class="col-sm-10">
 						<input class="form-control" type="file" id="with_filename"
-							name="with_filename1">
+							name="with_filename1" value="${with.with_filename}">
+						<img src="./upload/${with.with_filename}" width="200px">
 					</div>
 				</div>
 				<hr>
 				<div class="form-group">
 					<input type="text" id="with_title" name="with_title"
-						class="form-control" placeholder="제목을 입력해주세요." required>
+						class="form-control" placeholder="제목을 입력해주세요." value="${with.with_title}" required>
 				</div>
 
 				<div class="form-group">
 					<textarea id="with_content" name="with_content" rows="15" cols="50"
-						class="form-control" placeholder="내용을 입력해주세요." required></textarea>
+						class="form-control" placeholder="내용을 입력해주세요." required>${with.with_content}</textarea>
 				</div>
 
 				<div class="tr_hashTag_area">
 					<div class="form-group">
-						<input type="hidden" id="tag" name="with_tag" value=""> <input
+						<input type="hidden" id="tag" name="with_tag" value="${with.with_tag}"> <input
 							type="text" id="with_tag" placeholder="#태그입력"
-							class="form-control">
+							class="form-control" >
 					</div>
-					<ul id="tag-list"></ul>
+					<ul id="tag-list">
+					    <c:forEach items="${with.with_tag}" var="tag">
+                                <li>${tag}</li>
+                        </c:forEach>
+					</ul>
 				</div>
 
 				<br>

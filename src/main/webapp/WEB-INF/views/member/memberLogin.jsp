@@ -10,8 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>로그인 페이지</title>
 <link rel="stylesheet" href="./css/font.css">
-<!-- Custom styles for this template -->
-<link href="signin.css" rel="stylesheet">
+
 <!-- 부트스트랩 -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">

@@ -1,5 +1,6 @@
 package org.example.goSeoul.controller;
 
+import lombok.With;
 import org.example.goSeoul.model.JoinMemberBean;
 import org.example.goSeoul.model.ReserveBean;
 import org.example.goSeoul.model.WithBean;
@@ -90,6 +91,51 @@ public class WithController {
         return "with/withWriteResult";
     }
 
+    // 동행 수정 폼
+    @RequestMapping("withUpdate.do")
+    public String withUpdate(int with_no, int page, Model model) throws Exception {
+
+
+        WithBean with = withService.getWithDetail(with_no);
+        model.addAttribute("with", with);
+        model.addAttribute("page", page);
+
+        // 로그인된 상태일 경우 둥행수정 폼으로 이동
+        return "with/withUpdate";
+
+    }
+
+    // 동행 수정글 작성
+    @RequestMapping("withUpdateResult.do")
+    public String withUpdateResult(@ModelAttribute WithBean wb,
+                                   @RequestParam("with_filename1") MultipartFile mf,
+                                   HttpServletRequest request,
+                                   Model model) throws Exception {
+
+        if (!mf.isEmpty()) {
+            String uploadPath = request.getRealPath("upload"); // 업로드 디렉토리 경로를 설정합니다
+
+            System.out.println("path: " + uploadPath);
+
+            // UUID를 사용하여 고유한 파일명 생성
+            String originalFilename = mf.getOriginalFilename();
+            String extension = originalFilename.substring(originalFilename.lastIndexOf("."));
+            String newFilename = UUID.randomUUID().toString() + extension;
+
+            // 파일을 업로드 디렉토리에 저장합니다
+            String filePath = uploadPath + File.separator + newFilename;
+            mf.transferTo(new File(filePath));
+
+            wb.setWith_filename(newFilename);
+        }
+
+        int result = withService.withUpdate(wb);
+        model.addAttribute("result", result);
+
+        return "with/withUpdateResult";
+    }
+
+
     // 동행 리스트
     @RequestMapping("with_list.do")
     public String list(HttpServletRequest request, Model model) throws Exception {
@@ -170,16 +216,7 @@ public class WithController {
         model.addAttribute("replyList", replyList);
 
         return "with/withDetail";
-    }
 
-    // 동행 수정 폼
-    @RequestMapping("withUpdate.do")
-    public String withUpdate(int with_no, Model model) throws Exception {
-
-        WithBean with = withService.getWithDetail(with_no);
-        model.addAttribute("with", with);
-
-        return "with/withUpdate";
     }
 
     // 동행 예약

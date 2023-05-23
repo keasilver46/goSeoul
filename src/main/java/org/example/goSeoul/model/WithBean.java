@@ -19,6 +19,7 @@ public class WithBean {
     private int with_hit;
     private String with_category;
     private String with_age;
+    private String with_gender;
     private String with_start;
     private String with_end;
     private Date with_date; /* 작성시간 */

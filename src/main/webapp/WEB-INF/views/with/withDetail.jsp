@@ -26,7 +26,7 @@
     <div id="withdetail">
         <h1 class="withdetail_title" style="font-size:40px; position:static; margin:10px;">동행 구하기</h1>
         <table class="table">
-        <a href="withUpdate.do">수정</a>
+        <a href="withUpdate.do?with_no=${with.with_no}&page=${page}">수정</a>
             <tr>
                 <th>제목</th>
                 <td colspan="3">${with.with_title}</td>

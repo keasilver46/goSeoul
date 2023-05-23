@@ -67,4 +67,8 @@ public class WithDao {
         List<WithReplyBean> replyList = session.selectList("with_replylist", with_no);
         return replyList;
     }
+
+    public int withUpdate(WithBean wb) {
+        return session.update("withUpdate", wb);
+    }
 }
