@@ -61,6 +61,10 @@ public class WithDao {
         session.insert("reserve", rb);
     }
 
+    public void updateCurNo(int with_no) throws Exception {
+        session.update("updateCurNo", with_no);
+    }
+
     public void insertReply(WithReplyBean wrb) throws Exception {
         session.insert("insertReply", wrb);
     }

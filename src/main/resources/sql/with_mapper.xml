@@ -51,8 +51,13 @@
 
     <!-- 동행 신청 -->
     <insert id="reserve" parameterType="reserve">
-        insert into reserve values (reserve_seq.nextval, #{with_no}, sysdate, #{user_no})
+        insert into reserve values (reserve_seq.nextval, #{with_no}, #{user_no}, #{reserve_id}, #{reserve_nick}, sysdate)
     </insert>
+
+    <!-- 현재인원 증가 -->
+    <update id="updateCurNo" parameterType="int">
+        update withgo set with_curno = with_curno + 1 where with_no = #{with_no}
+    </update>
 
     <!-- 댓글 작성 -->
     <insert id="insertReply" parameterType="withreply">

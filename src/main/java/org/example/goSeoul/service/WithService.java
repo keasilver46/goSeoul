@@ -52,6 +52,10 @@ public class WithService {
         withDao.insert(rb);
     }
 
+    public void updateCurNo(int with_no) throws Exception {
+        withDao.updateCurNo(with_no);
+    }
+
     public void insertReply(WithReplyBean wrb) throws Exception {
         withDao.insertReply(wrb);
     }

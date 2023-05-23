@@ -173,7 +173,8 @@ public class WithController {
 
     // 동행 예약
     @RequestMapping("with_reserve.do")
-    public String with_reserve(@ModelAttribute ReserveBean rb, int with_no, HttpSession session) throws Exception {
+    public String with_reserve(@ModelAttribute ReserveBean rb, int with_no, int page, String state,
+                               HttpSession session, Model model) throws Exception {
         String id = (String)session.getAttribute("id");
 
         if (id == null) {
@@ -184,7 +185,15 @@ public class WithController {
 
             rb.setWith_no(with_no);
             rb.setUser_no(mb.getUser_no());
+            rb.setReserve_id(mb.getId());
+            rb.setReserve_nick(mb.getNick());
             withService.insert(rb);
+
+            withService.updateCurNo(with_no);
+
+            model.addAttribute("with_no", with_no);
+            model.addAttribute("page", page);
+            model.addAttribute("state", state);
 
             return "with/withReserve";
         }

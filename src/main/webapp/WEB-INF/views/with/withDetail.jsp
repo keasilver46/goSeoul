@@ -65,9 +65,16 @@
             <tr>
                 <th>현재인원</th>
                 <td>${with.with_curno}</td>
-                <td colspan="2">
-                    <button class="btn btn-outline-primary" onClick="location.href='with_reserve.do?with_no=${with.with_no}'">신청하기</button>
-                </td>
+                <c:if test="${with.with_curno < with.with_maxto}">
+                    <td colspan="2">
+                        <button class="btn btn-outline-primary" onClick="location.href='with_reserve.do?with_no=${with.with_no}&page=${page}&state=detail'">신청하기</button>
+                    </td>
+                </c:if>
+                <c:if test="${with.with_curno == with.with_maxto}">
+                    <td colspan="2">
+                        <button class="btn btn-danger">마감</button>
+                    </td>
+                </c:if>
             </tr>
         </table>
 
