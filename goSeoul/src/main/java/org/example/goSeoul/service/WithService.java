@@ -62,4 +62,9 @@ public class WithService {
 	public List<WithReplyBean> getReplyList(int with_no) throws Exception {
 		return withDao.getReplyList(with_no);
 	}
+
+	// rb
+	public WithBean getWithGo(Integer integer) {
+		return withDao.getWithGo(integer);
+	}
 }

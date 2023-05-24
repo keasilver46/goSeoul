@@ -1,12 +1,12 @@
 package org.example.goSeoul.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.example.goSeoul.model.FreeBean;
 import org.example.goSeoul.model.MemberBean;
-import org.example.goSeoul.model.ReserveBean;
 import org.example.goSeoul.model.WithBean;
 import org.example.goSeoul.service.InfoService;
 import org.example.goSeoul.service.MemberService;
@@ -95,10 +95,11 @@ public class InfoController {
 	@GetMapping("/getMyReserve.do")
 	public String getMyReserve(String pageNum, HttpSession session, Model model) throws Exception {
 		String id = (String) session.getAttribute("id");
-		ReserveBean mr = service.getMyReserve(id);
-		
-		List<WithBean> rb = service.getReserveList(mr.getWith_no());
-		
+		List<Integer> intArray = service.getMyReserve(id);
+		List<WithBean> rb = new ArrayList<>();
+		for(int i = 0; i < intArray.size(); i++) {
+			rb.add(wb.getWithGo(intArray.get(i)));
+		}
 
 		model.addAttribute("rb", rb);
 		model.addAttribute("page", pageNum);

@@ -71,4 +71,10 @@ public class WithDao {
         List<WithReplyBean> replyList = session.selectList("with_replylist", with_no);
         return replyList;
     }
+    
+    //rb
+    public WithBean getWithGo(Integer with_no) {
+    	System.out.println(with_no);
+		return session.selectOne("getWithGo", with_no);
+	}
 }

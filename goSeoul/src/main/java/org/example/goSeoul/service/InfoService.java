@@ -37,16 +37,12 @@ public class InfoService {
 		}
 
 		
-		public ReserveBean getMyReserve(String id) {
+		public List<Integer> getMyReserve(String id) {
 			return dao.getMyReserve(id);
 		}
 
 		public MemberBean userCheck(String id) {
 			return dao.userCheck(id);
-		}
-
-		public List<WithBean> getReserveList(int with_no) {
-			return dao.getReserveList(with_no);
 		}
 
 

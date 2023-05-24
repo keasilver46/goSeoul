@@ -91,46 +91,53 @@
 					 onSubmit="location.href="member_join_ok.do"> -->
 				<form method="get" action="memberInfo.do" onSubmit="return check()">
 					<div class="container">
-						<div class="input-form-backgroud row">
-							<div class="input-form col-md-12 mx-auto">
+						<!-- <div class="input-form-backgroud row">
+							<div class="input-form col-md-12 mx-auto"> -->
 
 								<h4 class="mb-3">회원정보</h4>
 								<div class="mb-3">
-
-									<!-- 이미지 -->
-									<img src="..." class="img-thumbnail" alt="...">
-									<div id="posRelId">
-										<label for="id">아이디</label> <input type="text"
-											class="form-control" autofocus="autofocus" id="id" name="id"
-											value="${info.id }" readonly>
-									</div>
+									<label for="id">아이디</label> <input type="text"
+										class="form-control" autofocus="autofocus" id="id" name="id"
+										value="${info.id }" readonly>
+								</div>
+							</div>
+							<div class="col-md-6 mb-3">
+								<div id="posRelNick">
+									<label for="nick">별명(닉네임)</label> <input type="text"
+										class="form-control" id="nick" name="nick"
+										value="${info.nick }" readonly>
+								</div>
+								<div id="nickcheck"></div>
+							</div>
+							<div class="row">
+								<div class="col-md-6 mb-3">
+									<label for="pass">비밀번호</label> <input type="password"
+										class="form-control" id="pass" name="pass"
+										value="${info.pass }" readonly>
 								</div>
 
-								<div class="row">
-									<div class="col-md-6 mb-3">
-										<label for="pass">비밀번호</label> <input type="password"
-											class="form-control" id="pass" name="pass"
-											value="${info.pass }" readonly>
-									</div>
+							</div>
 
+							<div class="row">
+								<div class="col-md-6 mb-3">
+									<label for="name">이름</label> <input type="text"
+										class="form-control" id="name" name="name"
+										value="${info.name }" readonly>
 								</div>
 
-								<div class="row">
-									<div class="col-md-6 mb-3">
-										<label for="name">이름</label> <input type="text"
-											class="form-control" id="name" name="name"
-											value="${info.name }" readonly>
-									</div>
-									<div class="col-md-6 mb-3">
-										<div id="posRelNick">
-											<label for="nick">별명(닉네임)</label> <input type="text"
-												class="form-control" id="nick" name="nick"
-												value="${info.nick }" readonly>
-										</div>
-										<div id="nickcheck"></div>
-									</div>
-								</div>
+							</div>
+							<div class="">
+								<label for="birth">생년월일</label> <input type="text"
+									class="form-control" id="birth" name="birth"
+									value="${info.birth }" readonly>
+							</div>
+							<label for="tel">휴대전화</label>
+							<div class="">
+								<input type="text" class="form-control" id="tel" name="tel"
+									value="${info.tel1 }-${info.tel2 }-${info.tel3 }" readonly>
+							</div>
 
+							<div class="">
 								<div class="row">
 									<div class="col-md-6 mb-3">
 										<label for="email">이메일</label> <input type="text" size="10"
@@ -138,101 +145,56 @@
 											value="${info.email }@${info.domain }" readonly>
 									</div>
 								</div>
-
-								<%-- <div class="col-md-6 mb-3">
-										<div id="domain">
-
-											<label for="domain">도메인</label> <input type="text" size="15"
-												class="form-control" id="domain" name="domain"
-												value="${info.domain }" readonly>  --%>
-
-								<!-- <select id="mailid">
-												<option value="">직접입력</option>
-												<option value="@naver.com">네이버</option>
-												<option value="@daum.net">다음</option>
-												<option value="@nate.com">네이트</option>
-												<option value="@gmail.com">구글</option>
-											</select>
-										</div>
-									</div>
-								</div> -->
-
-								<!-- <div class="mb-3"> -->
 								<div class="">
-									<label for="birth">생년월일</label> <input type="text"
-										class="form-control" id="birth" name="birth"
-										value="${info.birth }" readonly>
+									<label for="region">선호지역</label> <input type="text"
+										size="10" class="form-control" id="region" name="region"
+										value="${info.region }" readonly>
 								</div>
-
 								<div class="">
-									<label for="tel">휴대전화</label>
-									<div class="">
-										<input type="text" class="form-control" id="tel" name="tel"
-											value="${info.tel1 }-${info.tel2 }-${info.tel3 }" readonly>
-										<%-- 	</div>
-									<div class="col-md-4 mb-3">
-										<input type="text" class="form-control" id="tel2" name="tel2"
-											value="${info.tel2 }" readonly>
-									</div>
-									<div class="col-md-4 mb-3">
-										<input type="text" class="form-control" id="tel3" name="tel3"
-											value="${info.tel3 }" readonly>
-									</div> --%>
-									</div>
-									<div class="">
-										<label for="MBTI">MBTI<span class="">&nbsp;(필수
-												아님)</span></label> <input type="text" size="10" class="form-control"
-											id="MBTI" name="MBTI" value="${info.MBTI }" readonly>
-									</div>
-									<div class="">
-										<label for="region">선호하는 지역</label> <input type="text"
-											size="10" class="form-control" id="region" name="region"
-											value="${info.region }" readonly>
-									</div>
-
-									<div class="">
-										<label for="gender">성별</label> <input type="text" size="10"
-											class="form-control" id="gender" name="gender"
-											value="${info.gender }" readonly>
-										<!-- <input type="radio" id="male" name="gender" value="남자">남자
-												<input type="radio" id="female" name="gender" value="여자">여자
-												<input type="radio" id="none" name="gender" value="없음">없음 -->
-									</div>
-
-									<div class="mb-3">
-										<label for="interests">관심사</label>
-										<div id="interests" class="form-control" align="center">
-											<input type="checkbox" id="h1" name="interests" value="액티비티"
-												checked readonly>액티비티&nbsp;&nbsp;&nbsp;&nbsp; <input
-												type="checkbox" id="h2" name="interests" value="게임">게임&nbsp;&nbsp;&nbsp;&nbsp;
-											<input type="checkbox" id="h3" name="interests" value="등산"
-												readonly>등산&nbsp;&nbsp;&nbsp; <input type="checkbox"
-												id="h4" name="interests" value="맛집" readonly>맛집&nbsp;&nbsp;&nbsp;
-											<input type="checkbox" id="h5" name="interests" value="쇼핑"
-												readonly>쇼핑&nbsp;&nbsp;&nbsp;
-										</div>
-									</div>
-
-									<div class="mb-3">
-										<label for="intro">자기소개<span class="text-muted">&nbsp;(필수
-												아님)</span></label>
-										<textarea id="intro" name="intro" rows="5" cols="50"
-											value="${info.intro }" readonly></textarea>
-									</div>
-
+									<label for="gender">성별</label> <input type="text" size="10"
+										class="form-control" id="gender" name="gender"
+										value="${info.gender }" readonly>
 								</div>
-								<div class="mb-4">
-									<button class="btn btn-primary btn-lg btn-block" type="button"
-										onClick="location.href='memberEdit.do?id=${info.id}'">회원
-										정보 수정하기</button>
-
+								<div class="">
+									<label for="MBTI">MBTI<span class="">&nbsp;(필수
+											아님)</span></label> <input type="text" size="10" class="form-control"
+										id="MBTI" name="MBTI" value="${info.MBTI }" readonly>
 								</div>
+
+								<div class="mb-3">
+									<label for="interests">관심사</label>
+									<div id="interests" class="form-control" align="center">
+										<input type="checkbox" id="h1" name="interests" value="액티비티"
+											checked readonly>액티비티&nbsp;&nbsp;&nbsp;&nbsp; <input
+											type="checkbox" id="h2" name="interests" value="게임">게임&nbsp;&nbsp;&nbsp;&nbsp;
+										<input type="checkbox" id="h3" name="interests" value="등산"
+											readonly>등산&nbsp;&nbsp;&nbsp; <input type="checkbox"
+											id="h4" name="interests" value="맛집" readonly>맛집&nbsp;&nbsp;&nbsp;
+										<input type="checkbox" id="h5" name="interests" value="쇼핑"
+											readonly>쇼핑&nbsp;&nbsp;&nbsp;
+									</div>
+								</div>
+
+								<div class="mb-3">
+									<label for="intro">자기소개<span class="text-muted">&nbsp;(필수
+											아님)</span></label>
+									<textarea id="intro" name="intro" rows="5" cols="50"
+										value="${info.intro }" readonly></textarea>
+								</div>
+
+							</div>
+							<div class="mb-4">
+								<button class="btn btn-primary btn-lg btn-block" type="button"
+									onClick="location.href='memberEdit.do?id=${info.id}'">회원
+									정보 수정하기</button>
+
 							</div>
 						</div>
 					</div>
-				</form>
-			</main>
 		</div>
+		</form>
+		</main>
+	</div>
 	</div>
 
 

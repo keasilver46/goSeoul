@@ -54,15 +54,12 @@
 		WHERE id = #{id}
 	</select>
 
+	<!-- == intArray -->
 	<select id="getMyReserve" parameterType="String"
-		resultType="org.example.goSeoul.model.ReserveBean">
-		SELECT * FROM
+		resultType="Integer">
+		SELECT with_no FROM
 		reserve WHERE reserve_ID = #{id}
 	</select>
-
-	<select id="getReserveList" parameterType="int"
-		resultType="org.example.goSeoul.model.WithBean">
-		SELECT * FROM
-		WITHGO WHERE WITH_NO = #{with_no}
-	</select>
+	
+	
 </mapper>

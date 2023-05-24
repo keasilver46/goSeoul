@@ -32,13 +32,10 @@ public class InfoDao {
 		return sqlSession.selectOne("login_check", id);
 	}
 
-	public ReserveBean getMyReserve(String id) {
-		return sqlSession.selectOne("getMyReserve", id);
+	public List<Integer> getMyReserve(String id) {
+		return sqlSession.selectList("getMyReserve", id);
 	}
 
-	public List<WithBean> getReserveList(int with_no) {
-		return sqlSession.selectList("getReserveList", with_no);
-	}
 
 	
 	/*
