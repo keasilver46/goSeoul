@@ -11,6 +11,11 @@ header {
 	font-family: 'Title_Medium';
 }
 
+.headerLogo {
+	width: 150px;
+	margin-left: 30px;
+}
+
 .navbar-nav > li {
 	padding-left: 40px;
 	padding-right: 40px;
@@ -25,7 +30,7 @@ header {
     position: relative;
 }
 
-.dropdown-submenu> a:after {
+.dropdown-submenu > a:after {
     content: ">";
     float: right;
 }
@@ -93,6 +98,9 @@ header {
 
 		<div class="my-2">
 			<nav class="navbar navbar-expand-lg">
+				<a href="main.do">				
+					<img class="headerLogo" src="./images/goseoul_01.jpg">
+				</a>
 				<div class="container-fluid">
 					<div class="navbar-collapse justify-content-center" id="navbarSupportedContent">
 						<ul class="navbar-nav">
@@ -168,7 +176,8 @@ header {
 									<li><a class="dropdown-item" href="#">공지사항</a></li>
 									<li><a class="dropdown-item" href="q_board.do">FAQ</a></li>
 									<li><a class="dropdown-item" href="#">개인정보처리방침</a></li>
-								</ul></li>
+								</ul>
+							</li>
 						</ul>
 					</div>
 				</div>

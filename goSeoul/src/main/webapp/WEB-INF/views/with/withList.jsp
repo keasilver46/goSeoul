@@ -18,6 +18,15 @@
     body {
         font-family: 'Title_Medium';
     }
+    
+    #withlist {
+    	display: flex;
+		flex-direction: column;
+		align-items: left;
+		width: 100%;
+		max-width: 1400px;
+		margin: 0 auto;
+    }
 
     .card-container {
         display: grid;
@@ -118,7 +127,7 @@
                         <c:if test="${endpage < maxpage}">
                             <li class="page-item">
                                 <a class="page-link" href="with_list.do?page=${startpage+10}&search=${search}&keyword=${keyword}" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
+                                    <span aria-hidden="true">&raquo;</span>
                                 </a>
                             </li>
                         </c:if>
