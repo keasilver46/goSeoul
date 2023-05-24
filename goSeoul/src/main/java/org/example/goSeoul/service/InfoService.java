@@ -3,8 +3,9 @@ package org.example.goSeoul.service;
 import java.util.List;
 
 import org.example.goSeoul.dao.InfoDao;
-import org.example.goSeoul.model.FreeBean;
 import org.example.goSeoul.model.MemberBean;
+import org.example.goSeoul.model.ReserveBean;
+import org.example.goSeoul.model.WithBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,13 +36,17 @@ public class InfoService {
 			return dto;
 		}
 
-		public List<FreeBean> getMyList(String id) {
-			System.out.println("getListService");
-			return dao.getMyList(id);
+		
+		public ReserveBean getMyReserve(String id) {
+			return dao.getMyReserve(id);
 		}
 
 		public MemberBean userCheck(String id) {
 			return dao.userCheck(id);
+		}
+
+		public List<WithBean> getReserveList(int with_no) {
+			return dao.getReserveList(with_no);
 		}
 
 

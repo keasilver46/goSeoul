@@ -25,82 +25,63 @@
 
 <!-- 해시태그 처리 -->
 <script>
-	$(document)
-			.ready(
-					function() {
-						var free_tag = [];
-						var counter = 0;
+$(document).ready(function() {
+  var free_tag = [];
+  var counter = 0;
 
-						// 입력한 값을 태그로 생성한다.
-						function addTag(value) {
-							free_tag[counter] = value;
-							counter++; // del-btn의 고유 id가 된다.
-						}
+  // 입력한 값을 태그로 생성한다.
+  function addTag(value) {
+	  free_tag[counter] = value;
+    counter++; // del-btn의 고유 id가 된다.
+  }
 
-						// 서버에 제공
-						$("#free_tag").on("keyup", function(e) {
+           // 서버에 제공
+          $("#free_tag").on("keyup", function (e) {
 
-							var tag = $("#tag-list").text();
-							console.log(tag);
-							$("#tag").val(tag);
+             var tag = $("#tag-list").text();
+              console.log(tag);
+              $("#tag").val(tag);
 
-						});
+          });
 
-						$("#free_tag")
-								.on(
-										"keypress",
-										function(e) {
-											var self = $(this);
+  $("#free_tag").on("keypress", function(e) {
+    var self = $(this);
 
-											// 엔터나 스페이스바 눌렀을 때 실행
-											if (e.key === "Enter"
-													|| e.keyCode == 32) {
-												var tagValue = self.val()
-														.trim();
+    // 엔터나 스페이스바 눌렀을 때 실행
+    if (e.key === "Enter" || e.keyCode == 32) {
+      var tagValue = self.val().trim();
 
-												// 해시태그 값이 없으면 실행하지 않음
-												if (tagValue !== "") {
-													// 같은 태그가 있는지 검사한다. 있다면 해당 값이 배열로 반환된다.
-													var result = Object
-															.values(free_tag)
-															.filter(
-																	function(
-																			word) {
-																		return word === tagValue;
-																	});
+      // 해시태그 값이 없으면 실행하지 않음
+      if (tagValue !== "") {
+        // 같은 태그가 있는지 검사한다. 있다면 해당 값이 배열로 반환된다.
+        var result = Object.values(free_tag).filter(function(word) {
+          return word === tagValue;
+        });
 
-													// 해시태그가 중복되지 않으면 추가
-													if (result.length === 0) {
-														$("#tag-list")
-																.append(
-																		"<li>"
-																				+ tagValue
-																				+ "<span class='del-btn' idx='" + counter + "'>✕</span></li>");
-														addTag(tagValue);
-														self.val("");
+        // 해시태그가 중복되지 않으면 추가
+        if (result.length === 0) {
+          $("#tag-list").append("<li>" + tagValue + "<span class='del-btn' idx='" + counter + "'>✕</span></li>");
+          addTag(tagValue);
+          self.val("");
 
-														console
-																.log("free_tag: "
-																		+ free_tag);
-														console
-																.log("tagValue: "
-																		+ tagValue);
-													} else {
-														alert("태그값이 중복됩니다.");
-													}
-												}
-												e.preventDefault(); // SpaceBar 시 빈공간이 생기지 않도록 방지
-											}
-										});
+          console.log("free_tag: "+free_tag);
+          console.log("tagValue: "+tagValue);
+        } else {
+          alert("태그값이 중복됩니다.");
+        }
+      }
+      e.preventDefault(); // SpaceBar 시 빈공간이 생기지 않도록 방지
+    }
+  });
 
-						// 삭제 버튼
-						// 인덱스 검사 후 삭제
-						$(document).on("click", ".del-btn", function(e) {
-							var index = $(this).attr("idx");
-							free_tag[index] = "";
-							$(this).parent().remove();
-						});
-					})
+   // 삭제 버튼
+   // 인덱스 검사 후 삭제
+   $(document).on("click", ".del-btn", function(e) {
+     var index = $(this).attr("idx");
+     free_tag[index] = "";
+     $(this).parent().remove();
+   });
+   })
 </script>
 
 <style>
@@ -133,14 +114,14 @@ li {
 </head>
 
 <body>
-	<c:import url="../header.jsp" />
-	<br>
-	<h4 class="mb-3" align="center">여행정보 공유</h4>
-	<form method="post" action="freeWriteResult.do">
+<c:import url="../header.jsp" />
+	<br><h4 class="mb-3" align="center">여행정보 공유</h4>
+	<form method="post" action="freeWriteResult.do" >
 		<div class="container" style="width: auto; height: auto;">
 			<div
 				style="width: 100%; height: auto; margin: 50px auto; background-color: white; border-radius: 10px;">
 
+				<input type="hidden" name="free_id" value="${freeBean.free_id}">
 				<input type="hidden" name="free_nick" value="${freeBean.free_nick}">
 
 				<div class="form-group row">
@@ -176,13 +157,12 @@ li {
 				</div>
 
 				<div class="tr_hashTag_area">
-					<div class="form-group">
-						<input type="hidden" id="tag" name="free_tag" value=""> <input
-							type="text" id="free_tag" placeholder="#태그입력"
-							class="form-control">
-					</div>
-					<ul id="tag-list"></ul>
-				</div>
+                  <div class="form-group">
+                   <input type="hidden" id="tag" name="free_tag" value="">
+                    <input type="text" id="free_tag" placeholder="#태그입력" class="form-control">
+                  </div>
+                  <ul id="tag-list"></ul>
+                </div>
 
 				<br>
 				<div class="write-btn">
@@ -193,6 +173,6 @@ li {
 			</div>
 		</div>
 	</form>
-	<c:import url="../footer.jsp" />
+<c:import url="../footer.jsp"/>
 </body>
 </html>

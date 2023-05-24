@@ -44,34 +44,22 @@
 <body>
     <c:import url="../header.jsp" />
     <div id="withlist">
-        <h1 class="withlist_title" style="font-size:40px; position:static; margin:10px;">동행 구하기</h1>
+        <h1 class="withlist_title" style="font-size:40px; position:static; margin:10px;">동행예약 확인</h1>
 
         <div class="card-container">
-            <c:forEach items="${withlist}" var="with">
+            <c:forEach items="${rb}" var="ReserveBean">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">
-                            <a href="with_detail.do?with_no=${with.with_no}&page=${page}&state=detail">${with.with_title}</a>
+                            <a href="with_detail.do?with_no=${ReserveBean.with_no}&page=${page}&state=detail">${ReserveBean.with_title}</a>
                         </h5>
-                        <p class="card-text">모집인원 ${with.with_maxto}</p>
-                        <p class="card-text">나이 ${with.with_age}</p>
-                        <p class="card-text">날짜 ${with.with_start} ~ ${with.with_end}</p>
+                        <p class="card-text">모집인원 ${ReserveBean.with_maxto}</p>
+                        <p class="card-text">나이 ${ReserveBean.with_age}</p>
+                        <p class="card-text">날짜 ${ReserveBean.with_start} ~ ${ReserveBean.with_end}</p>
                     </div>
                 </div>
             </c:forEach>
         </div>
-
-        <form class="form-inline my-2 my-md-0 justify-content-center">
-            <select class="custom-select" name="search">
-                <option value="with_title">제목</option>
-                <option value="with_content">내용</option>
-                <option value="user_no">작성자</option>
-                <option value="with_category">지역</option>
-                <option value="with_tag">태그</option>
-            </select>
-            <input name="keyword" id="keyword" class="form-control" type="text" placeholder="검색어를 입력하세요." aria-label="Search">
-            <button class="btn btn-outline-primary" type="submit">검색</button>
-        </form>
 
         <div class="page d-flex justify-content-center my-2">
             <nav aria-label="Page navigation example">
@@ -127,10 +115,6 @@
             </nav>
         </div>
 
-        <div class="d-flex justify-content-end">
-            <button class="btn btn-outline-primary" onClick="location.href='withWrite.do'">글쓰기</button>
-        </div>
-    </div>
     <c:import url="../footer.jsp" />
 </body>
 </html>

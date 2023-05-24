@@ -20,9 +20,14 @@ public class FreeDao {
     }
 
     // 조회수
-    public int freeHit(int free_no) {
-    	System.out.println("FreeDao_freeSelect");
-    	return sqlSession.update("freeSelect", free_no);
+    public int freeHit(int num) {
+    	System.out.println("FreeDao_freeHit");
+    	return sqlSession.update("freeHit", num);
+    }
+    
+    // 글번호 조회
+    public FreeBean numSelect(int num) {
+    	return sqlSession.selectOne("numSelect", num);
     }
 
     // 글 수정
@@ -35,10 +40,6 @@ public class FreeDao {
 	public int freeDelete(FreeBean fb) {
 		System.out.println("FreeDao_freeDelete");
 		return sqlSession.delete("freeDelete", fb);
-	}
-
-	public FreeBean numSelect(int free_no) {
-		return sqlSession.selectOne("numSelect", free_no);
 	}
 
 	public int getTotal(FreeBean fb) {

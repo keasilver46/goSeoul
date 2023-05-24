@@ -70,11 +70,9 @@
 			<div class="col-3 bd-sidebar">
 				<ul class="nav">
 					<li><a href="#">회원정보</a></li>
-					<li><a href="">받은 쪽지함</a></li>
 					<li><a href="getMyList.do">작성글 확인</a></li>
-					<li><a href="getWithList.do">동행글 확인</a></li>
-					<li><a href="">좋아요</a></li>
-					<!-- 	<li><a href="#" onClick="delete">탈퇴</a></li> -->
+					<li><a href="getMyReserve.do">동행예약 확인</a></li>
+					<li><a href="member_delete_ok.do">회원탈퇴</a></li>
 				</ul>
 				<br>
 			</div>

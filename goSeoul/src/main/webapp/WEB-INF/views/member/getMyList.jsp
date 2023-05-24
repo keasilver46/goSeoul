@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>작성글 확인</title>
+<title>Go Seoul</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- 글꼴 -->
@@ -70,14 +70,14 @@
 						<td>${FreeBean.free_no}</td>
 						<td>${FreeBean.free_category}</td>
 						<td>${FreeBean.free_nick}</td>
-						<td><a href="freeContent.do=${FreeBean.free_title}"></a></td>
+						<td>${FreeBean.free_title}</td>
 						<td>${FreeBean.free_hit}</td>
 						<td>${FreeBean.free_like}</td>
 						<td>${FreeBean.free_dislike}</td>
 						<td>${FreeBean.free_date}</td>
 					</tr>
 				</c:forEach>
-
+<%-- <a href="freeContent.do=$> --%>
 					<%-- <td><a
 								href="freeContent.do?num=${list.free_no}&pageNum=${pp.currentPage}"
 								class="btn btn-default">

@@ -44,20 +44,21 @@
 .container {
 	text-align: center;
 }
-*{
-        font-family: 'Title_Medium';
-        font-weight: lighter;
-        witdh: 100%;
-    }
 
+* {
+	font-family: 'Title_Medium';
+	font-weight: lighter;
+	witdh: 100%;
+}
 </style>
 
 
 </head>
 <body>
-<c:import url="../header.jsp" />
+	<c:import url="../header.jsp" />
 	<div class="container" align="center">
-		<br><h2 class="text-primary">정보 공유 리스트</h2>
+		<br>
+		<h2 class="text-primary">정보 공유 리스트</h2>
 		<!-- <table class="table table-striped"> -->
 		<table class="table">
 			<thead class="thead-dark">
@@ -72,39 +73,35 @@
 					<th scope="col">작성시간</th>
 				</tr>
 			</thead>
-			<tboby>
-				<c:if test="${empty list}">
+			<tboby> <c:if test="${empty list}">
+				<tr>
+					<td colspan="13">데이터가 없습니다</td>
+				</tr>
+			</c:if> <c:if test="${not empty list}">
+				<c:set var="no" value="${no }"></c:set>
+				<c:forEach var="freeBean" items="${list }">
 					<tr>
-						<td colspan="13">데이터가 없습니다</td>
-					</tr>
-				</c:if>
-				<c:if test="${not empty list}">
-					<c:set var="no" value="${no }"></c:set>
-					<c:forEach var="freeBean" items="${list }">
-						<tr>
-							<th scope="row">${no}</th>
-							<td>${freeBean.free_category}</td>
-							<td>${freeBean.free_nick}</td>							
-							<td><a
-								href="freeContent.do?num=${freeBean.free_no}&pageNum=${pp.currentPage}"
-								class="btn btn-default">
-								<c:if test="${freeBean.re_level >0 }">
-										<img alt="" src="${path }/images/level.gif" height="2"
-											width="${freeBean.re_level *5 }">
-										<img alt="" src="${path }/images/re.gif">
-								</c:if>
-								 ${freeBean.free_title}
-								<c:if test="${freeBean.free_hit > 30 }">
-										<img alt="" src="${path }/images/hot.gif">
+						<th scope="row">${no}</th>
+						<td>${freeBean.free_category}</td>
+						<td>${freeBean.free_nick}</td>
+						<td><a
+							href="freeContent.do?num=${freeBean.free_no}&pageNum=${pp.currentPage}"
+							class="btn btn-default"> <c:if
+									test="${freeBean.re_level >0 }">
+									<img alt="" src="${path }/images/level.gif" height="2"
+										width="${freeBean.re_level *5 }">
+									<img alt="" src="${path }/images/re.gif">
+								</c:if> ${freeBean.free_title} <c:if test="${freeBean.free_hit > 30 }">
+									<img alt="" src="${path }/images/hot.gif">
 								</c:if></a></td>
-							<td>${freeBean.free_hit}</td>
-							<td>${freeBean.free_like}</td>
-							<td>${freeBean.free_dislike}</td>
-							<td>${freeBean.free_date}</td>
-						</tr>
-						<c:set var="no" value="${no - 1}"></c:set>
-					</c:forEach>
-				</c:if>
+						<td>${freeBean.free_hit}</td>
+						<td>${freeBean.free_like}</td>
+						<td>${freeBean.free_dislike}</td>
+						<td>${freeBean.free_date}</td>
+					</tr>
+					<c:set var="no" value="${no - 1}"></c:set>
+				</c:forEach>
+			</c:if>
 			</tbody>
 		</table>
 
@@ -123,54 +120,51 @@
 		</form>
 
 		<!-- 검색목록 페이징 -->
-	<nav aria-label="Page navigation example">
-		<ul class="pagination justify-content-center">
-		<li class="page-item">
-			<c:if test="${not empty keyword}">
-				<c:if test="${pp.startPage > pp.pagePerBlk }">
-					
-					 <li class="page-item">
-      <a class="page-link" href="freeList.do?pageNum=${pp.startPage - 1}&search=${search}&keyword=${keyword}" aria-label="Previous">이전
-        <span aria-hidden="true">&laquo;</span></a></li>
-				</c:if>
-				<c:forEach var="i" begin="${pp.startPage}" end="${pp.endPage}">
-					<li class="page-item"><a class="page-link" href="freeList.do?pageNum=${i}&search=${search}&keyword=${keyword}">${i}</a></li>
-				</c:forEach>
-				<c:if test="${pp.endPage < pp.totalPage}">
-					 <li class="page-item">
-      <a class="page-link" href="freeList.do?pageNum=${pp.endPage + 1}&search=${search}&keyword=${keyword}" aria-label="Next">다음
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-				</c:if>
-			</c:if>
+		<nav aria-label="Page navigation example">
+			<ul class="pagination justify-content-center">
+				<li class="page-item"><c:if test="${not empty keyword}">
+						<c:if test="${pp.startPage > pp.pagePerBlk }">
 
-			<!-- 전체목록 페이징 -->
-			<c:if test="${empty keyword}">
-				<c:if test="${pp.startPage > pp.pagePerBlk }">
-				 <li class="page-item">
-      <a class="page-link" href="freeList.do?pageNum=${pp.startPage - 1}" aria-label="Previous">이전
-        <span aria-hidden="true">&laquo;</span></a></li>
+							<li class="page-item"><a class="page-link"
+								href="freeList.do?pageNum=${pp.startPage - 1}&search=${search}&keyword=${keyword}"
+								aria-label="Previous">이전 <span aria-hidden="true">&laquo;</span></a></li>
+						</c:if>
+						<c:forEach var="i" begin="${pp.startPage}" end="${pp.endPage}">
+							<li class="page-item"><a class="page-link"
+								href="freeList.do?pageNum=${i}&search=${search}&keyword=${keyword}">${i}</a></li>
+						</c:forEach>
+						<c:if test="${pp.endPage < pp.totalPage}">
+							<li class="page-item"><a class="page-link"
+								href="freeList.do?pageNum=${pp.endPage + 1}&search=${search}&keyword=${keyword}"
+								aria-label="Next">다음 <span aria-hidden="true">&raquo;</span>
+							</a></li>
+						</c:if>
+					</c:if> <!-- 전체목록 페이징 --> <c:if test="${empty keyword}">
+						<c:if test="${pp.startPage > pp.pagePerBlk }">
+							<li class="page-item"><a class="page-link"
+								href="freeList.do?pageNum=${pp.startPage - 1}"
+								aria-label="Previous">이전 <span aria-hidden="true">&laquo;</span></a></li>
+						</c:if>
+						<c:forEach var="i" begin="${pp.startPage}" end="${pp.endPage}">
+							<li class="page-item"
+								<c:if test="${pp.currentPage==i}">class="active"</c:if>><a
+								class="page-link" href="freeList.do?pageNum=${i}">${i}</a></li>
+						</c:forEach>
+						<c:if test="${pp.endPage < pp.totalPage}">
+							<a class="page-link" href="freeList.do?pageNum=${pp.endPage + 1}"
+								aria-label="Next">다음 <span aria-hidden="true">&raquo;</span></a></li>
 				</c:if>
-				<c:forEach var="i" begin="${pp.startPage}" end="${pp.endPage}">
-					<li class="page-item" <c:if test="${pp.currentPage==i}">class="active"</c:if>>
-					<a class="page-link" href="freeList.do?pageNum=${i}">${i}</a></li>
-				</c:forEach>
-				<c:if test="${pp.endPage < pp.totalPage}">
-				 <a class="page-link" href="freeList.do?pageNum=${pp.endPage + 1}" aria-label="Next">다음
-        <span aria-hidden="true">&raquo;</span></a></li>
 				</c:if>
-			</c:if>
-		</ul>
+			</ul>
 
-		<div align="center">
-			<a href="freeWrite.do" class="btn btn-outline-primary">글 작성</a>
-		</div>
+			<div align="center">
+				<a href="freeWrite.do" class="btn btn-outline-primary">글 작성</a>
+			</div>
 	</div>
-	  </ul>
-</nav>
+	</ul>
+	</nav>
 
 </body>
-<c:import url="../footer.jsp"/>
+<c:import url="../footer.jsp" />
 
 </html>

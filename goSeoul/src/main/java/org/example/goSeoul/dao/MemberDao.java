@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.example.goSeoul.model.FreeBean;
 import org.example.goSeoul.model.MemberBean;
+import org.example.goSeoul.model.ReserveBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -36,6 +37,10 @@ public class MemberDao {
     }
 
 	public List<FreeBean> getMyList(String id) {
-		return sqlSession.selectList("abcd", id);
+		return sqlSession.selectList("getMyListt", id);
+	}
+
+	public List<ReserveBean> getMyReserve(String id) {
+		return sqlSession.selectList("getMyReserve", id);
 	}
 }

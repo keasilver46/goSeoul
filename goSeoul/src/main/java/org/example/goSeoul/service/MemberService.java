@@ -1,7 +1,5 @@
 package org.example.goSeoul.service;
 
-import jdk.nashorn.internal.runtime.ECMAException;
-
 import java.util.List;
 
 import org.example.goSeoul.dao.MemberDao;
@@ -37,4 +35,5 @@ public class MemberService {
 	public List<FreeBean> getMyList(String id) {
 		return dao.getMyList(id);
 	}
+
 }

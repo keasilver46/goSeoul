@@ -20,10 +20,16 @@ public class FreeService {
     }
 
     // 조회수
-    public int freeHit(int free_no) throws Exception {
+    public int freeHit(int num) throws Exception {
     	System.out.println("FreeService_freeHit");
-    	return freeDao.freeHit(free_no);
+    	return freeDao.freeHit(num);
     }
+    
+    // 글번호 조회
+    public FreeBean numSelect(int num) throws Exception {
+    	return freeDao.numSelect(num);
+    }
+    
     
     // 글 수정
 	public int freeUpdate(FreeBean fb) throws Exception {
@@ -35,10 +41,6 @@ public class FreeService {
 	public int freeDelete(FreeBean fb) throws Exception {
 		System.out.println("FreeService_freeDelete");
 		return freeDao.freeDelete(fb);
-	}
-	
-	public FreeBean numSelect(int num) throws Exception {
-		return freeDao.numSelect(num);
 	}
 	
 	// public List<Board> list(int startRow, int endRow) {

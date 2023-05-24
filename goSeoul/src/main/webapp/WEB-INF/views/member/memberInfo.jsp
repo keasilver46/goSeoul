@@ -80,11 +80,9 @@
 			<div class="col-3 bd-sidebar">
 				<ul class="nav">
 					<li><a href="#">회원정보</a></li>
-					<li><a href="">받은 쪽지함</a></li>
 					<li><a href="getMyList.do">작성글 확인</a></li>
-					<li><a href="getWithList.do">동행글 확인</a></li>
-					<li><a href="">좋아요</a></li>
-					<!-- 	<li><a href="#" onClick="delete">탈퇴</a></li> -->
+					<li><a href="getMyReserve.do">동행예약 확인</a></li>
+					<li><a href="member_delete_ok.do">회원탈퇴</a></li>
 				</ul>
 				<br>
 			</div>
@@ -216,7 +214,7 @@
 									</div>
 
 									<div class="mb-3">
-										<label for="info">자기소개<span class="text-muted">&nbsp;(필수
+										<label for="intro">자기소개<span class="text-muted">&nbsp;(필수
 												아님)</span></label>
 										<textarea id="intro" name="intro" rows="5" cols="50"
 											value="${info.intro }" readonly></textarea>
