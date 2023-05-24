@@ -17,15 +17,26 @@ pageEncoding="UTF-8"%>
  <title>여행 상세내용</title>
 
 <style>
-.wrap{
+
+	 @font-face {
+	    font-family: 'Title_Medium';
+	    src: url('fonts/Title_Medium.woff') format('woff');
+	}
+	*{
+	font-family: 'Title_Medium';
+	
+
+#div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#wrap{
  margin: 0 auto;
  max-width:800px;
  }
-img {
-	margin: 0 auto;
-	max-width: 350px;
-	height: auto;
-}
+ 
 #title {
 	font-size: 34px;
 	font-weight: bold;
@@ -35,9 +46,14 @@ img {
 	bottom: 20px;
 }
 #thumb {
-	text-align:center;
-	margin: 0 auto;
+	text-align: center;
+	margin: 0;
 	width: 100%;
+}
+#overview{
+	text-align: center;
+	margin: 0 auto;
+	max-width: 800px;
 }
 #map {
 	position: static;
@@ -45,14 +61,17 @@ img {
 	margin: 0 auto;
 	width: 100%;
 }
+
 </style>
   <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=afa182e83ed6c0d856a4289c4ad70e8a"></script>
  </head>
 <body>
+
 <br>
 	<div class="wrap">
 		<div class="inner container-fluid" >
 			<div id="title"></div><br>		<!-- 여행지명 -->
+			<hr size="5" noshade>
 			<div id="thumb"></div><br>		<!-- 여행지이미지 -->
 			<div id="overview"></div><br>	<!-- 상세설명 -->
 			<div id="website"></div><br>	<!-- 홈페이지url -->

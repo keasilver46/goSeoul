@@ -51,7 +51,7 @@ var nick_result = false;  // 중복검사 버튼 안 눌렀을 때의 변수
 		 $("#birth").val("").focus();
 		 return false;
 	 }
-	 if($.trim($("#tel1").val()) != 010){
+/*	 if($.trim($("#tel1").val()) != 010){
 		 //!=같지않다 연산. 비번이 다를 경우
 		 alert("010만 입력가능합니다");
 		 $("#tel1").val("").focus();
@@ -61,7 +61,7 @@ var nick_result = false;  // 중복검사 버튼 안 눌렀을 때의 변수
 		 alert("010을 입력하세요!");
 		 $("#tel1").val("").focus();
 		 return false;
-	 }
+	 }*/
 	 if($.trim($("#tel2").val())==""){
 		 alert("전화번호를 입력하세요!");
 		 $("#tel2").val("").focus();

@@ -76,7 +76,13 @@ $(document).ready(function() {
 
                 //<a href=\"https://gahoe.or.kr\" target=\"_blank\" title=\"새창 : 가회동성당 사이트로 이동\">https://gahoe.or.kr</a>",
                 // $("#contact").html("<b>문의처:  </b><br>" + detail_telname + " " + detail_tel);
-                $("#address").html("<b>주소: &nbsp</b>" + $("<span>").text(detail_addr + detail_addr2).html());
+                var addr = detail_addr[i];
+                var addr2 = detail_addr2[i];
+                if(addr !== "" || addr2 !== ""){
+                	$("#address").html("<b>주소: &nbsp</b>" + $("<span>").text(detail_addr + detail_addr2).html());               	
+                }else if(addr == "" || addr2 == ""){
+                	$("#address").html("<b>주소: &nbsp</b>제공되지 않습니다.");               	    	
+                }
             }
         
 
@@ -159,7 +165,14 @@ $(document).ready(function() {
     				
     				//<a href=\"https://gahoe.or.kr\" target=\"_blank\" title=\"새창 : 가회동성당 사이트로 이동\">https://gahoe.or.kr</a>",
     				// $("#contact").html("<b>문의처:  </b><br>" + detail_telname + " " + detail_tel);
-    				$("#address").html("<b>주소: &nbsp</b>" + $("<span>").text(detail_addr + detail_addr2).html());
+    				/*$("#address").html("<b>주소: &nbsp</b>" + $("<span>").text(detail_addr + detail_addr2).html());*/
+    				 var addr = detail_addr[i];
+    	             var addr2 = detail_addr2[i];
+    	                if(addr !== "" || addr2 !== ""){
+    	                	$("#address").html("<b>주소: &nbsp</b>" + $("<span>").text(detail_addr + detail_addr2).html());               	
+    	                }else if(addr == "" || addr2 == ""){
+    	                	$("#address").html("<b>주소: &nbsp</b>제공되지 않습니다.");               	    	
+    	                }
     			}
     			
     			
@@ -241,7 +254,14 @@ $(document).ready(function() {
     				
     				//<a href=\"https://gahoe.or.kr\" target=\"_blank\" title=\"새창 : 가회동성당 사이트로 이동\">https://gahoe.or.kr</a>",
     				// $("#contact").html("<b>문의처:  </b><br>" + detail_telname + " " + detail_tel);
-    				$("#address").html("<b>주소: &nbsp</b>" + $("<span>").text(detail_addr + detail_addr2).html());
+    				// $("#address").html("<b>주소: &nbsp</b>" + $("<span>").text(detail_addr + detail_addr2).html());
+    				var addr = detail_addr[i];
+    				var addr2 = detail_addr2[i];
+   	                if(addr !== "" || addr2 !== ""){
+   	                	$("#address").html("<b>주소: &nbsp</b>" + $("<span>").text(detail_addr + detail_addr2).html());               	
+   	                }else if(addr == "" || addr2 == ""){
+   	                	$("#address").html("<b>주소: &nbsp</b>제공되지 않습니다.");               	    	
+   	                }
     			}
     			
     			
@@ -323,9 +343,15 @@ $(document).ready(function() {
     				
     				//<a href=\"https://gahoe.or.kr\" target=\"_blank\" title=\"새창 : 가회동성당 사이트로 이동\">https://gahoe.or.kr</a>",
     				// $("#contact").html("<b>문의처:  </b><br>" + detail_telname + " " + detail_tel);
-    				$("#address").html("<b>주소: &nbsp</b>" + $("<span>").text(detail_addr + detail_addr2).html());
+    				// $("#address").html("<b>주소: &nbsp</b>" + $("<span>").text(detail_addr + detail_addr2).html());
+    				var addr = detail_addr[i];
+    				var addr2 = detail_addr2[i];
+   	                if(addr !== "" || addr2 !== ""){
+   	                	$("#address").html("<b>주소: &nbsp</b>" + $("<span>").text(detail_addr + detail_addr2).html());               	
+   	                }else if(addr == "" || addr2 == ""){
+   	                	$("#address").html("<b>주소: &nbsp</b>제공되지 않습니다.");               	    	
+   	                }
     			}
-    			
     			
     			console.log(mapx);
     			console.log(mapy);
@@ -405,7 +431,14 @@ $(document).ready(function() {
     				
     				//<a href=\"https://gahoe.or.kr\" target=\"_blank\" title=\"새창 : 가회동성당 사이트로 이동\">https://gahoe.or.kr</a>",
     				// $("#contact").html("<b>문의처:  </b><br>" + detail_telname + " " + detail_tel);
-    				$("#address").html("<b>주소: &nbsp</b>" + $("<span>").text(detail_addr + detail_addr2).html());
+    				// $("#address").html("<b>주소: &nbsp</b>" + $("<span>").text(detail_addr + detail_addr2).html());
+    				var addr = detail_addr[i];
+   	             	var addr2 = detail_addr2[i];
+   	                if(addr !== "" || addr2 !== ""){
+   	                	$("#address").html("<b>주소: &nbsp</b>" + $("<span>").text(detail_addr + detail_addr2).html());               	
+   	                }else if(addr == "" || addr2 == ""){
+   	                	$("#address").html("<b>주소: &nbsp</b>제공되지 않습니다.");               	    	
+   	                }
     			}
     			
     			
@@ -487,7 +520,14 @@ $(document).ready(function() {
     				
     				//<a href=\"https://gahoe.or.kr\" target=\"_blank\" title=\"새창 : 가회동성당 사이트로 이동\">https://gahoe.or.kr</a>",
     				// $("#contact").html("<b>문의처:  </b><br>" + detail_telname + " " + detail_tel);
-    				$("#address").html("<b>주소: &nbsp</b>" + $("<span>").text(detail_addr + detail_addr2).html());
+    				// $("#address").html("<b>주소: &nbsp</b>" + $("<span>").text(detail_addr + detail_addr2).html());
+    				var addr = detail_addr[i];
+   	             	var addr2 = detail_addr2[i];
+   	                if(addr !== "" || addr2 !== ""){
+   	                	$("#address").html("<b>주소: &nbsp</b>" + $("<span>").text(detail_addr + detail_addr2).html());               	
+   	                }else if(addr == "" || addr2 == ""){
+   	                	$("#address").html("<b>주소: &nbsp</b>제공되지 않습니다.");               	    	
+   	                }
     			}
     			
     			
@@ -569,7 +609,14 @@ $(document).ready(function() {
     				
     				//<a href=\"https://gahoe.or.kr\" target=\"_blank\" title=\"새창 : 가회동성당 사이트로 이동\">https://gahoe.or.kr</a>",
     				// $("#contact").html("<b>문의처:  </b><br>" + detail_telname + " " + detail_tel);
-    				$("#address").html("<b>주소: &nbsp</b>" + $("<span>").text(detail_addr + detail_addr2).html());
+    				// $("#address").html("<b>주소: &nbsp</b>" + $("<span>").text(detail_addr + detail_addr2).html());
+    				var addr = detail_addr[i];
+    				var addr2 = detail_addr2[i];
+   	                if(addr !== "" || addr2 !== ""){
+   	                	$("#address").html("<b>주소: &nbsp</b>" + $("<span>").text(detail_addr + detail_addr2).html());               	
+   	                }else if(addr == "" || addr2 == ""){
+   	                	$("#address").html("<b>주소: &nbsp</b>제공되지 않습니다.");               	    	
+   	                }
     			}
     			
     			

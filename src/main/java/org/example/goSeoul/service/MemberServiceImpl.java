@@ -14,9 +14,10 @@ public class MemberServiceImpl{
     public void insert(MemberBean member) throws Exception {
         dao.insert(member);
     }
+    
     public int checkMemberId(String id) throws Exception{
-        int result = dao.checkMemberId(id);
-        return result;
+    	int result = dao.checkMemberId(id);
+    	return result;
     }
     public int checkMemberNick(String nick) throws Exception{
         int result = dao.checkMemberNick(nick);

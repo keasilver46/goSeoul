@@ -1,23 +1,10 @@
 package org.example.goSeoul.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.example.goSeoul.model.TripBoardBean;
-import org.example.goSeoul.service.TripBoardServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 
 @Controller
 public class TripBoardController {
-	
-	@Autowired
-	private TripBoardServiceImpl service;
 
 	 // 여행 지역별 게시판 이동
 	 @RequestMapping("tripBoard_form.do") 

@@ -7,7 +7,7 @@ import scala.util.parsing.combinator.testing.Str;
 @Data
 //@Alias("member")
 public class MemberBean {
-    private String user_no;
+    private int user_no;
     private String id;
     private String nick;
     private String pass;

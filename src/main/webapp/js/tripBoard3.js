@@ -1,16 +1,4 @@
 
-function search(s) {	//	키워드 검색기능
-	 $.ajax({
-		  url:"https://apis.data.go.kr/B551011/KorService1/searchKeyword1?numOfRows=711&pageNo=1&MobileOS=ETC&MobileApp=goSeoul&_type=json&listYN=Y&arrange=A&keyword="+s+"&contentTypeId=12&areaCode=1&serviceKey=A37MUkJIHEV23WjpG%2BVAaL0j6wnZYKC6bej9zUYMo1wHfQSWTVWlasJzFBxqSMvDq48CLbTTgT0hAuAfXHwuJg%3D%3D",
-		  type: "GET",
-		  data: {},
-		  success: function (result){
-			  $(".card-container").empty();
-
-		 },
-	});
-}
-
 function all3(){
 	 $.ajax({	//	데이터 가져오기
 	      url: "https://apis.data.go.kr/B551011/KorService1/areaBasedList1?numOfRows=1000&pageNo=1&MobileOS=ETC&MobileApp=goSeoul&_type=json&listYN=Y&arrange=A&contentTypeId=25&areaCode=1&serviceKey=A37MUkJIHEV23WjpG%2BVAaL0j6wnZYKC6bej9zUYMo1wHfQSWTVWlasJzFBxqSMvDq48CLbTTgT0hAuAfXHwuJg%3D%3D",	      
@@ -51,15 +39,15 @@ function all3(){
 						window.location.href = "tripDetail_form.do?contentId=" + contentid[i];
 					});
 	            }
-	            $("#searchInput").on("keyup", function() {
-	        		let value = $(this).val().toLowerCase();
-	        		
-	        		search(value);		//  검색 
-	        		
-	        		$(".card").filter(function() {
-	        			$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
-	        	     });
-	             });
+	            $("#searchButton").on("click", function() {
+					  var value = $("#searchInput").val().toLowerCase();
+					  
+					  $(".card").filter(function() {
+					    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+					  });
+					  var totalVisible = $(".card:visible").length;
+				        console.log("Total:", totalVisible);
+					});
 	          }
 	      });
 	 }

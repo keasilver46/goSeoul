@@ -8,7 +8,8 @@
 </head>
 <body>
 <script>
-	location.href="member_form.do";
+	//	location.href="member_form.do";
+		location.href="tripBoard_form.do";
 </script>
 </body>
 </html>
