@@ -19,12 +19,12 @@ public class EventController {
 	
 	@RequestMapping("eventList.do")
 	public String eventList() {
-		return "eventList";
+		return "event/eventList";
 	}
 	
 	@RequestMapping("eventDetail.do")
 	public String eventDetail() {
-		return "eventDetail";
+		return "event/eventDetail";
 	}
 	
 }

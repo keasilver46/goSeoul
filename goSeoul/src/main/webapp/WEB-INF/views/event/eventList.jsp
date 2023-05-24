@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -5,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
 <title>서울시 행사</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,6 +25,7 @@
 <!-- 날씨 -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="./js/weather.js"></script>
+
 <style>
 * {
 	font-family: 'Title_Medium';
@@ -78,7 +81,7 @@
 
 </head>
 <body>
-<c:import url="../header.jsp" />
+	<c:import url="../header.jsp" />
 	<br>
 	<h1 style="font-size: 40px; position: static; margin: 10px;"
 		class="text">서울시 행사 리스트</h1>
@@ -250,6 +253,6 @@
 
 						});
 	</script>
-	<c:import url="./footer.jsp" />
+	<c:import url="../footer.jsp" />
 </body>
 </html>

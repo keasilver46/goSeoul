@@ -10,20 +10,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-<!-- 글꼴 -->
+    <!-- 글꼴 -->
 <link rel="stylesheet" href="./css/font.css">
-<!-- 날씨 -->
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="./js/weather.js"></script>
 
 <!-- 부트스트랩 -->
-<script
-	src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 <script
+	src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
 
+<!-- 날씨 -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="./js/weather.js"></script>
 
     <style>
         .flex-container{ 
