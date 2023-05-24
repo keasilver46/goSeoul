@@ -21,4 +21,5 @@ public class JoinMemberBean {
     private String interests;
     private String intro;
 	private String file_name;
+    private int state;
 }

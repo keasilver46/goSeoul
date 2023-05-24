@@ -25,7 +25,7 @@
 	function check() {
 		if ($.trim($("#id").val()) == "") {
 			alert("아이디를 입력해주세요.");
-			$("#user_id").val("").focus();
+			$("#id").val("").focus();
 			return false;
 		}
 		if ($.trim($("#pass").val()) == "") {
@@ -126,8 +126,7 @@
 	<c:import url="../header.jsp" />
 
 	<main class="form-signin w-100 m-auto">
-		<form id="loginform" method="post" action="MemberLoginOk.do"
-			onsubmit="return check()">
+		<form id="loginform" method="post" action="MemberLoginOk.do" onsubmit="return check()">
 			<input type="hidden" name="user_no" value="${user_no}">
 
             <img src="images/logo2.png" width="100%" >

@@ -7,8 +7,10 @@
     <typeAliases>
         <typeAlias alias="with" type="org.example.goSeoul.model.WithBean"/>
         <typeAlias alias="joinMember" type="org.example.goSeoul.model.JoinMemberBean" />
+        <typeAlias alias="member" type="org.example.goSeoul.model.JoinMemberBean" />
         <typeAlias alias="question" type="org.example.goSeoul.model.QuestionBean" />
         <typeAlias alias="reserve" type="org.example.goSeoul.model.ReserveBean"/>
         <typeAlias alias="withreply" type="org.example.goSeoul.model.WithReplyBean"/>
+        <typeAlias alias="free" type="org.example.goSeoul.model.FreeBean"/>
     </typeAliases>
 </configuration>

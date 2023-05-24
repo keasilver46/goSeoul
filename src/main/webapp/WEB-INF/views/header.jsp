@@ -58,7 +58,7 @@ header {
 			</form>
 
 			<ul class="nav justify-content-end">
-				<li class="nav-item"><a href="#" id="myPage"
+				<li class="nav-item"><a href="memberInfo.do" id="myPage"
 					class="nav-link text-dark">마이페이지</a></li>
 				<li class="nav-item"><a href="MemberLogin.do" id="login"
 					class="nav-link text-dark">로그인</a></li>
