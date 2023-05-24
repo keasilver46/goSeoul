@@ -248,7 +248,7 @@ li {
 						파일</label>
 					<div class="col-sm-10">
 						<input class="form-control" type="file" id="with_filename"
-							name="with_filename1" value="${with.with_filename}">
+							name="with_filename1" value="${with.with_filename}">${with.with_filename}
 						<img src="./upload/${with.with_filename}" width="200px">
 					</div>
 				</div>

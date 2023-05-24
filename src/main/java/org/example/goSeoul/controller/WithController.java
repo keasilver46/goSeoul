@@ -127,6 +127,13 @@ public class WithController {
             mf.transferTo(new File(filePath));
 
             wb.setWith_filename(newFilename);
+
+        }
+
+        WithBean with = withService.getWithDetail(wb.getWith_no());
+
+        if(mf.isEmpty()) {
+            wb.setWith_filename(with.getWith_filename());
         }
 
         int result = withService.withUpdate(wb);
