@@ -1,9 +1,9 @@
 package org.example.goSeoul.controller;
 
-import java.util.UUID;
-
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.mail.HtmlEmail;
 import org.example.goSeoul.MailUtil;
 import org.example.goSeoul.model.MemberBean;
 import org.example.goSeoul.service.MemberService;
@@ -12,10 +12,10 @@ import org.springframework.http.MediaType;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
+import java.lang.reflect.Member;
+import java.util.UUID;
 
 @Controller
 public class MemberController {
@@ -23,9 +23,18 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 
+	MemberBean memberBean = new MemberBean();
+
+	// 로그아웃
+	@RequestMapping("logout.do")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "main";
+	}
+
 	// 로그인 폼 뷰
 	@RequestMapping("MemberLogin.do")
-	public String memberLogin() throws Exception {
+	public String memberLogin() {
 
 		// member폴더의 memberLogin.jsp 뷰 페이지 실행
 		return "member/memberLogin";
@@ -33,8 +42,10 @@ public class MemberController {
 
 	// 로그인 처리
 	@RequestMapping("MemberLoginOk.do")
-	public String memberLoginOk(@RequestParam("id") String id, @RequestParam("pass") String pass, HttpSession session,
-			Model model) throws Exception {
+	public String memberLoginOk(@RequestParam("id") String id, @RequestParam("pass") String pass,
+								HttpSession session, Model model) throws Exception {
+
+		System.out.println("memberLoginOk");
 
 		int result = 0;
 		MemberBean memberBean = memberService.checkLogin(id);
@@ -42,24 +53,21 @@ public class MemberController {
 		if (memberBean == null) { // 등록되지 않은 회원 일때
 			result = 1;
 			model.addAttribute("result", result);
+
 			return "member/loginResult";
 		} else { // 등록된 회원 일때
 			if (memberBean.getPass().equals(pass)) {
+
 				session.setAttribute("id", id);
+
 				return "main";
 			} else {
 				result = 2;
 				model.addAttribute("result", result);
+
 				return "member/loginResult";
 			}
 		}
-	}
-
-	// 로그아웃
-	@RequestMapping("logout.do")
-	public String logout(HttpSession session) throws Exception {
-		session.invalidate();
-		return "main";
 	}
 
 	@RequestMapping("findid.do")

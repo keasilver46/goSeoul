@@ -13,7 +13,7 @@ public class MemberService {
     private MemberDao dao;
 
     public MemberBean checkLogin(String id) throws Exception {
-        return dao.loginCheck(id);
+        return dao.checkLogin(id);
     }
 
     public MemberBean findMemberId(MemberBean dto) throws Exception {

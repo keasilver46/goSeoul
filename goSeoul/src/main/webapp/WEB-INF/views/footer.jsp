@@ -24,7 +24,7 @@
                 <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
                 <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">공지사항</a></li>
                 <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">개인정보처리방침</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQ</a></li>
+                <li class="nav-item"><a href="q_board.do" class="nav-link px-2 text-muted">FAQ</a></li>
             </ul>
         </footer>
     </div>

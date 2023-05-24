@@ -11,12 +11,34 @@ header {
 	font-family: 'Title_Medium';
 }
 
-.navbar-nav>li {
+.navbar-nav > li {
 	padding-left: 40px;
 	padding-right: 40px;
 }
 
-.dropdown:hover .dropdown-menu {
+.dropdown:hover > .dropdown-menu {
+	display: block;
+	margin-top: 0;
+}
+
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu> a:after {
+    content: ">";
+    float: right;
+}
+
+.dropdown-submenu > .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: 0px;
+    margin-left: 0px;
+    display: none;
+}
+
+.dropdown-submenu:hover > .dropdown-menu {
 	display: block;
 	margin-top: 0;
 }
@@ -72,33 +94,71 @@ header {
 		<div class="my-2">
 			<nav class="navbar navbar-expand-lg">
 				<div class="container-fluid">
-					<div class="navbar-collapse justify-content-center"
-						id="navbarSupportedContent">
+					<div class="navbar-collapse justify-content-center" id="navbarSupportedContent">
 						<ul class="navbar-nav">
-							<li class="nav-item dropdown"><a
-								class="nav-link dropdown-toggle text-dark" href="#"
-								role="button" aria-expanded="false"> 같이서울 </a>
+							<li class="nav-item dropdown">
+							    <a class="nav-link dropdown-toggle text-dark" href="#" role="button" aria-expanded="false"> 같이서울 </a>
 								<ul class="dropdown-menu">
 									<li><a class="dropdown-item" href="with_list.do">동행구하기</a></li>
 									<li><a class="dropdown-item" href="freeList.do">여행정보공유</a></li>
-								</ul></li>
+								</ul>
+							</li>
 
-							<li class="nav-item dropdown"><a
-								class="nav-link dropdown-toggle text-dark" href="#"
-								role="button" aria-expanded="false"> 해봤서울 </a>
+							<li class="nav-item dropdown">
+							    <a class="nav-link dropdown-toggle text-dark" href="#" role="button" aria-expanded="false"> 해봤서울 </a>
 								<ul class="dropdown-menu">
 									<li><a class="dropdown-item" href="#">행사캘린더</a></li>
 									<li><a class="dropdown-item" href="eventList.do">행사리스트</a></li>
-								</ul></li>
+								</ul>
+							</li>
 
-							<li class="nav-item dropdown"><a
-								class="nav-link dropdown-toggle text-dark" href="#"
-								role="button" aria-expanded="false"> 가봤서울 </a>
+							<li class="nav-item dropdown">
+							    <a class="nav-link dropdown-toggle text-dark" href="#" role="button" aria-expanded="false"> 가봤서울 </a>
 								<ul class="dropdown-menu">
 									<li><a class="dropdown-item" href="#">테마추천코스</a></li>
-									<li><a class="dropdown-item" href="#">종류별</a></li>
-									<li><a class="dropdown-item" href="#">지역별</a></li>
-								</ul></li>
+                                    <li class="nav-item dropdown-submenu">
+                                        <a class="dropdown-item" href="#" role="button" aria-expanded="false"> 종류별 </a>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="#">관광지</a></li>
+                                            <li><a class="dropdown-item" href="#">문화시설</a></li>
+                                            <li><a class="dropdown-item" href="#">레포츠</a></li>
+                                            <li><a class="dropdown-item" href="#">숙박시설</a></li>
+                                            <li><a class="dropdown-item" href="#">쇼핑</a></li>
+                                            <li><a class="dropdown-item" href="#">음식점</a></li>
+                                        </ul>
+                                    </li>
+									<li class="dropdown-submenu">
+                                        <a class="dropdown-item" href="#"> 지역별 </a>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="#">강남구</a></li>
+                                            <li><a class="dropdown-item" href="#">강동구</a></li>
+                                            <li><a class="dropdown-item" href="#">강북구</a></li>
+                                            <li><a class="dropdown-item" href="#">강서구</a></li>
+                                            <li><a class="dropdown-item" href="#">관악구</a></li>
+                                            <li><a class="dropdown-item" href="#">광진구</a></li>
+                                            <li><a class="dropdown-item" href="#">구로구</a></li>
+                                            <li><a class="dropdown-item" href="#">금천구</a></li>
+                                            <li><a class="dropdown-item" href="#">노원구</a></li>
+                                            <li><a class="dropdown-item" href="#">도봉구</a></li>
+                                            <li><a class="dropdown-item" href="#">동대문구</a></li>
+                                            <li><a class="dropdown-item" href="#">동작구</a></li>
+                                            <li><a class="dropdown-item" href="#">마포구</a></li>
+                                            <li><a class="dropdown-item" href="#">서대문구</a></li>
+                                            <li><a class="dropdown-item" href="#">서초구</a></li>
+                                            <li><a class="dropdown-item" href="#">성동구</a></li>
+                                            <li><a class="dropdown-item" href="#">성북구</a></li>
+                                            <li><a class="dropdown-item" href="#">송파구</a></li>
+                                            <li><a class="dropdown-item" href="#">양천구</a></li>
+                                            <li><a class="dropdown-item" href="#">영등포구</a></li>
+                                            <li><a class="dropdown-item" href="#">용산구</a></li>
+                                            <li><a class="dropdown-item" href="#">은평구</a></li>
+                                            <li><a class="dropdown-item" href="#">종로구</a></li>
+                                            <li><a class="dropdown-item" href="#">중구</a></li>
+                                            <li><a class="dropdown-item" href="#">중랑구</a></li>
+                                        </ul>
+                                    </li>
+								</ul>
+						    </li>
 
 							<li class="nav-item dropdown"><a
 								class="nav-link dropdown-toggle text-dark" href="#"

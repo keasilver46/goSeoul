@@ -13,8 +13,8 @@ public class MemberDao {
     private SqlSession sqlSession;
 
     // 로그인 인증 체크
-    public MemberBean loginCheck(String id) throws Exception {
-        return sqlSession.selectOne("loginCheck", id);
+    public MemberBean checkLogin(String id) throws Exception {
+        return sqlSession.selectOne("checkLogin", id);
     }
 
     public MemberBean findMemberId(MemberBean dto) throws Exception {

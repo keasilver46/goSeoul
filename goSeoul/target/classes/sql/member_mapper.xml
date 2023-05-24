@@ -4,7 +4,7 @@
 <mapper namespace="mymember">
 
     <!-- 로그인 인증 -->
-    <select id="loginCheck" parameterType="String" resultType="member">
+    <select id="checkLogin" parameterType="String" resultType="member">
         select * from userdata where id=#{id}
     </select>
 

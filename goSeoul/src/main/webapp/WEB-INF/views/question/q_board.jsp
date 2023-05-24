@@ -9,20 +9,19 @@
 <title>FAQ</title>
 <!-- 글꼴 -->
 <link rel="stylesheet" href="./css/font.css">
+
+<script
+	src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+
 <!-- 날씨 -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="./js/weather.js"></script>
 
 <!-- 부트스트랩 -->
-<script
-	src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
-
-
-
 
 <script>
 	 $(function() {
@@ -78,8 +77,7 @@ li {
 </head>
 
 <body>
-	유저번호 : ${user.user_no} 로컬번호 : ${local.local_no}
-	<%@ include file="/WEB-INF/views/header.jsp"%>
+    <c:import url="../header.jsp" />
 	<form method="post" action="withWriteResult.do"
 		enctype="multipart/form-data">
 		<div class="container" style="width: auto; height: auto;">
@@ -204,7 +202,7 @@ li {
 			</div>
 		</div>
 	</form>
-	<%@ include file="/WEB-INF/views/footer.jsp"%>
+	<c:import url="../footer.jsp" />
 </body>
 </html>
 

@@ -1,7 +1,5 @@
 package org.example.goSeoul.controller;
 
-import javax.servlet.http.HttpSession;
-
 import org.example.goSeoul.model.MemberBean;
 import org.example.goSeoul.model.QuestionBean;
 import org.example.goSeoul.service.MemberService;
@@ -11,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpSession;
 
 
 @Controller
