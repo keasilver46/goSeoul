@@ -180,8 +180,7 @@ li {
 				<input type="hidden" name="user_no" value="${user.user_no}">
 				<input type="hidden" name="with_id" value="${user.id}">
 				<input type="hidden" name="with_nick" value="${user.nick}">
-				<input type="hidden" name="with_no" value="${with.with_no}">
-				<!--<input type="hidden" name="with_curno" value="${with_curno}">-->
+
 
 				<div class="form-group row">
 					<label for="with_gender" class="col-sm-2 col-form-label">성별</label>
