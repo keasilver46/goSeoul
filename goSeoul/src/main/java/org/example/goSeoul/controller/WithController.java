@@ -27,7 +27,7 @@ public class WithController {
     @Autowired
     private MemberService memberService;
 
-    // 동행글 작성 폼
+ // 동행글 작성 폼
     @RequestMapping("withWrite.do")
     public String withWrite(HttpSession session, Model model) throws Exception {
         System.out.println("withWrite");
@@ -36,7 +36,7 @@ public class WithController {
 //        JoinMemberBean joinMemberBean = memberService.checkLogin(id);
 //        model.addAttribute("user",joinMemberBean);
 
-        //로그인 상태 확인
+         //로그인 상태 확인
         if (session.getAttribute("id") == null) {
             // 비로그인 상태일 경우 로그인 폼으로 이동
             return "redirect:MemberLogin.do";
@@ -87,6 +87,57 @@ public class WithController {
         model.addAttribute("result", result);
 
         return "with/withWriteResult";
+    }
+
+    // 동행 수정 폼
+    @RequestMapping("withUpdate.do")
+    public String withUpdate(int with_no, int page, Model model) throws Exception {
+
+
+        WithBean with = withService.getWithDetail(with_no);
+        model.addAttribute("with", with);
+        model.addAttribute("page", page);
+
+        // 로그인된 상태일 경우 둥행수정 폼으로 이동
+        return "with/withUpdate";
+
+    }
+
+    // 동행 수정글 작성
+    @RequestMapping("withUpdateResult.do")
+    public String withUpdateResult(@ModelAttribute WithBean wb,
+                                   @RequestParam("with_filename1") MultipartFile mf,
+                                   HttpServletRequest request,
+                                   Model model) throws Exception {
+
+        if (!mf.isEmpty()) {
+            String uploadPath = request.getRealPath("upload"); // 업로드 디렉토리 경로를 설정합니다
+
+            System.out.println("path: " + uploadPath);
+
+            // UUID를 사용하여 고유한 파일명 생성
+            String originalFilename = mf.getOriginalFilename();
+            String extension = originalFilename.substring(originalFilename.lastIndexOf("."));
+            String newFilename = UUID.randomUUID().toString() + extension;
+
+            // 파일을 업로드 디렉토리에 저장합니다
+            String filePath = uploadPath + File.separator + newFilename;
+            mf.transferTo(new File(filePath));
+
+            wb.setWith_filename(newFilename);
+
+        }
+
+        WithBean with = withService.getWithDetail(wb.getWith_no());
+
+        if(mf.isEmpty()) {
+            wb.setWith_filename(with.getWith_filename());
+        }
+
+        int result = withService.withUpdate(wb);
+        model.addAttribute("result", result);
+
+        return "with/withUpdateResult";
     }
 
     // 동행 리스트
@@ -155,8 +206,10 @@ public class WithController {
 
     // 동행 상세페이지
     @RequestMapping("with_detail.do")
-    public String with_detail(int with_no, int page, String state, Model model) throws Exception{
-        if (state.equals("detail")) {
+    public String with_detail(int with_no, int page, String state, HttpSession session, Model model) throws Exception{
+    	String id = (String)session.getAttribute("id");
+    	
+    	if (state.equals("detail")) {
             withService.hit(with_no);
         }
 
@@ -164,6 +217,7 @@ public class WithController {
 
         List<WithReplyBean> replyList = withService.getReplyList(with_no);
 
+        model.addAttribute("id", id);
         model.addAttribute("with", with);
         model.addAttribute("page", page);
         model.addAttribute("replyList", replyList);
@@ -176,26 +230,35 @@ public class WithController {
     public String with_reserve(@ModelAttribute ReserveBean rb, int with_no, int page, String state,
                                HttpSession session, Model model) throws Exception {
         String id = (String)session.getAttribute("id");
+        
+        Map<String,Object> reserveMap = new HashMap<String,Object>();
+        reserveMap.put("id", id);
+        reserveMap.put("with_no", with_no);
 
         if (id == null) {
             // 비로그인 상태일 경우 로그인 폼으로 이동
             return "redirect:MemberLogin.do";
         } else {
-            MemberBean mb = memberService.checkLogin(id);
+        	int count =  withService.getReserveList(reserveMap);
+        	if (count == 1) {
+        		return "with/withReserveDone";
+        	} else {
+        		MemberBean mb = memberService.checkLogin(id);
 
-            rb.setWith_no(with_no);
-            rb.setUser_no(mb.getUser_no());
-            rb.setReserve_id(mb.getId());
-            rb.setReserve_nick(mb.getNick());
-            withService.insert(rb);
+                rb.setWith_no(with_no);
+                rb.setUser_no(mb.getUser_no());
+                rb.setReserve_id(mb.getId());
+                rb.setReserve_nick(mb.getNick());
+                withService.insert(rb);
 
-            withService.updateCurNo(with_no);
+                withService.updateCurNo(with_no);
 
-            model.addAttribute("with_no", with_no);
-            model.addAttribute("page", page);
-            model.addAttribute("state", state);
+                model.addAttribute("with_no", with_no);
+                model.addAttribute("page", page);
+                model.addAttribute("state", state);
 
-            return "with/withReserve";
+                return "with/withReserve";
+        	}
         }
     }
 
@@ -222,5 +285,15 @@ public class WithController {
 
             return "redirect:with_detail.do";
         }
+    }
+    
+    // 동행 글 삭제
+    @RequestMapping("withDelete.do")
+    public String withDelete(int with_no, Model model) throws Exception {
+    	int result = withService.withDelete(with_no);
+    	
+    	model.addAttribute("result", result);
+    	
+    	return "with/withDelete";
     }
 }

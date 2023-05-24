@@ -54,7 +54,7 @@
                             <a href="with_detail.do?with_no=${with.with_no}&page=${page}&state=detail">${with.with_title}</a>
                         </h5>
                         <p class="card-text">모집인원 ${with.with_maxto}</p>
-                        <p class="card-text">나이 ${with.with_age}</p>
+                        <p class="card-text">나이 ${with.with_age} / ${with.with_gender}</p>
                         <p class="card-text">날짜 ${with.with_start} ~ ${with.with_end}</p>
                     </div>
                 </div>
@@ -65,7 +65,7 @@
             <select class="custom-select" name="search">
                 <option value="with_title">제목</option>
                 <option value="with_content">내용</option>
-                <option value="user_no">작성자</option>
+                <option value="with_nick">작성자</option>
                 <option value="with_category">지역</option>
                 <option value="with_tag">태그</option>
             </select>
@@ -94,7 +94,7 @@
                         <c:if test="${endpage < maxpage}">
                             <li class="page-item">
                                 <a class="page-link" href="with_list.do?page=${startpage+10}" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
+                                    <span aria-hidden="true">&raquo;</span>
                                 </a>
                             </li>
                         </c:if>

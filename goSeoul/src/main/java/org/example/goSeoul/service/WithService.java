@@ -47,6 +47,10 @@ public class WithService {
         WithBean with = withDao.getWithDetail(with_no);
         return with;
     }
+    
+    public int getReserveList(Map<String, Object> reserveMap) throws Exception {
+    	return withDao.getReserveList(reserveMap);
+    }
 
     public void insert(ReserveBean rb) throws Exception {
         withDao.insert(rb);
@@ -62,5 +66,13 @@ public class WithService {
 
     public List<WithReplyBean> getReplyList(int with_no) throws Exception {
         return withDao.getReplyList(with_no);
+    }
+    
+    public int withUpdate(WithBean wb) throws Exception {
+        return withDao.withUpdate(wb);
+    }
+    
+    public int withDelete(int with_no) throws Exception {
+    	return withDao.withDelete(with_no);
     }
 }

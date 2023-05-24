@@ -56,6 +56,10 @@ public class WithDao {
     public WithBean getWithDetail(int with_no) throws Exception {
         return (WithBean) session.selectOne("with_detail", with_no);
     }
+    
+    public int getReserveList(Map<String, Object> reserveMap) throws Exception {
+    	return session.selectOne("reserveList", reserveMap);
+    }
 
     public void insert(ReserveBean rb) throws Exception {
         session.insert("reserve", rb);
@@ -72,5 +76,13 @@ public class WithDao {
     public List<WithReplyBean> getReplyList(int with_no) throws Exception {
         List<WithReplyBean> replyList = session.selectList("with_replylist", with_no);
         return replyList;
+    }
+    
+    public int withUpdate(WithBean wb) throws Exception {
+        return session.update("withUpdate", wb);
+    }
+    
+    public int withDelete(int with_no) throws Exception {
+    	return session.delete("withDelete", with_no);
     }
 }

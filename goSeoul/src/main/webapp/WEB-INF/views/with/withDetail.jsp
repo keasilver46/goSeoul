@@ -27,6 +27,11 @@
         <h1 class="withdetail_title" style="font-size:40px; position:static; margin:10px;">동행 구하기</h1>
 
         <table class="table">
+        	<c:if test="${id == with.with_id}">
+        		<button class="btn btn-outline-primary" onClick="location.href='withUpdate.do?with_no=${with.with_no}&page=${page}'">수정</button>
+        		<button class="btn btn-outline-primary" onClick="location.href='withDelete.do?with_no=${with.with_no}'">삭제</button>
+        	</c:if>
+        	
             <tr>
                 <th>제목</th>
                 <td colspan="3">${with.with_title}</td>
@@ -40,8 +45,8 @@
             <tr>
                 <th>지역</th>
                 <td>${with.with_category}</td>
-                <th>모집인원</th>
-                <td>${with.with_maxto}</td>
+                <th>성별</th>
+                <td>${with.with_gender}</td>
             </tr>
             <tr>
                 <th>나이</th>
@@ -64,17 +69,19 @@
             </tr>
             <tr>
                 <th>현재인원</th>
-                <td>${with.with_curno}</td>
-                <c:if test="${with.with_curno < with.with_maxto}">
-                    <td colspan="2">
-                        <button class="btn btn-outline-primary" onClick="location.href='with_reserve.do?with_no=${with.with_no}&page=${page}&state=detail'">신청하기</button>
-                    </td>
-                </c:if>
-                <c:if test="${with.with_curno == with.with_maxto}">
-                    <td colspan="2">
-                        <button class="btn btn-danger">마감</button>
-                    </td>
-                </c:if>
+                <td>${with.with_curno} / ${with.with_maxto}</td>
+                <c:if test="${id != with.with_id}">
+                	<c:if test="${with.with_curno < with.with_maxto}">
+                    	<td colspan="2">
+                        	<button class="btn btn-outline-primary" onClick="location.href='with_reserve.do?with_no=${with.with_no}&page=${page}&state=detail'">신청하기</button>
+                    	</td>
+                	</c:if>
+                	<c:if test="${with.with_curno == with.with_maxto}">
+                    	<td colspan="2">
+                        	<button class="btn btn-danger">마감</button>
+                    	</td>
+                	</c:if>
+         		</c:if>
             </tr>
         </table>
 

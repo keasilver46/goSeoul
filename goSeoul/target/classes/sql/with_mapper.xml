@@ -4,11 +4,12 @@
 <mapper namespace="withns">
     <insert id="insertCheck" parameterType="with">
         insert into withgo
-        (with_no,user_no,with_title,with_content,with_maxto,with_curno,with_tag,with_hit,
-        with_category,with_age,with_start,with_end,with_date,with_filename)
+        (with_no,user_no,with_id,with_nick,with_title,with_content,with_maxto,with_tag,with_hit,
+        with_category,with_age,with_gender,with_start,with_end,with_date,with_filename)
+
         values
-        (withgo_seq.nextval,#{user_no},#{with_title},#{with_content},#{with_maxto},0,#{with_tag},1,
-        #{with_category},#{with_age},#{with_start},#{with_end},sysdate,#{with_filename, jdbcType=VARCHAR})
+        (withgo_seq.nextval,#{user_no},#{with_id},#{with_nick},#{with_title},#{with_content},#{with_maxto},#{with_tag},0,
+        #{with_category},#{with_age},#{with_gender},#{with_start},#{with_end},sysdate,#{with_filename, jdbcType=VARCHAR})
     </insert>
 
     <!-- 게시물 총 개수 구하기 -->
@@ -48,6 +49,11 @@
     <update id="hit" parameterType="int">
         update withgo set with_hit = with_hit + 1 where with_no = #{with_no}
     </update>
+    
+    <!-- 동행 신청 중복 확인 -->
+    <select id="reserveList" parameterType="map" resultType="int">
+    	select count(*) from reserve where reserve_id = #{id} and with_no = #{with_no}
+    </select>
 
     <!-- 동행 신청 -->
     <insert id="reserve" parameterType="reserve">
@@ -68,4 +74,26 @@
     <select id="with_replylist" parameterType="int" resultType="withreply">
         select * from with_reply where with_no = #{with_no}
     </select>
+    
+    <!-- 동행글 수정 -->
+    <update id="withUpdate" parameterType="with">
+        update withgo set
+        with_title=#{with_title},
+        with_content=#{with_content},
+        with_maxto=#{with_maxto},
+        with_tag=#{with_tag},
+        with_category=#{with_category},
+        with_age=#{with_age},
+        with_gender=#{with_gender},
+        with_start=#{with_start},
+        with_end=#{with_end},
+        with_date=sysdate,
+        with_filename=#{with_filename, jdbcType=VARCHAR}
+        where with_no=#{with_no}
+    </update>
+    
+    <!-- 동행글 삭제 -->
+    <delete id="withDelete" parameterType="int">
+    	delete from withgo where with_no = #{with_no} 
+    </delete>
 </mapper>
