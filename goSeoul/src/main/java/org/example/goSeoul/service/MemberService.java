@@ -1,7 +1,11 @@
 package org.example.goSeoul.service;
 
 import jdk.nashorn.internal.runtime.ECMAException;
+
+import java.util.List;
+
 import org.example.goSeoul.dao.MemberDao;
+import org.example.goSeoul.model.FreeBean;
 import org.example.goSeoul.model.MemberBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,4 +33,8 @@ public class MemberService {
     public String concat(MemberBean dto) throws Exception {
         return dao.concat(dto);
     }
+    
+    public List<FreeBean> getMyList(String id) throws Exception {
+		return dao.getMyList(id);
+	}
 }

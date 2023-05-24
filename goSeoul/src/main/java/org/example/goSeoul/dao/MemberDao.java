@@ -1,8 +1,13 @@
 package org.example.goSeoul.dao;
 
 import jdk.nashorn.internal.runtime.ECMAException;
+
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
+import org.example.goSeoul.model.FreeBean;
 import org.example.goSeoul.model.MemberBean;
+import org.example.goSeoul.model.ReserveBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -32,4 +37,12 @@ public class MemberDao {
     public String concat(MemberBean dto) throws Exception {
         return sqlSession.selectOne("concat", dto);
     }
+    
+    public List<FreeBean> getMyList(String id) throws Exception {
+		return sqlSession.selectList("getMyListt", id);
+	}
+
+	public List<ReserveBean> getMyReserve(String id) throws Exception {
+		return sqlSession.selectList("getMyReserve", id);
+	}
 }

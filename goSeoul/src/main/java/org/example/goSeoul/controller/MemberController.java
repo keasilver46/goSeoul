@@ -107,21 +107,21 @@ public class MemberController {
 		if(dto != null) {
 			System.out.println("1");
 
-					String FE = memberService.concat(memberBean);
-					String tempPw = UUID.randomUUID().toString().replace("-", "");// -를 제거
-					tempPw = tempPw.substring(0, 10);// tempPw를 앞에서부터 10자리 잘라줌
-					dto.setPass(tempPw);// 임시 비밀번호 담기
-					MailUtil mail = new MailUtil(); // 메일 전송하기
-					mail.sendEmail(dto, FE);
-					memberService.updatePass(dto);//이메일이랑 도메인을 더해주는 서비스
-					String securePw = encoder.encode(dto.getPass());// 회원 비밀번호를 암호화하면 dto객체에 다시 저장
-					dto.setPass(securePw);
+			String FE = memberService.concat(memberBean);
+			String tempPw = UUID.randomUUID().toString().replace("-", "");// -를 제거
+			tempPw = tempPw.substring(0, 10);// tempPw를 앞에서부터 10자리 잘라줌
+			dto.setPass(tempPw);// 임시 비밀번호 담기
+			MailUtil mail = new MailUtil(); // 메일 전송하기
+			mail.sendEmail(dto, FE);
+			memberService.updatePass(dto);//이메일이랑 도메인을 더해주는 서비스
+			String securePw = encoder.encode(dto.getPass());// 회원 비밀번호를 암호화하면 dto객체에 다시 저장
+			dto.setPass(securePw);
 
-					result = "true";
+			result = "true";
 
-				} else {
-					result = "false";
-				}
+		} else {
+			result = "false";
+		}
 
 		return result;
 	}

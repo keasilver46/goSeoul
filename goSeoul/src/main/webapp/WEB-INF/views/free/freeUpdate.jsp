@@ -23,6 +23,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="./js/weather.js"></script>
 
+
 <!-- 해시태그 처리 -->
 <script>
 $(document).ready(function() {
@@ -89,14 +90,6 @@ $(document).ready(function() {
 	font-family: 'Title_Medium';
 }
 
-input[type="date"] {
-	width: 100%; /* 원하는 길이로 설정 */
-}
-
-input[type="range"] {
-	width: 95%; /* 원하는 길이로 설정 */
-}
-
 label {
 	font-weight: bold;
 }
@@ -123,32 +116,31 @@ li {
 
 <body>
 <c:import url="../header.jsp" />
-	<br><h4 class="mb-3" align="center">여행정보 공유</h4>
-	<form method="post" action="freeWriteResult.do" >
+	<br><h4 class="mb-3" align="center">여행정보 수정</h4>
+	<form method="post" action="freeUpdateResult.do" >
 		<div class="container" style="width: auto; height: auto;">
 			<div
-				style="width: 1000px; height: auto; margin: 50px auto; background-color: white; border-radius: 10px;">
+				style="width: 100%; height: auto; margin: 50px auto; background-color: white; border-radius: 10px;">
 
-				<input type="hidden" name="user_no" value="${user_no}">
+				<input type="hidden" name="free_nick" value="${board.free_nick}">
+				<input type="hidden" name="num" value="${board.free_no}"> 
+				<input type="hidden" name="pageNum" value="${pageNum}">	
 
 				<div class="form-group row">
-					<label for="free_category" class="col-sm-2 col-form-label">머릿말</label>
+					<label for="free_category" class="col-sm-2 col-form-label">카테고리</label>
 					<div class="col-sm-4">
-						<select class="custom-select mr-sm-2" id="free_category"
-							name="free_category">
+						<select class="custom-select mr-sm-4" id="free_category"
+							name="free_category" required>
 							<option selected>선택</option>
-							<option value="info">정보공유</option>
-							<option value="review">여행후기</option>
-							<option value="question">질문</option>
-							<option value="etc">기타</option>
+							<option value="정보공유">정보공유</option>
+							<option value="여행후기">여행후기</option>
+							<option value="질문">질문</option>
+							<option value="기타">기타</option>
 						</select>
 					</div>
-				</div>
-
-				<div class="form-group row">
 					<label for="free_filename" class="col-sm-2 col-form-label">첨부
 						파일</label>
-					<div class="col-sm-10">
+					<div class="col-sm-4">
 						<input class="form-control" type="file" id="free_filename"
 							name="free_filename">
 					</div>
@@ -158,12 +150,12 @@ li {
 
 				<div class="form-group">
 					<input type="text" id="free_title" name="free_title"
-						class="form-control" value="${board.free_title}" required>
+						class="form-control" placeholder="제목을 입력해주세요." required>
 				</div>
 
 				<div class="form-group">
 					<textarea id="free_content" name="free_content" rows="15" cols="50"
-						class="form-control" value="${board.free_content}" required></textarea>
+						class="form-control" placeholder="내용을 입력해주세요." required></textarea>
 				</div>
 
 				<div class="tr_hashTag_area">
@@ -176,14 +168,13 @@ li {
 
 				<br>
 				<div class="write-btn">
-					<button type="submit" class="btn btn-outline-primary write-btn1">작성</button>
+					<button type="submit" class="btn btn-outline-primary write-btn1">수정</button>
 					<button type="reset" class="btn btn-outline-secondary write-btn1">취소</button>
 				</div>
 
 			</div>
 		</div>
 	</form>
-<c:import url="../footer.jsp" />
+<c:import url="../footer.jsp"/>
 </body>
 </html>
-

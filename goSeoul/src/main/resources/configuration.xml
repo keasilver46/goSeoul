@@ -5,6 +5,7 @@
     <!--configuration settings-->
     <typeAliases>
         <typeAlias alias="member" type="org.example.goSeoul.model.MemberBean"/>
+        <typeAlias alias="free" type="org.example.goSeoul.model.FreeBean"/>
         <typeAlias alias="with" type="org.example.goSeoul.model.WithBean"/>
         <typeAlias alias="withreply" type="org.example.goSeoul.model.WithReplyBean"/>
         <typeAlias alias="reserve" type="org.example.goSeoul.model.ReserveBean"/>

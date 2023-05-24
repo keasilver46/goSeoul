@@ -9,8 +9,9 @@ import lombok.Data;
 public class FreeBean {
 
     private int free_no;
-    private int local_no;
     private int user_no;
+    private String free_id;
+    private String free_nick;
     private String free_title;
     private String free_content;
     private String free_category;
@@ -20,6 +21,19 @@ public class FreeBean {
     private int free_dislike;
     private Date free_date;
     private String free_filename;
-    private String free_filepath;
+
+	// page
+	private int startRow;
+	private int endRow;
+	// 검색
+	private String search;
+	private String keyword;
+
+	// etc.
+	private int ref;
+	private int re_step;
+	private int re_level;
+	private String ip;
+	
 
 }

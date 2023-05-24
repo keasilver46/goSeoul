@@ -89,14 +89,6 @@ $(document).ready(function() {
 	font-family: 'Title_Medium';
 }
 
-input[type="date"] {
-	width: 100%; /* 원하는 길이로 설정 */
-}
-
-input[type="range"] {
-	width: 95%; /* 원하는 길이로 설정 */
-}
-
 label {
 	font-weight: bold;
 }
@@ -129,7 +121,8 @@ li {
 			<div
 				style="width: 100%; height: auto; margin: 50px auto; background-color: white; border-radius: 10px;">
 
-				<input type="hidden" name="user_no" value="${user_no}">
+				<input type="hidden" name="free_id" value="${freeBean.free_id}">
+				<input type="hidden" name="free_nick" value="${freeBean.free_nick}">
 
 				<div class="form-group row">
 					<label for="free_category" class="col-sm-2 col-form-label">카테고리</label>
@@ -137,20 +130,17 @@ li {
 						<select class="custom-select mr-sm-4" id="free_category"
 							name="free_category" required>
 							<option selected>선택</option>
-							<option value="info">정보공유</option>
-							<option value="review">여행후기</option>
-							<option value="question">질문</option>
-							<option value="etc">기타</option>
+							<option value="정보공유">정보공유</option>
+							<option value="여행후기">여행후기</option>
+							<option value="질문">질문</option>
+							<option value="기타">기타</option>
 						</select>
 					</div>
-				<!-- </div>
-
-				<div class="form-group row"> -->
 					<label for="free_filename" class="col-sm-2 col-form-label">첨부
 						파일</label>
 					<div class="col-sm-4">
 						<input class="form-control" type="file" id="free_filename"
-							name="free_filename" multiple>
+							name="free_filename">
 					</div>
 				</div>
 
@@ -186,4 +176,3 @@ li {
 <c:import url="../footer.jsp"/>
 </body>
 </html>
-

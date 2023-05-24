@@ -11,13 +11,13 @@
 <body>
 	<c:if test="${result == 1}">
 		<script>
-			alert("글작성 성공");
-			location.href = "freeList.do";
+			alert("삭제 성공");
+			location.href = "freeList.do?pageNum=${board.pageNum}";
 		</script>
 	</c:if>
 	<c:if test="${result != 1}">
 		<script>
-			alert("글작성 실패");
+			alert("삭제 실패");
 			history.go(-1);
 		</script>
 	</c:if>

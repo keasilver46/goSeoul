@@ -85,4 +85,10 @@ public class WithDao {
     public int withDelete(int with_no) throws Exception {
     	return session.delete("withDelete", with_no);
     }
+    
+    //rb
+    public WithBean getWithGo(Integer with_no) {
+    	System.out.println(with_no);
+		return session.selectOne("getWithGo", with_no);
+	}
 }

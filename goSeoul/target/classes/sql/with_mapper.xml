@@ -96,4 +96,10 @@
     <delete id="withDelete" parameterType="int">
     	delete from withgo where with_no = #{with_no} 
     </delete>
+    
+    <!-- ==rb -->
+	<select id="getWithGo" parameterType="Integer"
+		resultType="org.example.goSeoul.model.WithBean">
+		select * from WITHGO where with_no = #{with_no}
+	</select>
 </mapper>

@@ -75,4 +75,9 @@ public class WithService {
     public int withDelete(int with_no) throws Exception {
     	return withDao.withDelete(with_no);
     }
+    
+    // rb
+ 	public WithBean getWithGo(Integer integer) {
+ 		return withDao.getWithGo(integer);
+ 	}
 }

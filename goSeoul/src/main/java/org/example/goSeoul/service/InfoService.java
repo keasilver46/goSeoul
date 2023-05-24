@@ -1,7 +1,11 @@
 package org.example.goSeoul.service;
 
+import java.util.List;
+
 import org.example.goSeoul.dao.InfoDao;
 import org.example.goSeoul.model.MemberBean;
+import org.example.goSeoul.model.ReserveBean;
+import org.example.goSeoul.model.WithBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +35,16 @@ public class InfoService {
 			MemberBean dto = dao.getInfo(id);
 			return dto;
 		}
+
+		
+		public List<Integer> getMyReserve(String id) {
+			return dao.getMyReserve(id);
+		}
+
+		public MemberBean userCheck(String id) {
+			return dao.userCheck(id);
+		}
+
 
 	/*
 	 * @Override public int edit(MemberBean dto) { return mapper.edit(dto); }
