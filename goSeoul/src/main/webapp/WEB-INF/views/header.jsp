@@ -172,7 +172,7 @@ header {
 								class="nav-link dropdown-toggle text-dark" href="#"
 								role="button" aria-expanded="false"> 정보서울 </a>
 								<ul class="dropdown-menu">
-									<li><a class="dropdown-item" href="#">서울시티투어버스</a></li>
+									<li><a class="dropdown-item" href="https://www.seoulcitybus.com">서울시티투어버스</a></li>
 									<li><a class="dropdown-item" href="#">공지사항</a></li>
 									<li><a class="dropdown-item" href="q_board.do">FAQ</a></li>
 									<li><a class="dropdown-item" href="#">개인정보처리방침</a></li>

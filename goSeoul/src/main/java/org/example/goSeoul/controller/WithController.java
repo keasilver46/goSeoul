@@ -287,6 +287,19 @@ public class WithController {
         }
     }
     
+    // 동행 댓글 삭제
+    @RequestMapping("withReplyDelete.do")
+    public String withReplyDelete(int withreply_no, int with_no, int page, String state, Model model) throws Exception {
+    	int result = withService.withReplyDelete(withreply_no);
+    	
+    	model.addAttribute("result", result);
+    	model.addAttribute("with_no", with_no);
+    	model.addAttribute("page", page);
+    	model.addAttribute("state", state);
+    	
+    	return "with/withReplyDelete";
+    }
+    
     // 동행 글 삭제
     @RequestMapping("withDelete.do")
     public String withDelete(int with_no, Model model) throws Exception {

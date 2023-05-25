@@ -78,6 +78,10 @@ public class WithDao {
         return replyList;
     }
     
+    public int withReplyDelete(int withreply_no) throws Exception {
+    	return session.delete("withReplyDelete", withreply_no);
+    }
+    
     public int withUpdate(WithBean wb) throws Exception {
         return session.update("withUpdate", wb);
     }

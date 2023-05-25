@@ -96,6 +96,12 @@
                     </tr>
                     <tr>
                         <td>${reply.withreply_content}</td>
+                        <c:if test="${id == reply.withreply_id}">
+                        	<td>
+                        		<button class="btn btn-outline-danger" onClick="location.href='withReplyDelete.do?withreply_no=${reply.withreply_no}&with_no=${with.with_no}&page=${page}&state=detail'">삭제</button>
+                        	</td>
+                        </c:if>
+                        
                     </tr>
                 </c:forEach>
             </table>

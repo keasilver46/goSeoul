@@ -21,5 +21,5 @@ public class MemberBean {
     private String interests;
     private String intro;
     private String file_name;
-    private String file_path;
+    private int state;
 }

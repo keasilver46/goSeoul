@@ -75,6 +75,11 @@
         select * from with_reply where with_no = #{with_no}
     </select>
     
+    <!-- 댓글 삭제 -->
+    <delete id="withReplyDelete" parameterType="int">
+    	delete from with_reply where withreply_no = #{withreply_no}
+    </delete>
+    
     <!-- 동행글 수정 -->
     <update id="withUpdate" parameterType="with">
         update withgo set
