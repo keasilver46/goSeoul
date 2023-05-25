@@ -10,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,10 +27,18 @@ public class MainController {
 		return "main";
 	}
 	
-	@RequestMapping("cal.do")
+	@RequestMapping("calendar.do")
 	public String cal() {
-		return "Calendar";
+		return "calendar";
 	}
+	
+	@GetMapping("eventDetail.do")
+	public String eventDetail() {
+	    // contentId를 이용하여 필요한 로직을 처리하고, eventDetail 페이지를 반환합니다.
+	    return "eventDetail";
+	}
+
+	
 
 	@RequestMapping("result.do")
 	public String result(@RequestParam("name") String name, @RequestParam("email") String email, Model model) {
@@ -44,6 +53,11 @@ public class MainController {
 	@RequestMapping("finduserpwd.do")
 	public String findpw() {
 		return "FindPwd";
+	}
+	
+	@RequestMapping("event.do")
+	public String event() {
+		return "event";
 	}
 	// @ResponseBody를 사용하면 해당 메소드가 반환하는
 	// 데이터를 뷰를 통해 출력하는 것이 아니라, HTTP 응답 데이터에 직접 쓰여지게 됩니다.

@@ -7,6 +7,6 @@
 <title>Go Seoul</title>
 </head>
 <body>
-    <script>location.href="finduserpwd.do"</script>
+    <script>location.href="event.do"</script>
 </body>
 </html>

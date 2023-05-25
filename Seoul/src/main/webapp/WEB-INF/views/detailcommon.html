@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+    // API 요청
+    $.ajax({
+      url: 'https://apis.data.go.kr/B551011/KorService1/detailCommon1',
+      method: 'GET',
+      dataType: 'json',
+      data: {
+        numOfRows: 2000,
+        pageNo: 1,
+        MobileOS: 'ETC',
+        MobileApp: 'win',
+        _type: 'json',
+        contentId: 
+        areaCode: 1,
+        serviceKey: 'JUnPRuQvIHEkBUawKCyvG8bFrjKl4V/ESdFv/8auifvAU/8ggWa1aHlVtv2OBmuZ8Ui3fFzw2qx9ToCqfgTddQ=='
+      },
+      success: function(response) {
+        var events = response.response.body.items.item;
+
+        // 이벤트 객체 변환 및 추가
+        events.forEach(function(event) {
+          var eventObj = {
+            title: event.title, // 이벤트 제목
+            start: event.eventstartdate, // 이벤트 시작일
+            end:event.eventenddate,
+            backgroundColor: "#FFFFFF", // 배경색
+            borderColor: "#FFFFFF",  // 테두리 색
+            textColor:"#000000"
+          };
+          calendar.addEvent(eventObj);
+        });
+
+        calendar.render();
+      },
+      error: function() {
+        alert('There was an error while fetching events!');
+      }
+    </script>
+</body>
+</html>
