@@ -6,7 +6,7 @@
 <c:choose>
 	<c:when test="${result == 1}">
 		<script>
-			alert("등록되지 않은 회원입니다.");
+			alert("등록되지 않거나 탈퇴한 회원입니다.");
 			history.go(-1);
 		</script>
 	</c:when>
