@@ -82,12 +82,26 @@ public class InfoController {
 	@GetMapping("/getMyList.do")
 	public String getMyList(String pageNum, HttpSession session, Model model) {
 		String id = (String) session.getAttribute("id");
-		System.out.println("getList controller");
-		System.out.println(pageNum);
-		System.out.println(id);
+		int page = 1;
+		int limit = 8;
+		int listcount = 0;
 		List<FreeBean> list = mb.getMyList(id);
+		
+		int maxpage = listcount / limit + ((listcount % limit == 0) ? 0 : 1);
 
+		int startpage = ((page - 1) / 10) * 10 + 1; // 1, 11, 21..
+		int endpage = startpage + 10 - 1; // 10, 20, 30..
+
+		if (endpage > maxpage)
+			endpage = maxpage;
+		
+		model.addAttribute("page", page);
+		model.addAttribute("startpage", startpage);
+		model.addAttribute("endpage", endpage);
+		model.addAttribute("maxpage", maxpage);
+		model.addAttribute("listcount", listcount);
 		model.addAttribute("list", list);
+		
 		return "member/getMyList";
 	}
 
@@ -95,14 +109,35 @@ public class InfoController {
 	@GetMapping("/getMyReserve.do")
 	public String getMyReserve(String pageNum, HttpSession session, Model model) throws Exception {
 		String id = (String) session.getAttribute("id");
+		System.out.println(pageNum);
+		int page = 1;
+		if(pageNum != null) {
+			page = Integer.parseInt(pageNum);
+		}
+		int limit = 8;
 		List<Integer> intArray = service.getMyReserve(id);
 		List<WithBean> rb = new ArrayList<>();
 		for(int i = 0; i < intArray.size(); i++) {
 			rb.add(wb.getWithGo(intArray.get(i)));
 		}
+		int listcount = rb.size();
+		
+		
+		int maxpage = listcount / limit + ((listcount % limit == 0) ? 0 : 1);
+
+		int startpage = ((page - 1) / 10) * 10 + 1; // 1, 11, 21..
+		int endpage = startpage + 10 - 1; // 10, 20, 30..
+
+		if (endpage > maxpage)
+			endpage = maxpage;
 
 		model.addAttribute("rb", rb);
-		model.addAttribute("page", pageNum);
+		model.addAttribute("page", page);
+		model.addAttribute("startpage", startpage);
+		model.addAttribute("endpage", endpage);
+		model.addAttribute("maxpage", maxpage);
+		model.addAttribute("listcount", listcount);
+		
 		return "member/getMyReserve";
 	}
 
