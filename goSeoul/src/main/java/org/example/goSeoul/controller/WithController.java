@@ -146,7 +146,7 @@ public class WithController {
         List<WithBean> withlist = new ArrayList<WithBean>();
 
         int page = 1;
-        int limit = 8;
+        int limit = 9;
         int listcount = 0;
         String search = null;
         String keyword = null;
@@ -215,12 +215,9 @@ public class WithController {
 
         WithBean with = withService.getWithDetail(with_no);
 
-        List<WithReplyBean> replyList = withService.getReplyList(with_no);
-
         model.addAttribute("id", id);
         model.addAttribute("with", with);
         model.addAttribute("page", page);
-        model.addAttribute("replyList", replyList);
 
         return "with/withDetail";
     }
@@ -260,44 +257,6 @@ public class WithController {
                 return "with/withReserve";
         	}
         }
-    }
-
-    // 동행 댓글 작성
-    @RequestMapping("with_reply.do")
-    public String with_reply(@ModelAttribute WithReplyBean wrb, int with_no, int page, String state, HttpSession session, Model model) throws Exception {
-        String id = (String)session.getAttribute("id");
-
-        if (id == null) {
-            // 비로그인 상태일 경우 로그인 폼으로 이동
-            return "redirect:MemberLogin.do";
-        } else {
-            MemberBean mb = memberService.checkLogin(id);
-
-            wrb.setWith_no(with_no);
-            wrb.setUser_no(mb.getUser_no());
-            wrb.setWithreply_id(mb.getId());
-            wrb.setWithreply_nick(mb.getNick());
-            withService.insertReply(wrb);
-
-            model.addAttribute("with_no", with_no);
-            model.addAttribute("page", page);
-            model.addAttribute("state", state);
-
-            return "redirect:with_detail.do";
-        }
-    }
-    
-    // 동행 댓글 삭제
-    @RequestMapping("withReplyDelete.do")
-    public String withReplyDelete(int withreply_no, int with_no, int page, String state, Model model) throws Exception {
-    	int result = withService.withReplyDelete(withreply_no);
-    	
-    	model.addAttribute("result", result);
-    	model.addAttribute("with_no", with_no);
-    	model.addAttribute("page", page);
-    	model.addAttribute("state", state);
-    	
-    	return "with/withReplyDelete";
     }
     
     // 동행 글 삭제

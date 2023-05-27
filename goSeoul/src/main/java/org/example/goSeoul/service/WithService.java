@@ -64,14 +64,6 @@ public class WithService {
         withDao.insertReply(wrb);
     }
 
-    public List<WithReplyBean> getReplyList(int with_no) throws Exception {
-        return withDao.getReplyList(with_no);
-    }
-    
-    public int withReplyDelete(int withreply_no) throws Exception {
-    	return withDao.withReplyDelete(withreply_no);
-    }
-    
     public int withUpdate(WithBean wb) throws Exception {
         return withDao.withUpdate(wb);
     }

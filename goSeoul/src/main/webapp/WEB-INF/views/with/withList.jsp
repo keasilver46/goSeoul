@@ -24,7 +24,7 @@
 		flex-direction: column;
 		align-items: left;
 		width: 100%;
-		max-width: 1400px;
+
 		margin: 0 auto;
     }
 
@@ -48,25 +48,28 @@
    		background-size: cover;
    		position: relative;
     }
+    
+    .card-container > a {
+    	text-decoration: none;
+    }
 </style>
 </head>
 <body>
     <c:import url="../header.jsp" />
-    <div id="withlist">
+    <div id="withlist" class="container">
         <h1 class="withlist_title" style="font-size:40px; position:static; margin:10px;">동행 구하기</h1>
-
         <div class="card-container">
             <c:forEach items="${withlist}" var="with">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            <a href="with_detail.do?with_no=${with.with_no}&page=${page}&state=detail">${with.with_title}</a>
-                        </h5>
-                        <p class="card-text">모집인원 ${with.with_maxto}</p>
-                        <p class="card-text">나이 ${with.with_age} / ${with.with_gender}</p>
-                        <p class="card-text">날짜 ${with.with_start} ~ ${with.with_end}</p>
-                    </div>
-                </div>
+            	<a href="with_detail.do?with_no=${with.with_no}&page=${page}&state=detail">
+                	<div class="card">
+                    	<div class="card-body">
+                        	<h5 class="card-title text-dark">${with.with_title}</h5>
+                        	<p class="card-text text-dark">모집인원 ${with.with_maxto}</p>
+                        	<p class="card-text text-dark">나이 ${with.with_age} / ${with.with_gender}</p>
+                        	<p class="card-text text-dark">날짜 ${with.with_start} ~ ${with.with_end}</p>
+                    	</div>
+                	</div>
+                </a>
             </c:forEach>
         </div>
 
@@ -102,7 +105,7 @@
 
                         <c:if test="${endpage < maxpage}">
                             <li class="page-item">
-                                <a class="page-link" href="with_list.do?page=${startpage+10}" aria-label="Previous">
+                                <a class="page-link" href="with_list.do?page=${startpage+10}" aria-label="Next">
                                     <span aria-hidden="true">&raquo;</span>
                                 </a>
                             </li>
@@ -126,7 +129,7 @@
 
                         <c:if test="${endpage < maxpage}">
                             <li class="page-item">
-                                <a class="page-link" href="with_list.do?page=${startpage+10}&search=${search}&keyword=${keyword}" aria-label="Previous">
+                                <a class="page-link" href="with_list.do?page=${startpage+10}&search=${search}&keyword=${keyword}" aria-label="Next">
                                     <span aria-hidden="true">&raquo;</span>
                                 </a>
                             </li>

@@ -72,15 +72,6 @@ public class WithDao {
     public void insertReply(WithReplyBean wrb) throws Exception {
         session.insert("insertReply", wrb);
     }
-
-    public List<WithReplyBean> getReplyList(int with_no) throws Exception {
-        List<WithReplyBean> replyList = session.selectList("with_replylist", with_no);
-        return replyList;
-    }
-    
-    public int withReplyDelete(int withreply_no) throws Exception {
-    	return session.delete("withReplyDelete", withreply_no);
-    }
     
     public int withUpdate(WithBean wb) throws Exception {
         return session.update("withUpdate", wb);
