@@ -37,7 +37,7 @@
 				+"</textarea>");
 			
 			$('#btn_'+id).html(
-			   "<input type='button' class='btn btn-outline-primary' value='확인' onclick='up("+id+")'> "
+			   "<input type='button' class='btn btn-outline-primary' value='확인' onclick='up("+id+")'>"
 			  +"<input type='button' class='btn btn-outline-secondary' value='취소' onclick='lst()'>");
 		});
 	});

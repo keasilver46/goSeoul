@@ -65,7 +65,7 @@
         <div class="d-flex justify-content-end">
             <button class="btn btn-outline-primary" onClick="location.href='withWrite.do'">글쓰기</button>
         </div>
-        
+
         <div class="card-container">
             <c:forEach items="${withlist}" var="with">
             	<a href="with_detail.do?with_no=${with.with_no}&page=${page}&state=detail">
