@@ -9,29 +9,79 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Go Seoul</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<!-- 글꼴 -->
 <link rel="stylesheet" href="./css/font.css">
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+
+<script
+	src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+
+<!-- 날씨 -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="./js/weather.js"></script>
+
+<!-- 부트스트랩 -->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+
 <style>
     body {
         font-family: 'Title_Medium';
     }
+    
+    #withdetail {
+    	margin: 50px auto;
+    }
+    
+    .withdetail_title {
+    	margin-bottom: 50px;
+    }
+    
+    #withImg {
+    	padding: 1rem;
+    }
+    
+    #replyForm {
+    	padding: 0.75rem;
+    }
+    
+    #replyInsert {
+    	white-space: nowrap;
+    }
+    
+    #withBtn > button {
+    	margin: 0 2px;
+    }
 </style>
+
+<script>
+	$(function() {
+		$('#replyList').load('replyList.do?with_no=${with.with_no}');
+		
+		$('#replyInsert').click(function() {
+			if (!replyForm.withreply_content.value) {
+				alert('댓글을 입력하세요.');
+				replyForm.withreply_content.focus();
+				return false;
+			}
+			
+			var replyData = $('#replyForm').serialize();
+			
+			$.post('withReply.do', replyData, function(data) {
+				$('#replyList').html(data);
+				replyForm.withreply_content.value = '';
+			});
+		});
+	});
+</script>
 </head>
 <body>
     <c:import url="../header.jsp" />
-    <div id="withdetail">
-        <h1 class="withdetail_title" style="font-size:40px; position:static; margin:10px;">동행 구하기</h1>
+    <div id="withdetail" class="container">
+        <h3 class="withdetail_title" align="center">동행 구하기</h3>
 
-        <table class="table">
-        	<c:if test="${id == with.with_id}">
-        		<button class="btn btn-outline-primary" onClick="location.href='withUpdate.do?with_no=${with.with_no}&page=${page}'">수정</button>
-        		<button class="btn btn-outline-primary" onClick="location.href='withDelete.do?with_no=${with.with_no}'">삭제</button>
-        	</c:if>
-        	
+        <table class="table">        	
             <tr>
                 <th>제목</th>
                 <td colspan="3">${with.with_title}</td>
@@ -59,7 +109,7 @@
                 <td colspan="3">
                     ${with.with_content} <br>
                     <c:if test="${with.with_filename != null}">
-                        <img src="./upload/${with.with_filename}">
+                        <img src="./upload/${with.with_filename}" id="withImg">
                     </c:if>
                 </td>
             </tr>
@@ -84,38 +134,29 @@
          		</c:if>
             </tr>
         </table>
-
-        <c:if test="${replyList != null}">
-            <table class="table">
-                <c:forEach items="${replyList}" var="reply">
-                    <tr>
-                        <th>${reply.withreply_nick}</th>
-                        <th>
-                            <fmt:formatDate value="${reply.withreply_date}" pattern="yyyy-MM-dd HH:mm:ss"/>
-                        </th>
-                    </tr>
-                    <tr>
-                        <td>${reply.withreply_content}</td>
-                        <c:if test="${id == reply.withreply_id}">
-                        	<td>
-                        		<button class="btn btn-outline-danger" onClick="location.href='withReplyDelete.do?withreply_no=${reply.withreply_no}&with_no=${with.with_no}&page=${page}&state=detail'">삭제</button>
-                        	</td>
-                        </c:if>
-                        
-                    </tr>
-                </c:forEach>
-            </table>
-        </c:if>
-
-        <form method="post" action="with_reply.do?with_no=${with.with_no}&page=${page}&state=detail">
+        
+        <form id="replyForm" name="replyForm" method="post">
+        	<input type="hidden" name="withreply_id" value="${sessionScope.id}">
+        	<input type="hidden" name="with_no" value="${with.with_no}">
             <div class="form-group row">
-                <label for="with_filename" class="col-sm-2 col-form-label">댓글</label>
-            	<div class="d-flex col-sm-10">
-            	    <textarea id="withreply_content" name="withreply_content" rows="1" cols="3" class="form-control" placeholder="댓글을 입력해주세요." required></textarea>
-            	    <input class="btn btn-outline-primary justify-content-end" type="submit" value="작성">
-            	</div>
-            </div>
+               	<label for="withreply_content" class="col-sm-2 col-form-label font-weight-bold" id="replyLabel">댓글</label>
+           		<div class="d-flex col-sm-10">
+           	   		<textarea id="withreply_content" name="withreply_content" rows="1" cols="3" class="form-control" placeholder="댓글을 입력해주세요." required></textarea>
+           	   		<button class="btn btn-outline-primary" id="replyInsert">작성</button>
+           		</div>
+            </div> 
         </form>
+ 		
+        <div id="replyList"></div>
+    	
+    	<div class="d-flex justify-content-center" id="withBtn">
+    		<button class="btn btn-outline-primary" onClick="location.href='with_list.do?page=${page}'">목록</button>
+    		<c:if test="${id == with.with_id}">
+        		<button class="btn btn-outline-primary" onClick="location.href='withUpdate.do?with_no=${with.with_no}&page=${page}'">수정</button>
+        		<button class="btn btn-outline-danger" onClick="location.href='withDelete.do?with_no=${with.with_no}'">삭제</button>
+        	</c:if>
+    	</div>
+    	
     </div>
     <c:import url="../footer.jsp" />
 </body>

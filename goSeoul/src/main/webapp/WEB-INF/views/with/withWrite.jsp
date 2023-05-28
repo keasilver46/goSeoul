@@ -38,52 +38,52 @@
 		});
 	});
 
-$(document).ready(function() {
-  var with_tag = [];
-  var counter = 0;
+	$(document).ready(function() {
+  		var with_tag = [];
+  		var counter = 0;
 
-  // 입력한 값을 태그로 생성한다.
-  function addTag(value) {
-    with_tag[counter] = value;
-    counter++; // del-btn의 고유 id가 된다.
-  }
+  		// 입력한 값을 태그로 생성한다.
+  		function addTag(value) {
+    		with_tag[counter] = value;
+    		counter++; // del-btn의 고유 id가 된다.
+  		}
 
-  // 서버에 제공
-  $("#with_tag").on("keyup", function(e) {
-    var tag = $("#tag-list").text();
-    console.log(tag);
-    $("#tag").val(tag);
-  });
+  		// 서버에 제공
+  		$("#with_tag").on("keyup", function(e) {
+    		var tag = $("#tag-list").text();
+    		console.log(tag);
+    		$("#tag").val(tag);
+  		});
 
-  $("#with_tag").on("keypress", function(e) {
-    var self = $(this);
+  		$("#with_tag").on("keypress", function(e) {
+    		var self = $(this);
 
-    // 엔터나 스페이스바 눌렀을 때 실행
-    if (e.key === "Enter" || e.keyCode == 32) {
-      var tagValue = self.val().trim();
+    		// 엔터나 스페이스바 눌렀을 때 실행
+    		if (e.key === "Enter" || e.keyCode == 32) {
+      			var tagValue = self.val().trim();
 
-      // 해시태그 값이 없으면 실행하지 않음
-      if (tagValue !== "") {
-        // 같은 태그가 있는지 검사한다. 있다면 해당 값이 배열로 반환된다.
-        var result = Object.values(with_tag).filter(function(word) {
-          return word === tagValue;
-        });
+      			// 해시태그 값이 없으면 실행하지 않음
+      			if (tagValue !== "") {
+        			// 같은 태그가 있는지 검사한다. 있다면 해당 값이 배열로 반환된다.
+        			var result = Object.values(with_tag).filter(function(word) {
+          				return word === tagValue;
+       				 });
 
-        // 해시태그가 중복되지 않으면 추가
-        if (result.length === 0) {
-          $("#tag-list").append("<li>" + tagValue + "<span class='del-btn' idx='" + counter + "'>✕</span></li>");
-          addTag(tagValue);
-          self.val("");
+        			// 해시태그가 중복되지 않으면 추가
+        			if (result.length === 0) {
+          				$("#tag-list").append("<li>" + tagValue + "<span class='del-btn' idx='" + counter + "'>✕</span></li>");
+          				addTag(tagValue);
+          				self.val("");
 
-          console.log("with_tag: " + with_tag);
-          console.log("tagValue: " + tagValue);
-        } else {
-          alert("태그값이 중복됩니다.");
-        }
-      }
-      e.preventDefault(); // SpaceBar 시 빈공간이 생기지 않도록 방지
-    }
-  });
+          				console.log("with_tag: " + with_tag);
+          				console.log("tagValue: " + tagValue);
+        			} else {
+          				alert("태그값이 중복됩니다.");
+        			}
+      			}
+      				e.preventDefault(); // SpaceBar 시 빈공간이 생기지 않도록 방지
+    		}
+  		});
 
   // 삭제 버튼
   // 인덱스 검사 후 삭제
@@ -173,15 +173,12 @@ li {
 </head>
 
 <body>
-	유저번호 : ${user.user_no} 유저닉 : ${user.nick} 유저아디 : ${user.id}
-	<%@ include file="/WEB-INF/views/header.jsp"%>
-	<form method="post" action="withWriteResult.do" enctype="multipart/form-data">
-		<div class="container" style="width: auto; height: auto;">
-			<div
-				style="width: 1000px; height: auto; margin: 50px auto; background-color: white; border-radius: 10px;">
-
+	<c:import url="../header.jsp" />
+	<div class="container">
+		<form method="post" action="withWriteResult.do" enctype="multipart/form-data">
+			<div style="margin: 50px auto; background-color: white; border-radius: 10px;">
 				<div class="form-group title">
-					<h3 class="title">동행 구하기</h3>
+					<h3 class="title" style="margin-bottom: 50px;">동행 구하기</h3>
 				</div>
 
 				<input type="hidden" name="user_no" value="${user.user_no}">
@@ -288,8 +285,8 @@ li {
 				</div>
 
 			</div>
-		</div>
-	</form>
-	<%@ include file="/WEB-INF/views/footer.jsp"%>
+		</form>
+	</div>
+	<c:import url="../footer.jsp" />
 </body>
 </html>

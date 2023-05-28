@@ -30,10 +30,11 @@
 </head>
 <body>
     <%@ include file="header.jsp" %>
-
+    
     <div class="d-flex justify-content-center">
-        <img class="seoul" src="./images/Seoul.jpg">
+    	<img class="seoul" src="./images/Seoul.jpg">
     </div>
+
 
     <%@ include file="footer.jsp" %>
 </body>
