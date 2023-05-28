@@ -51,13 +51,11 @@
 			$('#replyList').html(data);
 		});
 	}
-	
 
 	function lst() {
 		$('#replyList').load('replyList.do?with_no=${with.with_no}');
 	}
 	
-
 	function del(withreply_no, with_no) {
 		var formData="withreply_no="+withreply_no+"&with_no="+with_no;
 		$.post("replyDelete.do", formData, function(data) {
@@ -67,7 +65,7 @@
 </script>
 </head>
 <body>
-	<div class="container" align="center">
+	<div align="center">
 		<table class="table">
 			<tr>
 				<th>작성자</th>

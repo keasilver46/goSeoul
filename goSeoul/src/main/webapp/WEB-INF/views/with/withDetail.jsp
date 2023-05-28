@@ -106,7 +106,7 @@
             </tr>
             <tr>
                 <th>내용</th>
-                <td colspan="3">
+                <td colspan="3" style="height: 200px;">
                     ${with.with_content} <br>
                     <c:if test="${with.with_filename != null}">
                         <img src="./upload/${with.with_filename}" id="withImg">
