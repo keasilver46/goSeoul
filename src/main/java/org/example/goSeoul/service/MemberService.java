@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.example.goSeoul.dao.MemberDao;
 import org.example.goSeoul.model.FreeBean;
-import org.example.goSeoul.model.JoinMemberBean;
+import org.example.goSeoul.model.MemberBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,21 +14,21 @@ public class MemberService {
     @Autowired
     private MemberDao dao;
 
-    public JoinMemberBean checkLogin(String id) throws Exception {
+    public MemberBean checkLogin(String id) throws Exception {
         return dao.checkLogin(id);
     }
 
-    public JoinMemberBean findMemberId(JoinMemberBean dto) throws Exception {
+    public MemberBean findMemberId(MemberBean dto) throws Exception {
         return dao.findMemberId(dto);
     }
-    public void updatePass(JoinMemberBean dto) throws Exception {
+    public void updatePass(MemberBean dto) throws Exception {
         dao.updatePass(dto);
     }
-    public JoinMemberBean searchPwd(JoinMemberBean dto) throws Exception {
+    public MemberBean searchPwd(MemberBean dto) throws Exception {
         return dao.searchPwd(dto);
     }
 
-    public String concat(JoinMemberBean dto) throws Exception {
+    public String concat(MemberBean dto) throws Exception {
         return dao.concat(dto);
     }
 

@@ -1,7 +1,7 @@
 package org.example.goSeoul.service;
 
 import org.example.goSeoul.dao.MemberDaoImpl;
-import org.example.goSeoul.model.JoinMemberBean;
+import org.example.goSeoul.model.MemberBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +11,7 @@ public class MemberServiceImpl{
     @Autowired
     private MemberDaoImpl dao;
     
-    public void insert(JoinMemberBean member) throws Exception {
+    public void insert(MemberBean member) throws Exception {
         dao.insert(member);
     }
     public int checkMemberId(String id) throws Exception{

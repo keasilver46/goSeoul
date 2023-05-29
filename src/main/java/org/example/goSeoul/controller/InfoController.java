@@ -5,7 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.example.goSeoul.model.FreeBean;
-import org.example.goSeoul.model.JoinMemberBean;
+import org.example.goSeoul.model.MemberBean;
 import org.example.goSeoul.model.ReserveBean;
 import org.example.goSeoul.model.WithBean;
 import org.example.goSeoul.service.InfoService;
@@ -33,7 +33,7 @@ public class InfoController {
 	@RequestMapping("memberInfo.do")
 	public String getInfo(HttpSession session, Model model) {
 		String id = (String) session.getAttribute("id");
-		JoinMemberBean dto = service.getInfo(id);
+		MemberBean dto = service.getInfo(id);
 		// List<MemberBean> list = service.getInfo();
 		model.addAttribute("info", dto);
 
@@ -46,7 +46,6 @@ public class InfoController {
 
 			// 유저 정보 가져오기
 			String id = (String)session.getAttribute("id");
-			JoinMemberBean dto = service.userCheck(id);
 			model.addAttribute("id", id);
 
 			return "member/member_delete";
@@ -57,7 +56,7 @@ public class InfoController {
 	public String member_delete_ok(@RequestParam("pass") String pass, HttpSession session) {
 
 		String id = (String) session.getAttribute("id");
-		JoinMemberBean dto = service.userCheck(id);
+		MemberBean dto = service.userCheck(id);
 
 		// 비번 틀리면
 		if (!dto.getPass().equals(pass)) {
@@ -75,7 +74,7 @@ public class InfoController {
 	// 회원 수정 폼
 	@GetMapping("/memberEdit.do")
 	public String getEdit(String id, Model model) {
-		JoinMemberBean dto = service.getInfo(id);
+		MemberBean dto = service.getInfo(id);
 		model.addAttribute("edit", dto);
 
 		return "member/memberEdit";
@@ -83,7 +82,7 @@ public class InfoController {
 
 	// 회원 정보 수정
 	@PostMapping("/memberEdit.do")
-	public String postEdit(JoinMemberBean dto, HttpSession session, Model model) {
+	public String postEdit(MemberBean dto, HttpSession session, Model model) {
 		service.postEdit(dto);
 
 		String id = (String) session.getAttribute("id");

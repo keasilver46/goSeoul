@@ -35,11 +35,11 @@ footer {
 			<ul class="nav col-md-4 justify-content-end">
 				<li class="nav-item"><a href="main.do"
 					class="nav-link px-2 text-muted">Home</a></li>
-				<li class="nav-item"><a href="#"
+				<li class="nav-item"><a href="q_notice.do"
 					class="nav-link px-2 text-muted">공지사항</a></li>
-				<li class="nav-item"><a href="#"
+				<li class="nav-item"><a href="q_privacy.do"
 					class="nav-link px-2 text-muted">개인정보처리방침</a></li>
-				<li class="nav-item"><a href="#"
+				<li class="nav-item"><a href="q_board.do"
 					class="nav-link px-2 text-muted">FAQ</a></li>
 			</ul>
 		</footer>

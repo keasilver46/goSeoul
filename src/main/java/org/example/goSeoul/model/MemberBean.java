@@ -3,7 +3,7 @@ package org.example.goSeoul.model;
 import lombok.Data;
 
 @Data
-public class JoinMemberBean {
+public class MemberBean {
     private int user_no;
     private String id;
     private String nick;

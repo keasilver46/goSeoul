@@ -1,13 +1,13 @@
 package org.example.goSeoul;
 
 import org.apache.commons.mail.HtmlEmail;
-import org.example.goSeoul.model.JoinMemberBean;
+import org.example.goSeoul.model.MemberBean;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import javax.servlet.http.HttpServletResponse;
 
 public class MailUtil {
-    public void sendEmail(JoinMemberBean dto, String FE) throws Exception {
+    public void sendEmail(MemberBean dto, String FE) throws Exception {
 
         String charSet = "utf-8";
         String hostSMTP = "smtp.naver.com"; // SMTP 서버명
@@ -49,7 +49,7 @@ public class MailUtil {
         }
     }
 
-    public void findPw(HttpServletResponse response, @ModelAttribute JoinMemberBean memberBean) throws Exception {
+    public void findPw(HttpServletResponse response, @ModelAttribute MemberBean memberBean) throws Exception {
         response.setContentType("text/html;charset=utf-8");
     }
 }

@@ -97,7 +97,7 @@ header {
 								<ul class="dropdown-menu">
 									<li><a class="dropdown-item" href="#">테마추천코스</a></li>
 									<li><a class="dropdown-item" href="#">종류별</a></li>
-									<li><a class="dropdown-item" href="#">지역별</a></li>
+									<li><a class="dropdown-item" href="tripBoard_form.do">지역별</a></li>
 								</ul></li>
 
 							<li class="nav-item dropdown"><a
@@ -105,9 +105,9 @@ header {
 								role="button" aria-expanded="false"> 정보서울 </a>
 								<ul class="dropdown-menu">
 									<li><a class="dropdown-item" href="#">서울시티투어버스</a></li>
-									<li><a class="dropdown-item" href="#">공지사항</a></li>
+									<li><a class="dropdown-item" href="q_notice.do">공지사항</a></li>
 									<li><a class="dropdown-item" href="q_board.do">FAQ</a></li>
-									<li><a class="dropdown-item" href="#">개인정보처리방침</a></li>
+									<li><a class="dropdown-item" href="q_privacy.do">개인정보처리방침</a></li>
 								</ul></li>
 						</ul>
 					</div>

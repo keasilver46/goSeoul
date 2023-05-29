@@ -1,6 +1,6 @@
 package org.example.goSeoul.controller;
 
-import org.example.goSeoul.model.JoinMemberBean;
+import org.example.goSeoul.model.MemberBean;
 import org.example.goSeoul.model.QuestionBean;
 import org.example.goSeoul.service.MemberService;
 import org.example.goSeoul.service.QuestionService;
@@ -33,7 +33,7 @@ public class QuestionController {
     @RequestMapping("q_form.do")
     public String q_form(HttpSession session, Model model) throws Exception {
         String id = (String)session.getAttribute("id");
-        JoinMemberBean joinMemberBean = memberService.checkLogin(id);
+        MemberBean joinMemberBean = memberService.checkLogin(id);
         model.addAttribute("user",joinMemberBean);
 
         System.out.println("q_form");
@@ -50,5 +50,21 @@ public class QuestionController {
         model.addAttribute("result",result);
 
         return "question/q_formResult";
+    }
+
+    // 개인정보 처리방침
+    @RequestMapping("q_privacy.do")
+    public String q_privacy() {
+
+        System.out.println("q_privacy");
+        return "question/q_privacy";
+    }
+
+    // 공지사항
+    @RequestMapping("q_notice.do")
+    public String q_notice() {
+
+        System.out.println("q_notice");
+        return "question/q_notice";
     }
 }

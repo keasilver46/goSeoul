@@ -5,7 +5,7 @@
 
     <!-- 로그인 인증 -->
     <!-- db에 저장된 데이터와 사용자가 입력한 데이터가 같은 값을 찾아옴 -->
-    <select id="checkLogin" parameterType="String" resultType="joinMember">
+    <select id="checkLogin" parameterType="String" resultType="member">
     select * from userdata where id=#{id} and state=0
     </select>
 </mapper>

@@ -2,7 +2,7 @@ package org.example.goSeoul.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.example.goSeoul.model.JoinMemberBean;
+import org.example.goSeoul.model.MemberBean;
 import org.example.goSeoul.service.MemberServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,7 +44,7 @@ public class JoinController {
     
     //  회원정보저장
     @RequestMapping(value = "/member_join_ok.do", method= RequestMethod.POST)
-    public String member_join(@ModelAttribute JoinMemberBean member,
+    public String member_join(@ModelAttribute MemberBean member,
     							Model model, HttpServletRequest request) throws Exception {
 
         System.out.println("member:"+member);

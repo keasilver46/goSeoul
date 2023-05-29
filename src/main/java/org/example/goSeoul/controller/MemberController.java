@@ -4,8 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.example.goSeoul.MailUtil;
-import org.example.goSeoul.model.JoinMemberBean;
 import org.example.goSeoul.model.KakaoVo;
+import org.example.goSeoul.model.MemberBean;
 import org.example.goSeoul.service.KakaoService;
 import org.example.goSeoul.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,7 @@ public class MemberController {
     @Autowired
     private KakaoService kakaoService;
 
-    JoinMemberBean joinMemberBean = new JoinMemberBean();
+    MemberBean joinMemberBean = new MemberBean();
 
     // 로그아웃
     @RequestMapping("logout.do")
@@ -53,7 +53,7 @@ public class MemberController {
         System.out.println("memberLoginOk");
 
         int result = 0;
-        JoinMemberBean joinMemberBean = memberService.checkLogin(id);
+        MemberBean joinMemberBean = memberService.checkLogin(id);
 
         if (joinMemberBean == null) { // 등록되지 않은 회원 일때
             result = 1;
@@ -116,8 +116,8 @@ public class MemberController {
     }
 
     @RequestMapping("result.do")
-    public String result(@ModelAttribute JoinMemberBean memberBean, Model model) throws Exception {
-        JoinMemberBean dto = memberService.findMemberId(memberBean);
+    public String result(@ModelAttribute MemberBean memberBean, Model model) throws Exception {
+        MemberBean dto = memberService.findMemberId(memberBean);
 
         if (dto == null) {
             return "member/case1";
@@ -136,12 +136,12 @@ public class MemberController {
     // 데이터를 뷰를 통해 출력하는 것이 아니라, HTTP 응답 데이터에 직접 쓰여지게 됩니다.
     // 보통 JSON, XML, 문자열, 파일 등의 형태로 데이터를 반환할 때 사용됩니다.
     @RequestMapping(value = "find.do", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public @ResponseBody String findPw(@ModelAttribute JoinMemberBean memberBean) throws Exception {
+    public @ResponseBody String findPw(@ModelAttribute MemberBean memberBean) throws Exception {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         String result = null;
 
         // 회원정보 불러오기
-        JoinMemberBean dto = memberService.searchPwd(memberBean);
+        MemberBean dto = memberService.searchPwd(memberBean);
         System.out.println(dto);
 
         if(dto != null) {
@@ -162,7 +162,6 @@ public class MemberController {
         } else {
             result = "false";
         }
-
         return result;
     }
 }

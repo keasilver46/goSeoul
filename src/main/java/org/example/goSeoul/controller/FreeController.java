@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.example.goSeoul.model.FreeBean;
-import org.example.goSeoul.model.JoinMemberBean;
+import org.example.goSeoul.model.MemberBean;
 import org.example.goSeoul.service.FreeService;
 import org.example.goSeoul.service.MemberService;
 import org.example.goSeoul.service.PagingPgm;
@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -89,7 +88,7 @@ public class FreeController {
         } else {
             // 유저 정보 가져오기
             String id = (String)session.getAttribute("id");
-            JoinMemberBean memberBean = memberService.checkLogin(id);
+            MemberBean memberBean = memberService.checkLogin(id);
             model.addAttribute("user",memberBean);
             fb.setFree_nick(memberBean.getNick()); 
             fb.setFree_id(memberBean.getId()); 

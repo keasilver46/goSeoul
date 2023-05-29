@@ -3,7 +3,7 @@ package org.example.goSeoul.service;
 import java.util.List;
 
 import org.example.goSeoul.dao.InfoDao;
-import org.example.goSeoul.model.JoinMemberBean;
+import org.example.goSeoul.model.MemberBean;
 import org.example.goSeoul.model.ReserveBean;
 import org.example.goSeoul.model.WithBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ public class InfoService {
 	 * @Override public List<MemberBean> getInfo() { return mapper.getInfo(); }
 	 */
 
-		public JoinMemberBean getInfo(String id) {
+		public MemberBean getInfo(String id) {
 			return dao.getInfo(id);
 		}
 
@@ -27,12 +27,12 @@ public class InfoService {
 			return dao.delete(id);
 		}
 
-		public int postEdit(JoinMemberBean dto) {
+		public int postEdit(MemberBean dto) {
 			return dao.postEdit(dto);
 		}
 
-		public JoinMemberBean getEdit(String id) {
-			JoinMemberBean dto = dao.getInfo(id);
+		public MemberBean getEdit(String id) {
+			MemberBean dto = dao.getInfo(id);
 			return dto;
 		}
 
@@ -41,7 +41,7 @@ public class InfoService {
 			return dao.getMyReserve(id);
 		}
 
-		public JoinMemberBean userCheck(String id) {
+		public MemberBean userCheck(String id) {
 			return dao.userCheck(id);
 		}
 

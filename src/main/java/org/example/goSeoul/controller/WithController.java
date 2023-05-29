@@ -1,7 +1,7 @@
 package org.example.goSeoul.controller;
 
 import lombok.With;
-import org.example.goSeoul.model.JoinMemberBean;
+import org.example.goSeoul.model.MemberBean;
 import org.example.goSeoul.model.ReserveBean;
 import org.example.goSeoul.model.WithBean;
 import org.example.goSeoul.model.WithReplyBean;
@@ -45,7 +45,7 @@ public class WithController {
         } else {
             // 유저 정보 가져오기
             String id = (String)session.getAttribute("id");
-            JoinMemberBean joinMemberBean = memberService.checkLogin(id);
+            MemberBean joinMemberBean = memberService.checkLogin(id);
             model.addAttribute("user",joinMemberBean);
 
             // 로그인된 상태일 경우 글 작성 폼으로 이동
@@ -235,7 +235,7 @@ public class WithController {
             // 비로그인 상태일 경우 로그인 폼으로 이동
             return "redirect:MemberLogin.do";
         } else {
-            JoinMemberBean mb = memberService.checkLogin(id);
+            MemberBean mb = memberService.checkLogin(id);
 
             rb.setWith_no(with_no);
             rb.setUser_no(mb.getUser_no());
@@ -254,7 +254,7 @@ public class WithController {
             // 비로그인 상태일 경우 로그인 폼으로 이동
             return "redirect:MemberLogin.do";
         } else {
-            JoinMemberBean mb = memberService.checkLogin(id);
+            MemberBean mb = memberService.checkLogin(id);
 
             wrb.setWith_no(with_no);
             wrb.setUser_no(mb.getUser_no());
