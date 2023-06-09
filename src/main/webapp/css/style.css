@@ -1,0 +1,144 @@
+body {
+	margin: 0px;
+}
+
+section {
+	height: 600px;
+	background-image: url('../images/main_background.png' );
+	fixed;
+}
+
+.photo {
+	position: absolute;
+	top: 600px;
+	left: 100px;
+}
+
+h1 {
+	font-size: 15em;
+	width: 700px;
+	color: white;
+	font-family: 'Title_Medium';
+	position: absolute;
+	top: 300px;
+	left: 400px;
+	animation: slide 2s ease-out;
+}
+
+@
+keyframes slide {from { left:-100px;
+	opacity: 0;
+}
+
+to {
+	left: 400px;
+	opacity: 1;
+}
+
+}
+@
+keyframes disappear {from { opacity:1;
+	left: 400px;
+}
+
+to {
+	left: -100px;
+	opacity: 0;
+}
+
+}
+.gallerylist {
+	max-width: 1200px;
+	width: 100%;
+	margin: 0 auto;
+	padding-top: 100px;
+}
+
+.youtubelist {
+	font-size: 0;
+}
+
+.youtubelist>li {
+	display: inline-block;
+	vertical-align: top;
+	width: 25%;
+}
+
+.youtubelist>li>a {
+	display: block;
+	width: auto;
+	text-decoration: none;
+	margin: 20px;
+}
+
+.youtubelist>li>a .screen {
+	position: relative;
+	overflow: hidden;
+}
+
+.youtubelist>li>a .screen .top {
+	position: absolute;
+	bottom: 150%;
+	left: 30px;
+	z-index: 2;
+	color: #fff;
+	font-size: 26px;
+	font-weight: 900;
+	transition: all .35s;
+}
+
+.youtubelist>li>a .screen .bottom {
+	position: absolute;
+	top: 150%;
+	left: 30px;
+	z-index: 2;
+	color: #fff;
+	font-size: 12px;
+	transition: all .35s;
+}
+
+.youtubelist>li>a .screen img {
+	width: 100%;
+}
+
+.youtubelist>li>a h3 {
+	font-size: 14px;
+	text-align: center;
+	padding: 20px;
+	color: #666;
+}
+
+.youtubelist>li>a:hover .top {
+	bottom: 52%;
+}
+
+.youtubelist>li>a:hover .bottom {
+	top: 52%;
+}
+
+.youtubelist>li>div {
+	width: auto;
+	padding: 15px;
+}
+
+.youtubelist>li .screen {
+	display: block;
+	width: auto;
+	position: relate;
+}
+
+.youtubelist>li .screen img {
+	width: 100%;
+}
+
+.youtubelist>li .screen .on {
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 0;
+	transition: all .5s;
+}
+
+.youtubelist>li:hover .screen .on {
+	opacity: 1;
+}

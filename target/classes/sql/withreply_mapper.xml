@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="withReply">
+	<insert id="replyInsert" parameterType="withreply">
+		insert into with_reply 
+		values (with_reply_seq.nextval, #{with_no}, #{user_no}, #{withreply_id}, #{withreply_nick}, #{withreply_content}, sysdate)
+	</insert>
+	
+	<select id="getList" parameterType="int" resultType="withreply">
+		select * from with_reply where with_no = #{with_no} order by withreply_no
+	</select>
+	
+	<update id="replyUpdate" parameterType="withreply">
+		update with_reply set withreply_content = #{withreply_content}, withreply_date = sysdate where withreply_no = #{withreply_no}
+	</update>
+	
+	<delete id="replyDelete" parameterType="withreply">
+		delete from with_reply where withreply_no = #{withreply_no}
+	</delete>
+</mapper>

@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+.moving{
+	margin:0px;
+	width:100%; height:900px;
+	background:url('../images/Lovepik_com-400126534-the-blue-sky-and-white-clouds.jpg') 0 center / 2500px repeat-x;
+	animation:movebg 10s linear infinite;
+}
+
+@keyframes movebg{
+	0% {background-position:0 center;}
+	100% {background-position:-500px center;}
+}
